@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>telescope</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+<style>
+	body,br {
+		margin:0px;
+		padding:0px;
+	}
+
+    .required .x-form-item-label {
+        font-weight:bold;
+        color:red;
+    }
+</style>
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script language="javascript" type="text/javascript">
+	Ext.onReady(function() {
+
+		var g1 = new Rs.ext.form.SuggestTag({
+			fieldLabel : '单选建议文本框' ,
+			singleSelect : true ,
+			progCode : 'orderType',
+			displayField : 'HEAD_TYPE_NAME',
+			valueField : 'HEAD_TYPE'
+		});
+		g1.render("div1");
+
+		var g2 = new Rs.ext.form.SuggestTag( {
+			fieldLabel : '多选建议文本框' ,
+			singleSelect : false ,
+            progCode : 'orderType',
+            valueField : 'HEAD_TYPE_NAME',
+            displayField : 'HEAD_TYPE'
+        });
+        g2.render("div2");
+
+        //单选
+        var t4 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            readOnly: true,
+            singleSelect : true
+        });
+        t4.render('div4');
+        
+		new Ext.Button({
+			text: '设置为readOnly',
+			handler: function(){
+	        	t4.setReadOnly(true);
+			},
+			renderTo: 'Button1'
+		});
+		
+		new Ext.Button({
+			text: '设置非readOnly',
+			handler: function(){
+		        t4.setReadOnly(false);
+			},
+			renderTo: 'Button2'
+		});
+		
+        //多选
+        var t5 = new Rs.ext.form.Telescope({
+        	singleSelect : false ,
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450
+        });
+        t5.render('div5');
+        
+	});
+</script>
+</head>
+<body>
+<span></span>
+         本实例演示望远镜和建议文本框的用法和区别    
+<br />
+<br />
+<hr />
+<b>SuggestTag</b>
+
+<div>
+	<div style="background-color: rgb(151, 119, 119);font-size: 20px;">
+		建议文本框,既可多选也可以单选<br/>
+		建议文本框输入值时候查询,手动展开建议文本框不取当前控件上的值进行查询<br/>
+		建议文本框的值与数据源的值可以不匹配<br/>
+		建议文本框手动输入时候,当建议文本框展开后,如果不选择记录,窗口关闭,手动输入的值保留下来.<br/>
+		建议文本框如果已经存在值,展开建议文本框后,如果不选择记录,窗口关闭,原来的值则保留下来.<br/>
+	</div>
+	<br/>
+	<br/>
+</div>
+	<br/>
+	<br/>
+<div>
+单选建议文本框
+<div id="div1" ></div>
+多选建议文本框
+<div id="div2" ></div>
+</div>
+	<br/>
+<b>Telescope</b></br>
+	<div style="background-color: #CCC;font-size: 20px;">
+		望远镜,既可多选也可以单选.<br/>
+		望远镜输入值时候查询,手动展开望远镜不取当前控件上的值进行查询<br/>
+		望远镜的值必须与数据源的值完全匹配,当查询结果只有一条记录的时候自动反填<br/>
+		望远镜手动输入时候,当望远镜展开后,如果不选择记录,窗口关闭,手动输入的值则清除.<br/>
+		望远镜如果已经存在值,展开望远镜后,如果不选择记录,窗口关闭,原来的值则保留下来.<br/>
+	</div>
+	<br/>
+单选望远镜
+<div>
+	<div id="div4" ></div>
+	<div id="Button1"></div>
+	<div id="Button2"></div>
+</div>
+多选望远镜
+<div id="div5" ></div>
+<div id="div6" ></div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base-debug.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/form/SingleUploadField.js"></script>
+<script src="../../../rs/data/Service.js"></script>
+<script src="../../../rs/ext/form/BasicForm.js"></script>
+<script src="../../../rs/ext/form/FormPanel.js"></script>
+
+<title>千分符的数字控件</title>
+</head>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		Ext.QuickTips.init();
+		
+		this.rsnumberFile = new Rs.ext.form.NumberField({
+			fieldLabel : '千分符的数字控件' ,
+			width : 400 ,
+			decimalPrecision : 0 //保留小数位
+		});
+		
+		this.numberFile = new Ext.form.NumberField({
+			fieldLabel : 'Ext原生数字控件' ,
+			width : 400 ,
+			decimalPrecision : 2
+		});
+		
+		this.textFiled = new Ext.form.TextField({
+			fieldLabel : 'TextField',
+			allowBlank : false
+		});
+		
+		this.timeFiled = new Ext.form.TimeField({
+			fieldLabel : 'TimeField',
+			increment: 10,
+			allowBlank : false
+		});
+		
+		var formpanel = new Ext.form.FormPanel({
+			labelWidth : 200 ,
+			title : '数字控件',
+			frame : true ,
+			tbar : [{
+				text : '获取表单的值' ,
+				handler : function(){
+					var a = formpanel.getForm().getFieldValues();
+				} ,
+				scope : this
+			}] ,
+			items : [{
+				layout : 'column' ,
+				items : [{
+					columnWidth : .4 ,
+					layout : 'form' ,
+					items : [this.numberFile]
+				} , new Ext.Button({
+					text : '获取值' ,
+					handler : function(){
+						var value = this.numberFile.getValue() ;
+						alert(value);
+					},
+					scope : this
+				})]
+			} , {
+				layout : 'column' ,
+				items : [{
+					columnWidth : .4 ,
+					layout : 'form' ,
+					items : [this.rsnumberFile]
+				} , new Ext.Button({
+					text : '获取值' ,
+					handler : function(){
+						var value = this.rsnumberFile.getValue() ;
+						alert(value);
+					},
+					scope : this
+				})]
+			},{
+				layout : 'column' ,
+				items : [{
+					columnWidth : .4 ,
+					layout : 'form' ,
+					items : [this.textFiled]
+				} , new Ext.Button({
+					text : '获取值' ,
+					handler : function(){
+						var value = this.textFiled.getValue() ;
+						alert(value);
+					},
+					scope : this
+				})]
+			},{
+				layout : 'column' ,
+				items : [{
+					columnWidth : .4 ,
+					layout : 'form' ,
+					items : [this.timeFiled]
+				} , new Ext.Button({
+					text : '获取值' ,
+					handler : function(){
+						var value = this.textFiled.getValue() ;
+						alert(value);
+					},
+					scope : this
+				})]
+			}]	
+		});
+		
+		
+		new Ext.Viewport({
+             layout: "fit",
+             items: [formpanel]
+        });
+	}, this);
+</script>
+</html>

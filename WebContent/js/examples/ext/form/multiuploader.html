@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Rs.ext.form.MultiUploadPanel example</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+        <link rel="stylesheet" type="text/css" href="/rsc/js/rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+        <link rel="stylesheet" type="text/css" href="/rsc/js/rs/ext/resources/css/rs-ext-all.css" />
+        <link rel="stylesheet" type="text/css" href="/rsc/js/rs/resources/css/rs-all.css" />
+        <script src="/rsc/js/rs/lib/ext-3.3.1/adapter/ext/ext-base.js">
+        </script>
+        <script src="/rsc/js/rs/lib/ext-3.3.1/ext-all-debug.js">
+        </script>
+        <script src="/rsc/js/rs/rs-debug.js">
+        </script>
+        <script src="/rsc/js/rs/ext/rs-ext-debug.js">
+        </script>
+        <script src="/rsc/js/rs/ext/form/swfupload.js">
+        </script>
+        <script src="/rsc/js/rs/ext/form/MultiUploadPanel.js">
+        </script>
+        <script src="/rsc/js/rs/ext/grid/AttachmentGrid.js">
+        </script>
+        <script>
+            Ext.onReady(function(){
+                var win = new Ext.Window({
+                    title: '多文件上传示例',
+                    width: 500,
+                    height: 500,
+                    resizable: false,
+                    layout: 'fit',
+                    items : [
+                    
+                    new Rs.ext.form.MultiUploadPanel({
+                        uploadUrl: '/rsc/rsclient/attachment',
+                        flashUrl: '../../../rs/ext/resources/swfupload.swf',
+                        fileSize: '500 MB',
+                        height: 400,
+                        border: false,
+                        fileTypes: '*.*',
+                        /*attachments: [{
+                            fileName: '韩国攻略.pdf',
+                            filePath: 'path\\%25E9%259F%25A9%25E5%259B%25BD%25E6%2594%25BB%25E7%2595%25A5.pdf',
+                            fileType: 'pdf'
+                        }],*/
+                        fileTypesDescription: '所有文件',
+                        postParams: {
+                            fileDir: 'path',
+                            "Rs-method": 'upload',
+                            "Rs-accept": 'html'
+                        }
+                    })
+                    
+                    ]
+                });
+                win.show();
+            }, this);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

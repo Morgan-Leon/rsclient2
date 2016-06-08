@@ -1,0 +1,91 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Rs.ext.grid.CheckboxCellSelectionModel-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Rs.ext.grid.CheckboxCellSelectionModel-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Rs.ext.grid.CheckboxCellSelectionModel-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="inner-link" href="#Rs.ext.grid.CheckboxCellSelectionModel-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>&#13;<a class="bookmark" href="../docs/?class=Rs.ext.grid.CheckboxCellSelectionModel"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><div class="inheritance res-block"><pre class="res-block-inner"><a href="output/Rs.ext.grid.RowCellSelectionModel.html" ext:member="" ext:cls="Rs.ext.grid.RowCellSelectionModel">RowCellSelectionModel</a>&#13;&nbsp;&nbsp;<img src="resources/elbow-end.gif">CheckboxCellSelectionModel</pre></div><h1>Class <a href="source/rs-ext-debug.html#cls-Rs.ext.grid.CheckboxCellSelectionModel">Rs.ext.grid.CheckboxCellSelectionModel</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Rs.ext.grid</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Rs.ext.grid.CheckboxCellSelectionModel">rs-ext-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Rs.ext.grid.CheckboxCellSelectionModel">CheckboxCellSelectionModel</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info"><a href="output/Rs.ext.grid.RowCellSelectionModel.html" ext:cls="Rs.ext.grid.RowCellSelectionModel" ext:member="">RowCellSelectionModel</a></td></tr></table><div class="description">当选中单元格的时候，安装Ctrl+C 可进行复制选中单元格的内容。不支持chrome 和safri浏览器的复制。
+A custom selection model that renders a column of checkboxes that can be toggled to select or deselect rows.
+<pre><code><b>var</b> store2 = <b>new</b> Rs.ext.data.Store({
+    autoLoad : true,
+    autoDestroy: true,
+    url: <em>'testservice.jsp'</em>,
+    fields: [<em>'CODE'</em>, <em>'NAME'</em>, {name:<em>'PRICE'</em>, type: <em>'float'</em>}],
+    baseParams : {
+        pm_flag : <em>'Y'</em>
+    }
+});
+<b>var</b> sm2 = <b>new</b> Rs.ext.grid.CheckboxCellSelectionModel();
+<b>var</b> grid2 = <b>new</b> Ext.grid.GridPanel({
+    store: store2,
+    title : <em>'Rs.ext.grid.CheckboxCellSelectionModel'</em>,
+    sm : sm2,
+    columns: [sm2, {
+            header   : <em>'CODE'</em>, 
+            width    : 170,
+            sortable : true, 
+            dataIndex: <em>'CODE'</em>
+        }, {
+            header   : <em>'NAME'</em>, 
+            width    : 150, 
+            sortable : true, 
+            dataIndex: <em>'NAME'</em>
+        }, {
+            header   : <em>'PRICE'</em>, 
+            width    : 100, 
+            sortable : true, 
+            dataIndex: <em>'PRICE'</em>
+        }
+    ],
+    height: 350,
+    width: 500,
+    bbar: <b>new</b> Rs.ext.grid.SliderPagingToolbar({
+        pageSize : 20,
+        hasSlider : true,
+        store : store2,
+        displayInfo : false
+    })
+});</code></pre></div><div class="hr"></div><a id="Rs.ext.grid.CheckboxCellSelectionModel-configs"></a><h2>Config Options</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Config Options</th><th class="msource-header">Defined By</th></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.CheckboxCellSelectionModel-checkOnly"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.grid.CheckboxCellSelectionModel-checkOnly">checkOnly</a></b> : Boolean<div class="mdesc"><tt>true</tt> if rows can only be selected by clicking on the
+checkbox column (defaults to <tt>true</tt>).</div></td><td class="msource">CheckboxCellSelectionModel</td></tr><tr class="config-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.CheckboxCellSelectionModel-header"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.grid.CheckboxCellSelectionModel-header">header</a></b> : String<div class="mdesc"><div class="short">Any valid text or HTML fragment to display in the header cell for the&#13;
+checkbox column.  Defaults to:'&amp;lt;div class="...</div><div class="long">Any valid text or HTML fragment to display in the header cell for the
+checkbox column.  Defaults to:<pre><code><em>'&lt;div class=<em>"x-grid3-hd-checker"</em>>&#38;#160;&lt;/div>'</em></tt></code></pre>
+The default CSS class of <tt>'x-grid3-hd-checker'</tt> displays a checkbox in the header
+and provides support for automatic check all/none behavior on header click. This string
+can be replaced by any valid HTML fragment, including a simple text string (e.g.,
+<tt>'Select Rows'</tt>), but the automatic check all/none behavior will only work if the
+<tt>'x-grid3-hd-checker'</tt> class is supplied.</div></div></td><td class="msource">CheckboxCellSelectionModel</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.CheckboxCellSelectionModel-sortable"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.grid.CheckboxCellSelectionModel-sortable">sortable</a></b> : Boolean<div class="mdesc"><tt>true</tt> if the checkbox column is sortable (defaults to
+<tt>false</tt>).</div></td><td class="msource">CheckboxCellSelectionModel</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.CheckboxCellSelectionModel-width"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.grid.CheckboxCellSelectionModel-width">width</a></b> : Number<div class="mdesc">The default width in pixels of the checkbox column (defaults to <tt>20</tt>).</div></td><td class="msource">CheckboxCellSelectionModel</td></tr></tbody></table><a id="Rs.ext.grid.CheckboxCellSelectionModel-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Rs.ext.grid.CheckboxCellSelectionModel-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.CheckboxCellSelectionModel-CheckboxCellSelectionModel"></a><b><a href="source/rs-ext-debug.html#cls-Rs.ext.grid.CheckboxCellSelectionModel">CheckboxCellSelectionModel</a></b>(&nbsp;<code>Object&nbsp;config</code>&nbsp;)
+    <div class="mdesc"><div class="short"></div><div class="long"><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>config</code> : Object<div class="sub-desc">The configuration options</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">CheckboxCellSelectionModel</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.RowCellSelectionModel-clearCellSelections"></a><b><a href="source/rs-ext-debug.html#method-Rs.ext.grid.RowCellSelectionModel-clearCellSelections">clearCellSelections</a></b>(&nbsp;<code>Boolean&nbsp;preventNotify</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">If anything is selected, clears all selections and fires the selectionchange event.</div><div class="long">If anything is selected, clears all selections and fires the selectionchange event.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>preventNotify</code> : Boolean<div class="sub-desc"><tt>true</tt> to prevent the gridview from
+being notified about the change.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.ext.grid.RowCellSelectionModel.html#clearCellSelections" ext:member="#clearCellSelections" ext:cls="Rs.ext.grid.RowCellSelectionModel">RowCellSelectionModel</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.RowCellSelectionModel-getSelectedCell"></a><b><a href="source/rs-ext-debug.html#method-Rs.ext.grid.RowCellSelectionModel-getSelectedCell">getSelectedCell</a></b>()
+    :
+                                        Array<div class="mdesc"><div class="short">Returns an array containing the row and column indexes of the currently selected cell&#13;
+(e.g., [0, 0]), or null if non...</div><div class="long">Returns an array containing the row and column indexes of the currently selected cell
+(e.g., [0, 0]), or null if none selected. The array has elements:
+<div class="mdetail-params"><ul>
+<li><b>rowIndex</b> : Number<p class="sub-desc">The index of the selected row</p></li>
+<li><b>cellIndex</b> : Number<p class="sub-desc">The index of the selected cell. 
+Due to possible column reordering, the cellIndex should <b>not</b> be used as an
+index into the Record's data. Instead, use the cellIndex to determine the <i>name</i>
+of the selected cell and use the field name to retrieve the data value from the record:<pre><code><i>// get name</i>
+	<b>var</b> fieldName = grid.getColumnModel().getDataIndex(cellIndex);
+	<i>// get data value based on name</i>
+	<b>var</b> data = record.get(fieldName);</code></pre></p></li>
+</ul></div><div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Array</code><div class="sub-desc">An array containing the row and column indexes of the selected cell, or null if none selected.</div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.ext.grid.RowCellSelectionModel.html#getSelectedCell" ext:member="#getSelectedCell" ext:cls="Rs.ext.grid.RowCellSelectionModel">RowCellSelectionModel</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.RowCellSelectionModel-hasCellSelection"></a><b><a href="source/rs-ext-debug.html#method-Rs.ext.grid.RowCellSelectionModel-hasCellSelection">hasCellSelection</a></b>()
+    :
+                                        Boolean<div class="mdesc"><div class="short">Returns true if there is a selection.</div><div class="long">Returns <tt>true</tt> if there is a selection.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.ext.grid.RowCellSelectionModel.html#hasCellSelection" ext:member="#hasCellSelection" ext:cls="Rs.ext.grid.RowCellSelectionModel">RowCellSelectionModel</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.RowCellSelectionModel-select"></a><b><a href="source/rs-ext-debug.html#method-Rs.ext.grid.RowCellSelectionModel-select">select</a></b>(&nbsp;<code>Number&nbsp;rowIndex</code>,&nbsp;<code>Number&nbsp;colIndex</code>,&nbsp;<span title="Optional" class="optional">[<code>Boolean&nbsp;preventViewNotify</code>]</span>,&nbsp;<span title="Optional" class="optional">[<code>Boolean&nbsp;preventFocus</code>]</span>,&nbsp;<span title="Optional" class="optional">[<code>Ext.data.Record&nbsp;r</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Selects a cell.  Before selecting a cell, fires the&#13;
+beforecellselect event.  If this check is satisfied the cell&#13;
+wi...</div><div class="long">Selects a cell.  Before selecting a cell, fires the
+<a href="output/Rs.ext.grid.RowCellSelectionModel.html#Rs.ext.grid.RowCellSelectionModel-beforecellselect" ext:member="beforecellselect" ext:cls="Rs.ext.grid.RowCellSelectionModel">beforecellselect</a> event.  If this check is satisfied the cell
+will be selected and followed up by  firing the <a href="output/Rs.ext.grid.RowCellSelectionModel.html#Rs.ext.grid.RowCellSelectionModel-cellselect" ext:member="cellselect" ext:cls="Rs.ext.grid.RowCellSelectionModel">cellselect</a> and
+<a href="output/Rs.ext.grid.RowCellSelectionModel.html#Rs.ext.grid.RowCellSelectionModel-selectionchange" ext:member="selectionchange" ext:cls="Rs.ext.grid.RowCellSelectionModel">selectionchange</a> events.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>rowIndex</code> : Number<div class="sub-desc">The index of the row to select</div></li><li><code>colIndex</code> : Number<div class="sub-desc">The index of the column to select</div></li><li><code>preventViewNotify</code> : Boolean<div class="sub-desc">(optional) Specify <tt>true</tt> to
+prevent notifying the view (disables updating the selected appearance)</div></li><li><code>preventFocus</code> : Boolean<div class="sub-desc">(optional) Whether to prevent the cell at
+the specified rowIndex / colIndex from being focused.</div></li><li><code>r</code> : Ext.data.Record<div class="sub-desc">(optional) The record to select</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.ext.grid.RowCellSelectionModel.html#select" ext:member="#select" ext:cls="Rs.ext.grid.RowCellSelectionModel">RowCellSelectionModel</a></td></tr></tbody></table><a id="Rs.ext.grid.CheckboxCellSelectionModel-events"></a><h2>Public Events</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Event</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.RowCellSelectionModel-beforecellselect"></a><b><a href="source/rs-ext-debug.html#event-Rs.ext.grid.RowCellSelectionModel-beforecellselect">beforecellselect</a></b> :
+                                      (&nbsp;<code>SelectionModel&nbsp;this</code>,&nbsp;<code>Number&nbsp;rowIndex</code>,&nbsp;<code>Number&nbsp;colIndex</code>&nbsp;)
+    <div class="mdesc"><div class="short">Fires before a cell is selected, return false to cancel the selection.</div><div class="long">Fires before a cell is selected, return false to cancel the selection.<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : SelectionModel<div class="sub-desc"></div></li><li><code>rowIndex</code> : Number<div class="sub-desc">The selected row index</div></li><li><code>colIndex</code> : Number<div class="sub-desc">The selected cell index</div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.ext.grid.RowCellSelectionModel.html#beforecellselect" ext:member="#beforecellselect" ext:cls="Rs.ext.grid.RowCellSelectionModel">RowCellSelectionModel</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.RowCellSelectionModel-cellselect"></a><b><a href="source/rs-ext-debug.html#event-Rs.ext.grid.RowCellSelectionModel-cellselect">cellselect</a></b> :
+                                      (&nbsp;<code>SelectionModel&nbsp;this</code>,&nbsp;<code>Number&nbsp;rowIndex</code>,&nbsp;<code>Number&nbsp;colIndex</code>&nbsp;)
+    <div class="mdesc"><div class="short">Fires when a cell is selected.</div><div class="long">Fires when a cell is selected.<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : SelectionModel<div class="sub-desc"></div></li><li><code>rowIndex</code> : Number<div class="sub-desc">The selected row index</div></li><li><code>colIndex</code> : Number<div class="sub-desc">The selected cell index</div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.ext.grid.RowCellSelectionModel.html#cellselect" ext:member="#cellselect" ext:cls="Rs.ext.grid.RowCellSelectionModel">RowCellSelectionModel</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.RowCellSelectionModel-cellselectionchange"></a><b><a href="source/rs-ext-debug.html#event-Rs.ext.grid.RowCellSelectionModel-cellselectionchange">cellselectionchange</a></b> :
+                                      (&nbsp;<code>SelectionModel&nbsp;this</code>,&nbsp;<code>Object&nbsp;selection</code>&nbsp;)
+    <div class="mdesc"><div class="short">Fires when the active cellselection changes.</div><div class="long">Fires when the active cellselection changes.<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : SelectionModel<div class="sub-desc"></div></li><li><code>selection</code> : Object<div class="sub-desc">null for no selection or an object with two properties
+<div class="mdetail-params"><ul>
+<li><b>cell</b> : see <a href="output/Rs.ext.grid.RowCellSelectionModel.html#Rs.ext.grid.RowCellSelectionModel-getSelectedCell" ext:member="getSelectedCell" ext:cls="Rs.ext.grid.RowCellSelectionModel">getSelectedCell</a> 
+<li><b>record</b> : Ext.data.record<p class="sub-desc">The <a href="output/Ext.data.Record.html" ext:cls="Ext.data.Record">Record</a>
+which provides the data for the row containing the selection</p></li>
+</ul></div></div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.ext.grid.RowCellSelectionModel.html#cellselectionchange" ext:member="#cellselectionchange" ext:cls="Rs.ext.grid.RowCellSelectionModel">RowCellSelectionModel</a></td></tr></tbody></table></div>

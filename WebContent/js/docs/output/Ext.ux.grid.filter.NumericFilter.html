@@ -1,0 +1,65 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Ext.ux.grid.filter.NumericFilter-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Ext.ux.grid.filter.NumericFilter-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Ext.ux.grid.filter.NumericFilter-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="inner-link" href="#Ext.ux.grid.filter.NumericFilter-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>&#13;<a class="bookmark" href="../docs/?class=Ext.ux.grid.filter.NumericFilter"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/rs-ext-debug.html#cls-Ext.ux.grid.filter.NumericFilter">Ext.ux.grid.filter.NumericFilter</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Ext.ux.grid.filter</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Ext.ux.grid.filter.NumericFilter">rs-ext-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Ext.ux.grid.filter.NumericFilter">NumericFilter</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description">Filters using an Ext.ux.menu.RangeMenu.
+<p><b><u>Example Usage:</u></b></p>
+<pre><code><b>var</b> filters = <b>new</b> Ext.ux.grid.GridFilters({
+    ...
+    filters: [{
+        type: <em>'numeric'</em>,
+        dataIndex: <em>'price'</em>
+    }]
+});</code></pre></div><div class="hr"></div><a id="Ext.ux.grid.filter.NumericFilter-configs"></a><h2>Config Options</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Config Options</th><th class="msource-header">Defined By</th></tr><tr class="config-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.ux.grid.filter.NumericFilter-fieldCfg"></a><b><a href="source/rs-ext-debug.html#cfg-Ext.ux.grid.filter.NumericFilter-fieldCfg">fieldCfg</a></b> : Object<div class="mdesc"><div class="short">The default configuration options for any field item unless superseded&#13;
+by the fields configuration.&#13;
+Defaults to:&#13;
+f...</div><div class="long">The default configuration options for any field item unless superseded
+by the <code><a href="output/Ext.ux.grid.filter.NumericFilter.html#Ext.ux.grid.filter.NumericFilter-fields" ext:member="fields" ext:cls="Ext.ux.grid.filter.NumericFilter">fields</a></code> configuration.
+Defaults to:<pre>
+fieldCfg : {}
+</pre>
+Example usage:
+<pre><code>fieldCfg : {
+    width: 150,
+},</code></pre></div></div></td><td class="msource">NumericFilter</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.ux.grid.filter.NumericFilter-fieldCls"></a><b><a href="source/rs-ext-debug.html#cfg-Ext.ux.grid.filter.NumericFilter-fieldCls">fieldCls</a></b> : Object<div class="mdesc">The Class to use to construct each field item within this menu
+Defaults to:<pre>
+fieldCls : Ext.form.NumberField
+</pre></div></td><td class="msource">NumericFilter</td></tr><tr class="config-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.ux.grid.filter.NumericFilter-fields"></a><b><a href="source/rs-ext-debug.html#cfg-Ext.ux.grid.filter.NumericFilter-fields">fields</a></b> : Object<div class="mdesc"><div class="short">The field items may be configured individually&#13;
+Defaults to undefined.&#13;
+Example usage:&#13;
+fields : {&#13;
+    gt: { // over...</div><div class="long">The field items may be configured individually
+Defaults to <tt>undefined</tt>.
+Example usage:
+<pre><code>fields : {
+    gt: { <i>// override fieldCfg options</i>
+        width: 200,
+        fieldCls: Ext.ux.form.CustomNumberField <i>// to override <b>default</b> <a href="output/Ext.ux.grid.filter.NumericFilter.html#Ext.ux.grid.filter.NumericFilter-fieldCls" ext:member="fieldCls" ext:cls="Ext.ux.grid.filter.NumericFilter">fieldCls</a></i>
+    }
+},</code></pre></div></div></td><td class="msource">NumericFilter</td></tr><tr class="config-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.ux.grid.filter.NumericFilter-iconCls"></a><b><a href="source/rs-ext-debug.html#cfg-Ext.ux.grid.filter.NumericFilter-iconCls">iconCls</a></b> : Object<div class="mdesc"><div class="short">The iconCls to be applied to each comparator field item.&#13;
+Defaults to:&#13;
+iconCls : {&#13;
+    gt : 'ux-rangemenu-gt',&#13;
+   ...</div><div class="long">The iconCls to be applied to each comparator field item.
+Defaults to:<pre>
+iconCls : {
+    gt : 'ux-rangemenu-gt',
+    lt : 'ux-rangemenu-lt',
+    eq : 'ux-rangemenu-eq'
+}
+</pre></div></div></td><td class="msource">NumericFilter</td></tr><tr class="config-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.ux.grid.filter.NumericFilter-menuItemCfgs"></a><b><a href="source/rs-ext-debug.html#cfg-Ext.ux.grid.filter.NumericFilter-menuItemCfgs">menuItemCfgs</a></b> : Object<div class="mdesc"><div class="short">Default configuration options for each menu item&#13;
+Defaults to:&#13;
+menuItemCfgs : {&#13;
+    emptyText: 'Enter Filter Text.....</div><div class="long">Default configuration options for each menu item
+Defaults to:<pre>
+menuItemCfgs : {
+    emptyText: 'Enter Filter Text...',
+    selectOnFocus: true,
+    width: 125
+}
+</pre></div></div></td><td class="msource">NumericFilter</td></tr><tr class="config-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.ux.grid.filter.NumericFilter-menuItems"></a><b><a href="source/rs-ext-debug.html#cfg-Ext.ux.grid.filter.NumericFilter-menuItems">menuItems</a></b> : Array<div class="mdesc"><div class="short">The items to be shown in this menu.  Items are added to the menu&#13;
+according to their position within this array. Defa...</div><div class="long">The items to be shown in this menu.  Items are added to the menu
+according to their position within this array. Defaults to:<pre>
+menuItems : ['lt','gt','-','eq']
+</pre></div></div></td><td class="msource">NumericFilter</td></tr></tbody></table><a id="Ext.ux.grid.filter.NumericFilter-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Ext.ux.grid.filter.NumericFilter-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.ux.grid.filter.NumericFilter-validateRecord"></a><b><a href="source/rs-ext-debug.html#method-Ext.ux.grid.filter.NumericFilter-validateRecord">validateRecord</a></b>(&nbsp;<code>Ext.data.Record&nbsp;record</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Template method that is to validate the provided Ext.data.Record&#13;
+against the filters configuration.</div><div class="long">Template method that is to validate the provided Ext.data.Record
+against the filters configuration.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>record</code> : Ext.data.Record<div class="sub-desc">The record to validate</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc">true if the record is valid within the bounds&#13;
+of the filter, false otherwise.</div></li></ul></div></div></div></td><td class="msource">NumericFilter</td></tr></tbody></table><a id="Ext.ux.grid.filter.NumericFilter-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

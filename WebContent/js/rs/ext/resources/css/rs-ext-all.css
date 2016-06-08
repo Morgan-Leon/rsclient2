@@ -1,0 +1,515 @@
+//版本更新时间:2015-04-10 16:09:02
+/*!
+ * 该样式表基于Ext开发的控件所用的样式.
+ */
+/******************************* 各控件样式  *******************************/
+/** 用户偏好信息维护 **/
+.rs-state-default-scheme {
+    color: red !important;
+}
+
+.rs-state-current-scheme {
+    background: url(../images/rs-ext/state-current-scheme.png) 0px 3px no-repeat !important;
+}
+
+/** 查询面板 **/
+.rs-query-panel {
+    background: #dfe8f6;
+}
+
+.rs-query-condition-panel {
+    float: left;
+    margin-right: 10px;
+}
+
+/** 分页树 **/
+.x-tree-more-node {
+    display:inline-block;
+    width: 16px;
+    height: 18px;
+    vertical-align: bottom; 
+    background-position:center;
+}
+
+.x-tree-more-node-achor {
+    background:url(../images/rs-ext/anchor.png);
+    background-repeat: no-repeat;
+}
+
+.x-tree-more-node-icon {
+    background:url(../images/rs-ext/go-down-4.png);
+    background-repeat: no-repeat;
+}
+
+.x-tree-more-node-all-icon {
+    background:url(../images/rs-ext/go-bottom-2.png);
+    background-repeat: no-repeat;
+}
+
+
+/*
+ * FileUploadField component styles
+ */
+.x-form-file-wrap {
+    position: relative;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file {
+	position: absolute;
+	right: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file-btn {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+.x-form-file-wrap .x-form-file-text {
+    position: absolute;
+    left: 0;
+    z-index: 3;
+    color: #777;
+}
+
+/* [OPTIONAL] -- may be used for Rs.ext.grid.GridSummary plugins */
+.x-grid3-summary-row{border-left:1px solid #fff;border-right:1px solid #fff;color:#333;background:#f1f2f4;}
+.x-grid3-summary-row .x-grid3-cell-inner{font-weight:bold;padding-bottom:4px;}
+.x-grid3-cell-first .x-grid3-cell-inner{padding-left:0px;}
+.x-grid-hide-summary .x-grid3-summary-row{display:none;}
+.x-grid3-summary-msg{padding:4px 16px;font-weight:bold;}
+
+
+/* [REQUIRED] (by Rs.ext.grid.GridSummary plugin) */
+.x-grid3-gridsummary-row-inner{overflow:hidden;width:100%;}/* IE6 requires width:100% for hori. scroll to work */
+.x-grid3-gridsummary-row-offset{width:10000px;}
+.x-grid-hide-gridsummary .x-grid3-gridsummary-row-inner{display:none;}
+
+/** 行编辑器 **/
+.ext-ie .x-row-editor .x-form-text {
+    margin:0 !important; 
+}
+.x-row-editor-header {
+    height:2px;
+    overflow:hidden;
+    background: transparent url(../images/rs-ext/row-editor-bg.gif) repeat-x 0 0;
+}
+.x-row-editor-footer {
+    height:2px;
+    overflow:hidden;
+    background: transparent url(../images/rs-ext/row-editor-bg.gif) repeat-x 0 -2px;
+}
+.ext-ie .x-row-editor-footer {
+    margin-top:-1px;
+}
+
+.x-row-editor-body {
+    overflow:hidden;
+    zoom:1;
+    background: #ebf2fb;
+    padding-top:2px;
+}
+.x-row-editor .x-btns {
+    position:absolute;
+    top:28px;
+    left:20px;
+    padding-left:5px;
+    background: transparent url(../images/rs-ext/row-editor-btns.gif) no-repeat 0 0;
+}
+.x-row-editor .x-btns .x-plain-bwrap {
+    padding-right:5px;
+    background: transparent url(../images/rs-ext/row-editor-btns.gif) no-repeat right -31px;
+}
+.x-row-editor .x-btns .x-plain-body {
+    background: transparent url(../images/rs-ext/row-editor-btns.gif) repeat-x 0 -62px;
+    height:31px;
+}
+.x-row-editor .x-btns .x-table-layout-cell {
+    padding:3px;
+}
+
+/* Fixes for IE6/7 trigger fields */
+.ext-ie6 .x-row-editor .x-form-field-wrap .x-form-trigger, .ext-ie7 .x-row-editor .x-form-field-wrap .x-form-trigger {
+  top: 1px;
+}
+
+.ext-ie6 .x-row-editor .x-form-field-trigger-wrap, .ext-ie7 .x-row-editor .x-form-field-trigger-wrap {
+  margin-top: -1px;
+}
+
+.errorTip .x-tip-body ul{
+    list-style-type:disc;
+    margin-left:15px;
+}
+/** 行编辑器结束**/
+
+/** 多文件上传**/
+.ux-cell-icon-delete{background:url(../images/rs-ext/delete.gif) no-repeat;height:16px;cursor:pointer;}
+.ux-cell-icon-completed{background:url(../images/rs-ext/tick.gif) no-repeat;height:16px;}
+.ux-cell-icon-clear{background:url(../images/rs-ext/bin_empty.png) no-repeat;height:16px;}
+.ux-cell-color-gray{font-style:italic;text-decoration:line-through;color:gray;}
+.upload-progress-table{width:auto;border-collapse:collapse;margin-top:7px;font:normal 12px tahoma, arial, verdana, sans-serif;}
+.upload-progress-table .upload-progress-label{width:60px;text-align:left;padding:2px 2px 2px 15px;}
+.upload-progress-table .upload-progress-value{width:150px;}
+.db-ft-small{width:16px;height:16px;background-repeat:no-repeat;background-position:center center;}
+.db-ft-medium{width:32px;height:32px;background-repeat:no-repeat;background-position:center center;}
+.db-ft-large{width:48px;height:48px;background-repeat:no-repeat;background-position:center center;}
+.db-ft-root-small{background-image:url( ../images/rs-ext/types/small/folders/root.gif) !important;}
+.db-ft-folder-small{background-image:url( ../images/rs-ext/types/small/folders/folder.gif) !important;}
+.db-ft-folder-shared-small{background-image:url( ../images/rs-ext/types/small/folders/folder_shared.gif) !important;}
+.db-ft-gallery-small{background-image:url( ../images/rs-ext/types/small/folders/gallery.gif) !important;}
+.db-ft-album-small{background-image:url( ../images/rs-ext/types/small/folders/album.gif) !important;}
+.db-ft-album-shared-small{background-image:url( ../images/rs-ext/types/small/folders/album_shared.gif) !important;}
+.db-ft-published-small{background-image:url( ../images/rs-ext/types/small/folders/published.gif) !important;}
+.db-ft-published-files-small{background-image:url( ../images/rs-ext/types/small/folders/published_files.gif) !important;}
+.db-ft-published-folders-small{background-image:url( ../images/rs-ext/types/small/folders/published_folders.gif) !important;}
+.db-ft-subs-small{background-image:url( ../images/rs-ext/types/small/folders/subs.gif) !important;}
+.db-ft-subs-user-small{background-image:url( ../images/rs-ext/types/small/folders/subs_user.gif) !important;}
+.db-ft-network-small{background-image:url( ../images/rs-ext/types/small/folders/network.gif) !important;}
+.db-ft-network-user-small{background-image:url( ../images/rs-ext/types/small/folders/network_user.gif) !important;}
+.db-ft-shared-albums-small{background-image:url( ../images/rs-ext/types/small/folders/shared_albums.gif) !important;}
+.db-ft-shared-docs-small{background-image:url( ../images/rs-ext/types/small/folders/shared_docs.gif) !important;}
+.db-ft-recyclebin-small{background-image:url( ../images/rs-ext/types/small/folders/recycle.gif) !important;}
+.db-ft-3gp-small{background-image:url( ../images/rs-ext/types/small/files/3gp.gif) !important;}
+.db-ft-avi-small{background-image:url( ../images/rs-ext/types/small/files/avi.gif) !important;}
+.db-ft-bmp-small{background-image:url( ../images/rs-ext/types/small/files/bmp.gif) !important;}
+.db-ft-chm-small{background-image:url( ../images/rs-ext/types/small/files/chm.gif) !important;}
+.db-ft-dll-small{background-image:url( ../images/rs-ext/types/small/files/dll.gif) !important;}
+.db-ft-doc-small{background-image:url( ../images/rs-ext/types/small/files/doc.gif) !important;}
+.db-ft-docx-small{background-image:url( ../images/rs-ext/types/small/files/docx.gif) !important;}
+.db-ft-dwf-small{background-image:url( ../images/rs-ext/types/small/files/dwf.gif) !important;}
+.db-ft-exe-small{background-image:url( ../images/rs-ext/types/small/files/exe.gif) !important;}
+.db-ft-flv-small{background-image:url( ../images/rs-ext/types/small/files/flv.gif) !important;}
+.db-ft-htm-small{background-image:url( ../images/rs-ext/types/small/files/htm.gif) !important;}
+.db-ft-jpg-small{background-image:url( ../images/rs-ext/types/small/files/jpg.gif) !important;}
+.db-ft-mdb-small{background-image:url( ../images/rs-ext/types/small/files/mdb.gif) !important;}
+.db-ft-mov-small{background-image:url( ../images/trs-ext/ypes/small/files/mov.gif) !important;}
+.db-ft-mp3-small{background-image:url( ../images/rs-ext/types/small/files/mp3.gif) !important;}
+.db-ft-mp4-small{background-image:url( ../images/rs-ext/types/small/files/mp4.gif) !important;}
+.db-ft-mpg-small{background-image:url( ../images/rs-ext/types/small/files/mpg.gif) !important;}
+.db-ft-pdf-small{background-image:url( ../images/rs-ext/types/small/files/pdf.gif) !important;}
+.db-ft-pps-small{background-image:url( ../images/rs-ext/types/small/files/pps.gif) !important;}
+.db-ft-ppt-small{background-image:url( ../images/rs-ext/types/small/files/ppt.gif) !important;}
+.db-ft-pptx-small{background-image:url( ../images/rs-ext/types/small/files/pptx.gif) !important;}
+.db-ft-rar-small{background-image:url( ../images/rs-ext/types/small/files/rar.gif) !important;}
+.db-ft-rtf-small{background-image:url( ../images/rs-ext/types/small/files/rtf.gif) !important;}
+.db-ft-swf-small{background-image:url( ../images/rs-ext/types/small/files/swf.gif) !important;}
+.db-ft-txt-small{background-image:url( ../images/rs-ext/types/small/files/txt.gif) !important;}
+.db-ft-unknown-small{background-image:url( ../images/rs-ext/types/small/files/unknown.gif) !important;}
+.db-ft-wav-small{background-image:url( ../images/rs-ext/types/small/files/wav.gif) !important;}
+.db-ft-wma-small{background-image:url( ../images/rs-ext/types/small/files/wma.gif) !important;}
+.db-ft-wmv-small{background-image:url( ../images/rs-ext/types/small/files/wmv.gif) !important;}
+.db-ft-xls-small{background-image:url( ../images/rs-ext/types/small/files/xls.gif) !important;}
+.db-ft-xlsx-small{background-image:url( ../images/rs-ext/types/small/files/xlsx.gif) !important;}
+.db-ft-xml-small{background-image:url( ../images/rs-ext/types/small/files/xml.gif) !important;}
+.db-ft-zip-small{background-image:url( ../images/rs-ext/types/small/files/zip.gif) !important;}
+.db-ft-root-medium{background-image:url( ../images/rs-ext/types/medium/folders/root.gif) !important;}
+.db-ft-folder-medium{background-image:url( ../images/rs-ext/types/medium/folders/folder.gif) !important;}
+.db-ft-folder-shared-medium{background-image:url( ../images/rs-ext/types/medium/folders/folder_shared.gif) !important;}
+.db-ft-gallery-medium{background-image:url( ../images/rs-ext/types/medium/folders/gallery.gif) !important;}
+.db-ft-album-medium{background-image:url( ../images/rs-ext/types/medium/folders/album.gif) !important;}
+.db-ft-album-shared-medium{background-image:url( ../images/rs-ext/types/medium/folders/album_shared.gif) !important;}
+.db-ft-published-medium{background-image:url( ../images/rs-ext/types/medium/folders/published.gif) !important;}
+.db-ft-published-files-medium{background-image:url( ../images/rs-ext/types/medium/folders/published_files.gif) !important;}
+.db-ft-published-folders-medium{background-image:url( ../images/rs-ext/types/medium/folders/published_folders.gif) !important;}
+.db-ft-subs-medium{background-image:url( ../images/rs-ext/types/medium/folders/subs.gif) !important;}
+.db-ft-subs-user-medium{background-image:url( ../images/rs-ext/types/medium/folders/subs_user.gif) !important;}
+.db-ft-network-medium{background-image:url( ../images/rs-ext/types/medium/folders/network.gif) !important;}
+.db-ft-network-user-medium{background-image:url( ../images/rs-ext/types/medium/folders/network_user.gif) !important;}
+.db-ft-shared-albums-medium{background-image:url( ../images/rs-ext/types/medium/folders/shared_albums.gif) !important;}
+.db-ft-shared-docs-medium{background-image:url( ../images/rs-ext/types/medium/folders/shared_docs.gif) !important;}
+.db-ft-recyclebin-medium{background-image:url( ../images/rs-ext/types/medium/folders/recycle.gif) !important;}
+.db-ft-3gp-medium{background-image:url( ../images/rs-ext/types/medium/files/3gp.gif) !important;}
+.db-ft-avi-medium{background-image:url( ../images/rs-ext/types/medium/files/avi.gif) !important;}
+.db-ft-bmp-medium{background-image:url( ../images/rs-ext/types/medium/files/bmp.gif) !important;}
+.db-ft-chm-medium{background-image:url( ../images/rs-ext/types/medium/files/chm.gif) !important;}
+.db-ft-dll-medium{background-image:url( ../images/rs-ext/types/medium/files/dll.gif) !important;}
+.db-ft-doc-medium{background-image:url( ../images/rs-ext/types/medium/files/doc.gif) !important;}
+.db-ft-docx-medium{background-image:url( ../images/rs-ext/types/medium/files/docx.gif) !important;}
+.db-ft-dwf-medium{background-image:url( ../images/rs-ext/types/medium/files/dwf.gif) !important;}
+.db-ft-exe-medium{background-image:url( ../images/rs-ext/types/medium/files/exe.gif) !important;}
+.db-ft-flv-medium{background-image:url( ../images/rs-ext/types/medium/files/flv.gif) !important;}
+.db-ft-htm-medium{background-image:url( ../images/rs-ext/types/medium/files/htm.gif) !important;}
+.db-ft-jpg-medium{background-image:url( ../images/rs-ext/types/medium/files/jpg.gif) !important;}
+.db-ft-mdb-medium{background-image:url( ../images/rs-ext/types/medium/files/mdb.gif) !important;}
+.db-ft-mov-medium{background-image:url( ../images/rs-ext/types/medium/files/mov.gif) !important;}
+.db-ft-mp3-medium{background-image:url( ../images/rs-ext/types/medium/files/mp3.gif) !important;}
+.db-ft-mp4-medium{background-image:url( ../images/rs-ext/types/medium/files/mp4.gif) !important;}
+.db-ft-mpg-medium{background-image:url( ../images/rs-ext/types/medium/files/mpg.gif) !important;}
+.db-ft-pdf-medium{background-image:url( ../images/rs-ext/types/medium/files/pdf.gif) !important;}
+.db-ft-pps-medium{background-image:url( ../images/rs-ext/types/medium/files/pps.gif) !important;}
+.db-ft-ppt-medium{background-image:url( ../images/rs-ext/types/medium/files/ppt.gif) !important;}
+.db-ft-pptx-medium{background-image:url( ../images/rs-ext/types/medium/files/pptx.gif) !important;}
+.db-ft-rar-medium{background-image:url( ../images/rs-ext/types/medium/files/rar.gif) !important;}
+.db-ft-rtf-medium{background-image:url( ../images/rs-ext/types/medium/files/rtf.gif) !important;}
+.db-ft-swf-medium{background-image:url( ../images/rs-ext/types/medium/files/swf.gif) !important;}
+.db-ft-txt-medium{background-image:url( ../images/rs-ext/types/medium/files/txt.gif) !important;}
+.db-ft-unknown-medium{background-image:url( ../images/rs-ext/types/medium/files/unknown.gif) !important;}
+.db-ft-wav-medium{background-image:url( ../images/rs-ext/types/medium/files/wav.gif) !important;}
+.db-ft-wma-medium{background-image:url( ../images/rs-ext/types/medium/files/wma.gif) !important;}
+.db-ft-wmv-medium{background-image:url( ../images/rs-ext/types/medium/files/wmv.gif) !important;}
+.db-ft-xls-medium{background-image:url( ../images/rs-ext/types/medium/files/xls.gif) !important;}
+.db-ft-xlsx-medium{background-image:url( ../images/rs-ext/types/medium/files/xlsx.gif) !important;}
+.db-ft-xml-medium{background-image:url( ../images/rs-ext/types/medium/files/xml.gif) !important;}
+.db-ft-zip-medium{background-image:url( ../images/rs-ext/types/medium/files/zip.gif) !important;}
+.db-ft-root-large{background-image:url( ../images/rs-ext/types/large/folders/root.gif) !important;}
+.db-ft-folder-large{background-image:url( ../images/rs-ext/types/large/folders/folder.gif) !important;}
+.db-ft-folder-shared-large{background-image:url( ../images/rs-ext/types/large/folders/folder_shared.gif) !important;}
+.db-ft-gallery-large{background-image:url( ../images/rs-ext/types/large/folders/gallery.gif) !important;}
+.db-ft-album-large{background-image:url( ../images/rs-ext/types/large/folders/album.gif) !important;}
+.db-ft-album-shared-large{background-image:url( ../images/rs-ext/types/large/folders/album_shared.gif) !important;}
+.db-ft-published-large{background-image:url( ../images/rs-ext/types/large/folders/published.gif) !important;}
+.db-ft-published-files-large{background-image:url( ../images/rs-ext/types/large/folders/published_files.gif) !important;}
+.db-ft-published-folders-large{background-image:url( ../images/rs-ext/types/large/folders/published_folders.gif) !important;}
+.db-ft-subs-large{background-image:url( ../images/rs-ext/types/large/folders/subs.gif) !important;}
+.db-ft-subs-user-large{background-image:url( ../images/rs-ext/types/large/folders/subs_user.gif) !important;}
+.db-ft-network-large{background-image:url( ../images/rs-ext/types/large/folders/network.gif) !important;}
+.db-ft-network-user-large{background-image:url( ../images/rs-ext/types/large/folders/network_user.gif) !important;}
+.db-ft-shared-albums-large{background-image:url( ../images/rs-ext/types/large/folders/shared_albums.gif) !important;}
+.db-ft-shared-docs-large{background-image:url( ../images/rs-ext/types/large/folders/shared_docs.gif) !important;}
+.db-ft-recyclebin-large{background-image:url( ../images/rs-ext/types/large/folders/recycle.gif) !important;}
+.db-ft-3gp-large{background-image:url( ../images/rs-ext/types/large/files/3gp.gif) !important;}
+.db-ft-avi-large{background-image:url( ../images/rs-ext/types/large/files/avi.gif) !important;}
+.db-ft-bmp-large{background-image:url( ../images/rs-ext/types/large/files/bmp.gif) !important;}
+.db-ft-chm-large{background-image:url( ../images/rs-ext/types/large/files/chm.gif) !important;}
+.db-ft-dll-large{background-image:url( ../images/rs-ext/types/large/files/dll.gif) !important;}
+.db-ft-doc-large{background-image:url( ../images/rs-ext/types/large/files/doc.gif) !important;}
+.db-ft-docx-large{background-image:url( ../images/rs-ext/types/large/files/docx.gif) !important;}
+.db-ft-dwf-large{background-image:url( ../images/rs-ext/types/large/files/dwf.gif) !important;}
+.db-ft-exe-large{background-image:url( ../images/rs-ext/types/large/files/exe.gif) !important;}
+.db-ft-flv-large{background-image:url( ../images/rs-ext/types/large/files/flv.gif) !important;}
+.db-ft-htm-large{background-image:url( ../images/rs-ext/types/large/files/htm.gif) !important;}
+.db-ft-jpg-large{background-image:url( ../images/rs-ext/types/large/files/jpg.gif) !important;}
+.db-ft-mdb-large{background-image:url( ../images/rs-ext/types/large/files/mdb.gif) !important;}
+.db-ft-mov-large{background-image:url( ../images/rs-ext/types/large/files/mov.gif) !important;}
+.db-ft-mp3-large{background-image:url( ../images/rs-ext/types/large/files/mp3.gif) !important;}
+.db-ft-mp4-large{background-image:url( ../images/rs-ext/types/large/files/mp4.gif) !important;}
+.db-ft-mpg-large{background-image:url( ../images/rs-ext/types/large/files/mpg.gif) !important;}
+.db-ft-pdf-large{background-image:url( ../images/rs-ext/types/large/files/pdf.gif) !important;}
+.db-ft-pps-large{background-image:url( ../images/rs-ext/types/large/files/pps.gif) !important;}
+.db-ft-ppt-large{background-image:url( ../images/rs-ext/types/large/files/ppt.gif) !important;}
+.db-ft-pptx-large{background-image:url( ../images/rs-ext/types/large/files/pptx.gif) !important;}
+.db-ft-rar-large{background-image:url( ../images/rs-ext/types/large/files/rar.gif) !important;}
+.db-ft-rtf-large{background-image:url( ../images/rs-ext/types/large/files/rtf.gif) !important;}
+.db-ft-swf-large{background-image:url( ../images/rs-ext/types/large/files/swf.gif) !important;}
+.db-ft-txt-large{background-image:url( ../images/rs-ext/types/large/files/txt.gif) !important;}
+.db-ft-unknown-large{background-image:url( ../images/rs-ext/types/large/files/unknown.gif) !important;}
+.db-ft-wav-large{background-image:url( ../images/rs-ext/types/large/files/wav.gif) !important;}
+.db-ft-wma-large{background-image:url( ../images/rs-ext/types/large/files/wma.gif) !important;}
+.db-ft-wmv-large{background-image:url( ../images/rs-ext/types/large/files/wmv.gif) !important;}
+.db-ft-xls-large{background-image:url( ../images/rs-ext/types/large/files/xls.gif) !important;}
+.db-ft-xlsx-large{background-image:url( ../images/rs-ext/types/large/files/xlsx.gif) !important;}
+.db-ft-xml-large{background-image:url( ../images/rs-ext/types/large/files/xml.gif) !important;}
+.db-ft-zip-large{background-image:url( ../images/rs-ext/types/large/files/zip.gif) !important;}
+.db-ft-gif-small,.db-ft-ico-small{background-image:url( ../images/rs-ext/types/small/files/gif.gif) !important;}
+.db-ft-gif-medium,.db-ft-ico-medium{background-image:url( ../images/rs-ext/types/medium/files/gif.gif) !important;}
+.db-ft-gif-large,.db-ft-ico-large{background-image:url( ../images/rs-ext/types/large/files/gif.gif) !important;}
+.db-icn-add {background-image: url(../images/rs-ext/add.png) !important;}
+.db-icn-stop {background-image: url(../images/rs-ext/stop.png) !important;}
+.db-icn-cross {background-image: url(../images/rs-ext/cancel.png) !important;}
+.db-icn-trash {background-image: url( ../images/rs-ext/trash_16.gif) !important;}
+.db-icn-upload_ {background-image: url( ../images/rs-ext/upload_.png) !important;}
+
+/** 多文件上传结束**/
+
+
+/* 分组合计开始 */
+.x-grid3-summary-row {
+    border-left:1px solid #fff;
+    border-right:1px solid #fff;
+    color:#333;
+    background: #f1f2f4;
+}
+.x-grid3-summary-row .x-grid3-cell-inner {
+    font-weight:bold;
+    padding-bottom:4px;
+}
+.x-grid-hide-summary .x-grid3-summary-row {
+    display:none;
+}
+.x-grid3-summary-msg {
+    padding:4px 16px;
+    font-weight:bold;
+}
+
+/* 分组合计结束  */
+
+/** 当页合计 **/
+.x-grid3-pagesummary-row{
+	background-color:#E3E3E3;
+}
+.x-grid3-pagesummary-cell-inner{
+	padding-bottom:4px;
+	font-style:italic;
+	font-weight:bolder
+}
+
+.x-grid3-cell-first .x-grid3-pagesummary-cell-inner{
+	padding-left:0px;
+}
+
+/** 行编辑器 **/
+.x-grid3-roweditor-uneditable-first{
+	font:normal 12px/13px arial, tahoma, helvetica, sans-serif !important;
+	padding-top:6px !important;
+	white-space:nowrap !important;
+	overflow:hidden !important;
+	text-overflow : ellipsis !important;
+}
+.x-grid3-roweditor-uneditable-first-left{
+	padding-left:16px;
+}
+
+.x-grid3-roweditor-uneditable{
+	font:normal 12px/13px arial, tahoma, helvetica, sans-serif !important;
+	padding-top:6px !important;
+}
+.x-grid3-roweditor-uneditable-left{
+	padding-left:6px;
+}
+.x-grid3-roweditor-uneditable-left{
+	padding-left:6px !important; 
+}
+.x-grid3-roweditor-cellinner-left{
+	padding-left:0px !important;
+}
+
+
+.x-grid3-locked, .x-grid3-unlocked {
+	overflow: hidden;
+	position: absolute;
+}
+
+.x-grid3-locked {
+	border-right: 1px solid #99BBE8;
+}
+
+.x-grid3-locked .x-grid3-scroller {
+	overflow: hidden;
+}
+
+.x-grid3-locked .x-grid3-row {
+	border-right: 0;
+}
+
+.x-grid3-scroll-spacer {
+	height: 19px;
+}
+
+.x-grid3-unlocked .x-grid3-header-offset {
+	padding-left: 0;
+}
+
+.x-grid3-unlocked .x-grid3-row {
+	border-left: 0;
+}
+
+
+/** 可编辑状态 **/
+.rs-cell-editor {
+    background: url(../images/rs-ext/pen.gif) no-repeat  !important;
+    padding-right:2px;
+    margin-right:2px;
+}
+
+/** 可编辑状态 **/
+.rs-grid-editor .rs-cell-editor {
+    background: url(../images/rs-ext/pen.gif) no-repeat  !important;
+    background-repeat: no-repeat;
+    width: 13px;
+    margin-left:3px;
+    vertical-align: middle;
+}
+
+/** 隐藏根节点 **/
+.rs-node-hide {
+    background-image: url(../images/default/tree/hideroot.gif) !important;
+    height:0px ;
+    width: 0px ;
+}
+
+/** 时间控件 **/
+.x-form-field-wrap .x-form-time-trigger {
+    background-image: url(../images/default/form/time-trigger.png) !important;
+    cursor:pointer;
+}
+/* Ext.ux.form.ColorPickerFieldPlus */
+.x-form-field-wrap .x-form-color-trigger-1 {
+	background-image: url(../images/rs-ext/color-trigger-1.gif) !important;
+}
+.x-form-field-wrap .x-form-color-trigger-2 {
+	background-image: url(../images/rs-ext/color-trigger-2.gif) !important;
+}
+.x-cp-rgbpicker {
+	background-image: url(../images/rs-ext/mask.png) !important;
+	background-repeat: no-repeat;
+	background-color: red;
+	width: 182px;
+	height: 182px;
+	margin: 7px;
+	float: left;
+	cursor: pointer;
+	_margin: 7px 7px 7px 4px;
+	_cursor: hand;
+	_background-image:none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/rs-ext/mask.png',sizingMethod='scale');
+}
+.x-cp-rgbslider {
+	position: relative;
+	left: -7px;
+	top: -7px;
+	width: 15px;
+	height: 15px;
+	background-image: url(../images/rs-ext/slider-rgb.gif) !important;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	_cursor: hand;
+}
+.x-cp-huepicker {
+	height: 183px;
+	width: 9px;
+	float: left;
+	margin: 7px 0 0 7px;
+	background-image: url(../images/rs-ext/hue.png) !important;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	_cursor: hand;
+}
+.x-cp-hueslider {
+	position: relative;
+	left: -3px;
+	top: -7px;
+	width: 15px;
+	height: 15px;
+	background-image: url(../images/rs-ext/slider-rgb.gif) !important;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	_cursor: hand;
+}
+.x-cp-formcontainer {
+	float: left;
+	width: 116px;
+	padding: 2px;
+	border: none;
+	margin: -24px 0 0 7px !important;
+}
+.x-cp-clearfloat {
+	clear: both;
+}
+.x-cp-colorbox {
+	margin: 2px 5px 0 5px;
+	border: 1px solid black;
+	text-align: center;
+	font-size: 10px;
+	height: 12px;
+	font-weight: bold;
+	padding: 3px 0;
+	cursor: pointer;
+	_cursor: hand;
+}
+.x-cp-formcontainer input {
+	text-align: center;
+}

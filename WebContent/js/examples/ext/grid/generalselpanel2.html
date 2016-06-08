@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/data/GeneralselStore.js"></script>
+<script src="../../../rs/ext/grid/GeneralselGridPanel.js"></script>
+
+<script src="../../../rs/ext/grid/GeneralselPanel.js"></script>
+<script src="../../../rs/ext/grid/SliderPagingToolbar.js"></script>
+<script src="../../../rs/ext/query/QueryPanel.js"></script>
+
+<title>generalsel panel</title>
+</head>
+<body style="margin: 10px;">
+<br>带有查询面板参数的望远镜面板，不适用望远镜面板内置的查询头，将自定义的查询面板作为望远镜面板配置参数。
+<br>应用场景：字段对应控件为非textfield类型
+<br />
+<br />
+<hr />
+<div>
+	<div id="div1" style="margin-left: 20px; float: left;"></div>
+	<div id="div2" style="margin-left: 20px; float: left;"></div>
+	<div id="div3" style="margin-left: 20px; float: left;"></div>
+	<div id="div4" style="margin-left: 20px; float: left;"></div>
+	<div id="div5" style="margin-left: 20px; float: left;"></div>
+	<div id="div6" style="margin-left: 20px; float: left;"></div>
+	<div id="div7" style="margin-left: 20px; float: left;"></div>
+	<div id="div8" style="margin-left: 20px; float: left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Ext.onReady(function() {
+		
+		Ext.QuickTips.init();
+		var conditions = [{
+			//查询条件键值
+			dataIndex : 'A.ORDER_NO',
+		    //查询条件名称
+			header : '订单号',
+			//是否隐藏
+			hidden : false,
+			//查询条件编辑器
+			editor : new Ext.form.TextField( {
+				allowBlank : false
+			})
+		}, {
+			dataIndex : 'A.SEQ_NO',
+			header : '订单行号',
+			hidden : false,
+			editor : new Ext.form.TextField( {})
+		} ];
+
+		var qp = new Rs.ext.query.QueryPanel( {
+			width : 600,
+			height : 100,
+			region : 'north',
+			collapsible : true,
+			collapsed : false,
+			hideCollapseTool : true,
+			collapseMode : "mini",
+			split : true,
+			conditions : conditions
+		});
+
+		/**
+		 * 该面板测试调整窗口大小，查询条和表的布局
+		 */
+		 var p1 = new Rs.ext.grid.GeneralselPanel( {
+				title : '订单明细表格2',
+				height : 350,
+				width : 400,
+				queryPanel : qp,
+				queryPanelCollapsed : false,  //查询面板自动展开
+				progCode : 'RSC2_ordDetail1',
+				progCondition : ' a.company_code = \'00\''
+			});
+		p1.render('div2');
+	    
+		
+	}, this);
+</script>
+</html>

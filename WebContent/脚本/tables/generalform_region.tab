@@ -1,0 +1,29 @@
+create table GENERALFORM_REGION
+(
+  form_code     NVARCHAR2(30) not null,
+  form_region   NVARCHAR2(30) not null,
+  data_index    NVARCHAR2(30),
+  field_label   NVARCHAR2(30),
+  value         NVARCHAR2(100),
+  color         NVARCHAR2(30),
+  font_size     NVARCHAR2(10),
+  region_config NVARCHAR2(3000)
+);
+comment on column GENERALFORM_REGION.form_code
+  is '表单编码';
+comment on column GENERALFORM_REGION.form_region
+  is '表单中位置名称';
+comment on column GENERALFORM_REGION.data_index
+  is '对应数据模型字段';
+comment on column GENERALFORM_REGION.field_label
+  is '标签';
+comment on column GENERALFORM_REGION.value
+  is '值';
+comment on column GENERALFORM_REGION.color
+  is '颜色';
+comment on column GENERALFORM_REGION.font_size
+  is '字体大小';
+comment on column GENERALFORM_REGION.region_config
+  is '其他配置信息';
+alter table GENERALFORM_REGION
+  add constraint PK_GENERALFORM_REGION primary key (FORM_CODE, FORM_REGION);

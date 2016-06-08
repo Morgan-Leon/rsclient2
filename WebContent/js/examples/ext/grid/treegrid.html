@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css"/>
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<script src="/rsc/js/rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+
+<script src="/rsc/js/rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/grid/TreeStore.js"></script>
+<script src="../../../rs/ext/grid/TreeColumn.js"></script>
+<script src="../../../rs/ext/grid/TreeGridPanel.js"></script>
+
+<title>tree grid</title>
+</head>
+<body>
+<br>树表格示例
+<br>应用场景:某一列的对象有层级关系
+<br />
+<hr />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div2" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div3" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div4" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div5" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div6" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+    Rs.onReady(function() {
+
+        Ext.QuickTips.init();
+
+        //分页树
+        /*
+        var tree3 = new Ext.tree.TreePanel({
+            renderTo:'grid-div1',
+            title: '分页科目树',
+            height: 500,
+            width: 400,
+            useArrows:true,
+            autoScroll:true,
+            animate:true,
+            containerScroll: true,
+            rootVisible: false,
+            frame: true,
+            root: {
+                nodeType: 'async',
+                code : 'root'
+            },
+            loader : new Rs.ext.tree.PagingTreeLoader( {
+                dataUrl: '../tree/service.jsp',
+                method : 'getSubAccountsPaging2',
+                nodeAttrsParams : "code",
+                pageSize : 10
+            })
+        }); 
+		*/
+		
+        //树表格
+        var store = new Rs.ext.grid.TreeStore({
+            autoDestroy: true,
+            remoteSort : false,
+            url: 'service.jsp',
+            idProperty: 'code',
+            fields: ['code', 'name', 'leaf'],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        var grid = new Rs.ext.grid.TreeGridPanel({
+            store: store,
+            columns: [{
+	                id       : 'code',
+	                xtype    : 'treecolumn',
+	                header   : '编码', 
+	                width    : 150, 
+	                sortable : true, 
+	                dataIndex: 'code'
+	            }, {
+	                header   : '名称', 
+	                width    : 150, 
+	                sortable : true, 
+	                dataIndex: 'name'
+	            }],
+            stripeRows: true,
+            height: 500,
+            width: 400,
+            title: '树表格'
+        });
+        grid.render('grid-div2');
+        
+        /*
+        //树表格2
+        var store2 = new Rs.ext.grid.TreeStore({
+            autoDestroy: true,
+            remoteSort : false,
+            url: 'service2.jsp',
+            idProperty: 'code',
+            fields: ['code', 'name', 'leaf'],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        var sm = new Ext.grid.CheckboxSelectionModel({});
+        var grid2 = new Rs.ext.grid.TreeGridPanel({
+        	enableColumnHide : true, //开启列隐藏
+            store: store2,
+            sm : sm,
+            columns: [sm, {
+                    id       : 'code',
+                    header   : '编码', 
+                    width    : 150, 
+                    sortable : true, 
+                    dataIndex: 'code'
+                }, {
+                    header   : '名称', 
+                    xtype    : 'treecolumn',
+                    width    : 150, 
+                    sortable : true, 
+                    dataIndex: 'name',
+                    editor   : new Ext.form.Field({})
+                }],
+            stripeRows: true,
+            height: 500,
+            width: 400,
+            title: '树表格(可编辑)',
+            tbar: [{
+	                text: 'create',
+	                handler : function(){
+	                    
+	                }
+	            }, new Ext.Button({
+	                text : 'remove all',
+	                handler : function(){
+	                    store2.removeAll();
+	                },
+	                scope : this
+	            }), new Ext.Button({
+	                text : 'remove',
+	                handler : function(){
+	                    store2.remove(grid2.getSelectionModel().getSelections());
+	                },
+	                scope : this
+	            }), new Ext.Button({
+	                text : 'save',
+	                handler : function(){
+	                    store2.save();
+	                },
+	                scope : this
+	            })]
+        });
+        grid2.render('grid-div3');
+        */
+        //grid2.on('headerclick',gridSort,this);
+    }, this);
+
+    function gridSort(grid, cn, event){
+        alert(grid);
+        alert(cn);
+        alert(event);
+    };
+</script>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../rs/resources/css/rs-all.css" />
+
+<script src="../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+<script src="../../rs/rs-debug.js"></script>
+<script src="../../rs/ext/rs-ext-debug.js"></script>
+
+
+<script src="../../rs/lib/FusionCharts_v3/FusionCharts.js"></script>
+<script src="../../rs/lib/FusionCharts_v3/FusionChartsExportComponent.js"></script>
+
+<script src="../../rs/ext/chart/EventProxy.js"></script>
+<script src="../../rs/ext/chart/Chart.js"></script>
+<script src="../../rs/ext/chart/Chart2D.js"></script>
+<script src="../../rs/ext/chart/ChartPanel.js"></script>
+
+
+<title>Rs-ext MonthField example</title>
+<script language="javascript" type="text/javascript">
+
+Ext.onReady(function(){
+	json1 = new Rs.ext.chart.Chart2D({
+	    chartType : 'pie',		
+	});
+    s1 = new Rs.ext.chart.ChartPanel({
+        renderTo : 'div1', 
+        chart : json1
+    });
+});
+
+/*function addxlabel(){
+	json1.addXLabel('China',['32675','29816','36482']);
+	s1.setData(json1.getJSON());
+};*/
+function addxlabel(){
+	json1.addXLabel({'label':'China','color':'FF0000'},'32675');
+	//s1.setData(json1.getJSON());
+};
+function removexlabel(){
+	json1.removeXLabel('B');
+	//s1.setData(json1.getJSON());
+};
+function setxlabels(){
+	json1.setXLabels(['A','B','F']);
+	//s1.setData(json1.getJSON());
+};
+
+
+function setxlabelswithdatainarray(){
+	json1.setXLabels(['A','B','F','G'],['1234','2234','3234','1345']);
+	//s1.setData(json1.getJSON());
+};
+function setxlabelswithdatainobject(){
+	json1.setXLabels(['A','B','F','G'],{
+		'A':'1523',
+		'B':'1987',
+		'G':'1765',
+		'F':'1487'});
+	//s1.setData(json1.getJSON());
+};
+
+
+function addcolor(){
+	json1.setColor('B','FF0000');
+	//s1.setData(json1.getJSON());
+}
+
+function setJSON(){
+	json1.setJSON({ "chart": 
+		{ "caption": "Top 5 Employees for 1996", 
+		"palette": "2", 
+		"animation": "1", 
+		"yaxisname": "Sales Achieved", 
+		"showvalues": "0", 
+		"numberprefix": "$", 
+		"formatnumberscale": "0", 
+		"showpercentintooltip": "0", 
+		"showlabels": "0", 
+		"showlegend": "1" }, 
+		"data": [ 
+		 		{ "label": "Leverling", "value": "100524", "issliced": "0" }, 
+		 		{ "label": "Fuller", "value": "87790", "issliced": "0" }, 
+		 		{ "label": "Davolio", "value": "81898", "issliced": "0" }, 
+		 		{ "label": "Peacock", "value": "76438", "issliced": "0" }, 
+		 		{ "label": "King", "value": "57430", "issliced": "0" } ] });
+	//s1.setData(json1.getJSON());
+};
+
+function clickevent(){
+	json1.setClickEventFlag(true);
+	//s1.setData(json1.getJSON());
+	json1.on('click',function(chart, json, xlabel, value){alert(value);});
+};
+
+function addtrendline(){
+	json1.addTrendlines({
+		"startvalue":"23000",
+		"color":"009933",
+		"displayvalue":"Target",
+		"valueOnRight" : '1'});
+	//s1.setData(json1.getJSON());
+};
+
+function addvline(){
+	json1.setVLine('F','G',{ "color": "FF5904", "thickness": "2", "vline": "true" });
+	//s1.setData(json1.getJSON());
+};
+function adddata(){
+	json1.buildJSON(['R','M'],{'R':'12','M':'15' });
+	//s1.setData(json1.getJSON());
+};
+
+
+</script>
+</head>
+<body>
+<div id="div1">
+</div>
+<input type="button" value="设置json" onclick="javascript:setJSON()" />
+<input type="button" value="更新图例项" onclick="javascript:setxlabels()" />
+<input type="button" value="更新图例项及数值(数组)" onclick="javascript:setxlabelswithdatainarray()" />
+<input type="button" value="更新图例项及数值(对象)" onclick="javascript:setxlabelswithdatainobject()" />
+<input type="button" value="设置单个块颜色" onclick="javascript:addcolor()" />
+<input type="button" value="增加单个图例项" onclick="javascript:addxlabel()" />
+<input type="button" value="删除单个图例项" onclick="javascript:removexlabel()" />
+<input type="button" value="增加水平线" onclick="javascript:addtrendline()" />
+<input type="button" value="增加垂直线" onclick="javascript:addvline()" />
+<input type="button" value="设置图例项及数值" onclick="javascript:adddata()" />
+<input type="button" value="点击事件" onclick="javascript:clickevent()" />
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../js/rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<script src="../../../js/rs/lib/ext-3.3.1/adapter/ext/ext-base-debug.js"></script>
+<script src="../../../js/rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+
+<title>Ext的几个简单方法应用</title>
+	<script language="javascript" type="text/javascript">
+		Ext.onReady(function(){
+			function Person(config){
+				Ext.apply(this , config) ;
+				Person.superclass.constructor.apply(this , arguments);
+				this.addEvents('walk');
+			} ;
+			Ext.extend(Person , Ext.util.Observable , {
+				walk : function(){
+					Ext.Msg.alert("提示" , this.name + "在走路");
+				}
+			});
+			
+			var p = new Person({
+				name : 'Tom' ,
+				age : 25
+			});
+			
+			p.on('walk' , p.walk , p);
+			
+			new Ext.Window({
+				layout : 'fit' ,
+				width : 600 ,
+				height : 500 ,
+				title : 'ExtJs案例' ,
+				tbar : [{
+					xtype : 'button' ,
+					text : '点我' ,
+					handler : function(){
+						p.fireEvent('walk' , p);
+					} ,
+					scope : this
+				}] ,
+				bbar : [{
+					xtype : 'button' ,
+					text : '底部按钮1' ,
+					handler : function(){
+						p.fireEvent('walk' , p);
+					} ,
+					scope : this
+				},{
+					xtype : 'button' ,
+					text : '底部按钮2',
+					handler : function(){
+						p.fireEvent('walk' , p);
+					} ,
+					scope : this
+				}] ,
+				items : [{
+					xtype : 'textarea'
+				}]
+			}).show();
+			
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>

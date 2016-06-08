@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE parser-config [
+<!ELEMENT PARSER (#PCDATA)>
+<!ATTLIST PARSER PREFIX CDATA #REQUIRED>
+<!ATTLIST PARSER CLASS CDATA #REQUIRED>
+]>
+<parser-config>
+	<parser prefix="JSON" class="com.rsc.rsclient.parse.JSONParser" />
+	<parser prefix="XML" class="com.rsc.rsclient.parse.XMLParser" />
+	<parser prefix="SCRIPT" class="com.rsc.rsclient.parse.PLAINParser"/>
+	<parser prefix="HTML" class="com.rsc.rsclient.parse.PLAINParser"/>
+	<parser prefix="TEXT" class="com.rsc.rsclient.parse.PLAINParser"/>
+	<parser prefix="*" class="com.rsc.rsclient.parse.PLAINParser" />
+</parser-config>

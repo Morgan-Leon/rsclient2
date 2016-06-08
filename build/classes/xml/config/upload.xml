@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<wfs-configurations>
+  <upload>
+    <local-upload-temp-docu-path>D:/RS10EIP/TEMP/NORM</local-upload-temp-docu-path>
+    <ftp-docu-path>NORM</ftp-docu-path>
+    <ftp-file-path>NORM</ftp-file-path>
+    <ftp-docu-type-path>D:/RS10EIP/RS10UPLOAD/anonymous</ftp-docu-type-path>
+    <local-draft-path>D:/RS10EIP/DRAFT/NORM</local-draft-path>
+    <ftp-host>192.168.168.142</ftp-host>
+    <ftp-port>21</ftp-port>
+    <ftp-user>admin</ftp-user>
+    <ftp-pass>123456</ftp-pass>
+    <ftp-mode>BINARY</ftp-mode>
+    <ftp-conn-mode>ACTIVE</ftp-conn-mode>
+    <local_path>D:/RS10EIP/RS10UPLOAD/RS10EIP</local_path>
+  </upload>
+</wfs-configurations>

@@ -1,0 +1,19 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Rs.Service-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Rs.Service-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Rs.Service-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="bookmark" href="../docs/?class=Rs.Service"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/rs-debug.html#cls-Rs.Service">Rs.Service</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Rs</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-debug.html#cls-Rs.Service">rs-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-debug.html#cls-Rs.Service">Service</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description">A static <a href="output/Rs.data.Service.html" ext:cls="Rs.data.Service">Rs.data.Service</a> instance that can be used to call services.  See
+<a href="output/Rs.data.Service.html" ext:cls="Rs.data.Service">Rs.data.Service</a> for supported methods.
+<pre><code>Rs.Service.call({
+	url : <em>'service.jsp'</em>,
+	method : <em>'getJSON'</em>,
+	accept : <em>'json'</em>,
+	params : { id : 100},
+	success : <b>function</b>(sheet) {
+		Rs.fly(<em>'out'</em>).update(sheet);
+	}
+});</code></pre><br><br><i>This class is a singleton and cannot be created directly.</i></div><div class="hr"></div><a id="Rs.Service-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Rs.Service-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.Service-call"></a><b><a href="source/rs-debug.html#method-Rs.Service-call">call</a></b>(&nbsp;<code>Object&nbsp;params</code>,&nbsp;<code>[{Function&nbsp;callback]</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">调用后台的业务方法, 如果当前正在执行后台业务方法，尚未接收到响应，此时再&#13;
+调用call方法会进入任务队列，当上一次调用返回后方可执行下一次调用。&#13;
+Important:发送请求到后台执行业务方法，可通过设置accept 来指&#13;
+定...</div><div class="long">调用后台的业务方法, 如果当前正在执行后台业务方法，尚未接收到响应，此时再
+调用call方法会进入任务队列，当上一次调用返回后方可执行下一次调用。
+<b>Important:</b>发送请求到后台执行业务方法，可通过设置accept 来指
+定要获取的数据的类型 ：xml, html, script, json, text<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>params</code> : Object<div class="sub-desc"></div></li><li><code>callback]</code> : [{Function<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Service</td></tr></tbody></table><a id="Rs.Service-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

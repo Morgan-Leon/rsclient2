@@ -1,0 +1,71 @@
+-- 此行为注释
+-- 编写要合并的JS文件列表
+-- 一行一个文件,按照文件名称顺序合并。
+
+-- import json2
+rs/lib/json2.js
+
+rs/Rs.js
+rs/core/Rs-more.js
+
+rs/util/TaskMgr.js
+rs/util/DelayedTask.js
+rs/adapter/rs-base-begin.js
+rs/adapter/rs-base-dom.js
+rs/adapter/rs-base-event.js
+rs/adapter/rs-base-ajax.js
+rs/adapter/rs-base-anim.js
+rs/adapter/rs-base-anim-extra.js
+rs/adapter/rs-base-end.js
+
+rs/util/Observable.js
+
+-- 下面两个暂时没用到
+-- rs/adapter/rs-base-point.js 
+-- rs/adapter/rs-base-region.js
+
+--CORE
+rs/core/ClassSystem.js
+
+rs/core/DomHelper.js
+rs/core/Template.js
+rs/core/DomQuery.js
+rs/core/EventManager.js
+
+rs/core/Element.js
+rs/core/Element.traversal.js
+rs/core/Element.insertion.js
+rs/core/Element.style.js
+rs/core/Element.position.js
+rs/core/Element.scroll.js
+rs/core/Element.fx.js
+rs/core/Fx.js
+rs/core/CompositeElementLite.js
+
+--DATA
+rs/data/Connection.js
+rs/data/Service.js
+
+--UTIL
+rs/util/JSON.js
+rs/util/Clipboard.js
+rs/util/MixedCollection.js
+
+--LIB
+rs/lib/Libraries.js
+
+--APP
+rs/app/Application.js
+rs/app/EventBus.js
+rs/app/Engine.js
+rs/app/Environment.js
+rs/app/LittleEngine.js
+rs/app/StateManager.js
+rs/app/Shell.js
+rs/app/Region.js
+rs/app/WindowRegion.js
+rs/app/WindowShell.js
+rs/app/BorderShell.js
+rs/app/TabShell.js
+rs/app/Main.js
+

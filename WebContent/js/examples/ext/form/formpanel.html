@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/form/SingleUploadField.js"></script>
+<script src="../../../rs/data/Service.js"></script>
+<script src="../../../rs/ext/form/BasicForm.js"></script>
+<script src="../../../rs/ext/form/FormPanel.js"></script>
+
+<title>form panel</title>
+</head>
+<body style="margin:10px;">
+<hr />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div2" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div3" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+
+		var form = new Rs.ext.form.FormPanel({
+			baseCls: 'x-plain',
+	        layout:'absolute',
+	        url:'service.jsp',
+	        submitMethod : 'submit',
+	        defaultType: 'textfield',
+	        fileUpload : true,
+	        items: [{
+	            x: 0,
+	            y: 5,
+	            xtype:'label',
+	            text: 'Send To:'
+	        },{
+	            x: 60,
+	            y: 0,
+	            name: 'to',
+	            anchor:'100%'  // anchor width by percentage
+	        },{
+	            x: 0,
+	            y: 35,
+	            xtype:'label',
+	            text: 'Subject:'
+	        },{
+	            x: 60,
+	            y: 30,
+	            name: 'subject',
+	            anchor: '100%'  // anchor width by percentage
+	        }, {
+	        	x: 0,
+                y: 65,
+                xtype:'label',
+                text: 'Attachment:'
+		    }, new Rs.ext.form.SingleUploadField({
+	        	x: 60,
+                y: 60,
+                name: 'attachment',
+                anchor: '100%'  
+	        }), {
+	            x:0,
+	            y: 90,
+	            xtype: 'textarea',
+	            name: 'msg',
+	            anchor: '100% 100%'  // anchor width and height
+	        }]
+	    });
+
+	    var window = new Ext.Window({
+	        title: 'Resize Me',
+	        width: 500,
+	        height:500,
+	        minWidth: 300,
+	        minHeight: 200,
+	        layout: 'fit',
+	        plain:true,
+	        bodyStyle:'padding:5px;',
+	        buttonAlign:'center',
+	        items: form,
+	        buttons: [{
+	            text: 'Send',
+	            handler : function(){
+	                form.getForm().submit({
+		                params : {
+	                	    from : 'Mr.李',
+                            date : '2010/10/12'
+		                }
+		            });
+	            }
+	        }]
+	    });
+
+	    window.show();
+	    
+	}, this);
+</script>
+</html>

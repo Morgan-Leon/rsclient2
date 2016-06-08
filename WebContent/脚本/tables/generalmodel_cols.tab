@@ -1,0 +1,29 @@
+create table GENERALMODEL_COLS
+(
+  model_code     NVARCHAR2(30) not null,
+  column_name    NVARCHAR2(30) not null,
+  column_comment NVARCHAR2(100),
+  data_type      NVARCHAR2(106) not null,
+  default_value  NVARCHAR2(100),
+  remark         NVARCHAR2(300),
+  status         NVARCHAR2(10),
+  primary        NVARCHAR2(10)
+);
+comment on column GENERALMODEL_COLS.model_code
+  is '数据模型编码';
+comment on column GENERALMODEL_COLS.column_name
+  is '数据列名称，对应数据表列名称';
+comment on column GENERALMODEL_COLS.column_comment
+  is '数据列说明';
+comment on column GENERALMODEL_COLS.data_type
+  is '数据类型';
+comment on column GENERALMODEL_COLS.default_value
+  is '默认值';
+comment on column GENERALMODEL_COLS.remark
+  is '备注';
+comment on column GENERALMODEL_COLS.status
+  is '状态(APPLY -已应用 EDIT-编辑  ADD-添加 REMOVE-删除)';
+comment on column GENERALMODEL_COLS.primary
+  is '是否为主键  true 表示为主键 ';
+alter table GENERALMODEL_COLS
+  add constraint PK_GENERALMODEL_COLS primary key (MODEL_CODE, COLUMN_NAME);

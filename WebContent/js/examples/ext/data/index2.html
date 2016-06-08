@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-mini.js"></script>
+<title>Rs.ext.state example</title>
+</head>
+<body style="margin:10px;">
+<br />
+<hr />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+</div>
+<div style="float:left;">已成功发送 </div>
+<div id="out" style="float:left; color:red;"></div>
+<div style="float:left;"> 次请求，并接收到响应</div>
+<div id="msg" style="color:red"></div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		var i = 0,
+		    msg = '<br/>';
+		var store = new Rs.ext.data.Store({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url: 'service.jsp',
+	        root: 'items',
+	        idProperty: 'code',
+	        sortField : 'code',
+	        fields: ['code', 'name', {name:'price', type: 'float'}],
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+		Ext.apply(store.baseParams.metaData, {
+            limit : 100
+        });
+        
+		store.on('load', function(s, rs, o){
+			Rs.fly("out").update(++i);
+			if(rs.length != s.baseParams.metaData.limit){
+				msg += "store 1  出错了<br/>";
+				Rs.fly("msg").update(msg)
+			}else {
+				s.reload();
+			}
+		}, this);
+		
+	    var store2 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'service.jsp',
+            root: 'items',
+            idProperty: 'code',
+            sortField : 'name',
+            fields: ['code', 'name', {name:'price', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+	    Ext.apply(store2.baseParams.metaData, {
+	    	 limit : 100
+        });
+	    store2.on('load', function(s, rs, o){
+	    	Rs.fly("out").update(++i);
+            if(rs.length != s.baseParams.metaData.limit){
+            	msg += "store 2 出错了<br/>";
+                Rs.fly("msg").update(msg)
+            }else {
+                s.reload();
+            }
+        }, this);
+	    
+        var store3 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'service.jsp',
+            root: 'items',
+            idProperty : 'code',
+            sortField : 'price',
+            fields: ['code', 'name', {name:'price', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        Ext.apply(store3.baseParams.metaData, {
+        	 limit : 100
+        });
+        store3.on('load', function(s, rs, o){
+        	Rs.fly("out").update(++i);
+            if(rs.length != s.baseParams.metaData.limit){
+            	msg += "store 3 出错了<br/>";
+                Rs.fly("msg").update(msg)
+            }else {
+                s.reload();
+            }
+        }, this);
+        
+      
+        var store4 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'service.jsp',
+            root: 'items',
+            idProperty: 'code',
+            sortField : 'code',
+            fields: ['code', 'name', {name:'price', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        Ext.apply(store4.baseParams.metaData, {
+        	 limit : 100
+        });
+        store4.on('load', function(s, rs, o){
+        	Rs.fly("out").update(++i);
+            if(rs.length != s.baseParams.metaData.limit){
+            	msg += "store 4  出错了<br/>";
+                Rs.fly("msg").update(msg);
+            }else {
+                s.reload();
+            }
+        }, this);
+        
+        var store5 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'service.jsp',
+            root: 'items',
+            idProperty: 'code',
+            sortField : 'code',
+            fields: ['code', 'name', {name:'price', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        Ext.apply(store5.baseParams.metaData, {
+        	 limit : 100
+        });
+        store5.on('load', function(s, rs, o){
+        	Rs.fly("out").update(++i);
+            if(rs.length != s.baseParams.metaData.limit){
+            	msg += "store 5  出错了<br/>";
+                Rs.fly("msg").update(msg)
+            }else {
+                s.reload();
+            }
+        }, this);
+        
+        var store6 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'service.jsp',
+            root: 'items',
+            idProperty: 'code',
+            sortField : 'code',
+            fields: ['code', 'name', {name:'price', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        Ext.apply(store6.baseParams.metaData, {
+        	 limit : 100
+        });
+        store6.on('load', function(s, rs, o){
+        	Rs.fly("out").update(++i);
+            if(rs.length != s.baseParams.metaData.limit){
+            	msg += "store 6  出错了<br/>";
+                Rs.fly("msg").update(msg)
+            }else {
+                s.reload();
+            }
+        }, this);
+        
+	}, this);
+</script>
+</html>

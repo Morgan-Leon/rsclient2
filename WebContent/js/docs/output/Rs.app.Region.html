@@ -1,0 +1,321 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Rs.app.Region-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Rs.app.Region-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Rs.app.Region-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="inner-link" href="#Rs.app.Region-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>&#13;<a class="bookmark" href="../docs/?class=Rs.app.Region"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><div class="inheritance res-block"><pre class="res-block-inner"><a href="output/Rs.util.Observable.html" ext:member="" ext:cls="Rs.util.Observable">Observable</a>&#13;&nbsp;&nbsp;<img src="resources/elbow-end.gif">Region</pre></div><h1>Class <a href="source/rs-debug.html#cls-Rs.app.Region">Rs.app.Region</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Rs.app</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-debug.html#cls-Rs.app.Region">rs-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-debug.html#cls-Rs.app.Region">Region</a></td></tr><tr><td class="label">Subclasses:</td><td class="hd-info"><a href="output/Rs.app.BorderShell.SplitRegion.html" ext:cls="Rs.app.BorderShell.SplitRegion">BorderShell.SplitRegion</a>,&#13;<a href="output/Rs.app.WindowRegion.html" ext:cls="Rs.app.WindowRegion">WindowRegion</a>,&#13;<a href="output/TabRegion.html" ext:cls="TabRegion">TabRegion</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info"><a href="output/Rs.util.Observable.html" ext:cls="Rs.util.Observable" ext:member="">Observable</a></td></tr></table><div class="description">应用程序放置区域</div><div class="hr"></div><a id="Rs.app.Region-configs"></a><h2>Config Options</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Config Options</th><th class="msource-header">Defined By</th></tr><tr class="config-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-listeners"></a><b><a href="source/rs-debug.html#cfg-Rs.util.Observable-listeners">listeners</a></b> : Object<div class="mdesc"><div class="short">A config object containing one or more event handlers to be added to this&#13;
+object during initialization.  This should...</div><div class="long"><p>A config object containing one or more event handlers to be added to this
+object during initialization.  This should be a valid listeners config object as specified in the
+<a href="output/Rs.util.Observable.html#Rs.util.Observable-addListener" ext:member="addListener" ext:cls="Rs.util.Observable">addListener</a> example for attaching multiple handlers at once.</p>
+<br><p><b><u>DOM events from ExtJs <a href="output/Rs.Component.html" ext:cls="Rs.Component">Components</a></u></b></p>
+<br><p>While <i>some</i> ExtJs Component classes export selected DOM events (e.g. "click", "mouseover" etc), this
+is usually only done when extra value can be added. For example the <a href="output/Rs.DataView.html" ext:cls="Rs.DataView">DataView</a>'s
+<b><code><a href="output/Rs.DataView.html#Rs.DataView-click" ext:member="click" ext:cls="Rs.DataView">click</a></code></b> event passing the node clicked on. To access DOM
+events directly from a Component's HTMLElement, listeners must be added to the <i><a href="output/Rs.Component.html#Rs.Component-getEl" ext:member="getEl" ext:cls="Rs.Component">Element</a></i> after the Component
+has been rendered. A plugin can simplify this step:<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Rs.DomObserver = Rs.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin&#39;s init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Rs.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Rs.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code></pre></p></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#listeners" ext:member="#listeners" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-maxHeight"></a><b><a href="source/rs-debug.html#cfg-Rs.app.Region-maxHeight">maxHeight</a></b> : Number<div class="mdesc">最大高度</div></td><td class="msource">Region</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-maxWidth"></a><b><a href="source/rs-debug.html#cfg-Rs.app.Region-maxWidth">maxWidth</a></b> : Number<div class="mdesc">最大宽度</div></td><td class="msource">Region</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-minHeight"></a><b><a href="source/rs-debug.html#cfg-Rs.app.Region-minHeight">minHeight</a></b> : Number<div class="mdesc">最小高度</div></td><td class="msource">Region</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-minWidth"></a><b><a href="source/rs-debug.html#cfg-Rs.app.Region-minWidth">minWidth</a></b> : Number<div class="mdesc">最小宽度</div></td><td class="msource">Region</td></tr></tbody></table><a id="Rs.app.Region-props"></a><h2>Public Properties</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Property</th><th class="msource-header">Defined By</th></tr><tr class="property-row  inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-Rs.enumerables"></a><b><a href="source/rs-debug.html#prop-Rs.util.Observable-Rs.enumerables">Rs.enumerables</a></b> : Array<div class="mdesc">An array containing extra enumerables for old browsers</div></td><td class="msource"><a href="output/Rs.util.Observable.html#Rs.enumerables" ext:member="#Rs.enumerables" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="property-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-self"></a><b><a href="source/rs-debug.html#prop-Rs.util.Observable-self">self</a></b> : Rs.Class<div class="mdesc"><div class="short">Get the reference to the current class from which this object was instantiated. Unlike Rs.Base.statics,&#13;
+`this.self` ...</div><div class="long">Get the reference to the current class from which this object was instantiated. Unlike <a href="output/Rs.Base.html#Rs.Base-statics" ext:member="statics" ext:cls="Rs.Base">Rs.Base.statics</a>,
+`this.self` is scope-dependent and it's meant to be used for dynamic inheritance. See <a href="output/Rs.Base.html#Rs.Base-statics" ext:member="statics" ext:cls="Rs.Base">Rs.Base.statics</a>
+for a detailed comparison
+Rs.define('My.Cat', {
+statics: {
+speciesName: 'Cat' // My.Cat.speciesName = 'Cat'
+},
+constructor: function() {
+alert(this.self.speciesName); / dependent on 'this'
+return this;
+},
+clone: function() {
+return new this.self();
+}
+});
+Rs.define('My.SnowLeopard', {
+extend: 'My.Cat',
+statics: {
+speciesName: 'Snow Leopard'         // My.SnowLeopard.speciesName = 'Snow Leopard'
+}
+});
+var cat = new My.Cat();                     // alerts 'Cat'
+var snowLeopard = new My.SnowLeopard();     // alerts 'Snow Leopard'
+var clone = snowLeopard.clone();
+alert(Rs.getClassName(clone));             // alerts 'My.SnowLeopard'</div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#self" ext:member="#self" ext:cls="Rs.util.Observable">Observable</a></td></tr></tbody></table><a id="Rs.app.Region-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-Region"></a><b><a href="source/rs-debug.html#cls-Rs.app.Region">Region</a></b>(&nbsp;<code>Rs.app.Shell&nbsp;shell</code>,&nbsp;<code>Object&nbsp;config</code>&nbsp;)
+    <div class="mdesc"><div class="short"></div><div class="long"><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>shell</code> : Rs.app.Shell<div class="sub-desc">页面框架类型</div></li><li><code>config</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-addEvents"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-addEvents">addEvents</a></b>(&nbsp;<code>Object/String&nbsp;o</code>,&nbsp;<code>string&nbsp;Optional.</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Adds the specified events to the list of events which this Observable may fire.</div><div class="long">Adds the specified events to the list of events which this Observable may fire.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>o</code> : Object/String<div class="sub-desc">Either an object with event names as properties with a value of <code>true</code>
+or the first event name string if multiple event names are being passed as separate parameters.</div></li><li><code>Optional.</code> : string<div class="sub-desc">Event name if multiple event names are being passed as separate parameters.
+Usage:<pre><code>this.addEvents(<em>'storeloaded'</em>, <em>'storecleared'</em>);</code></pre></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#addEvents" ext:member="#addEvents" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-addListener"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-addListener">addListener</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Function&nbsp;handler</code>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;scope</code>]</span>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;options</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Appends an event handler to this object.</div><div class="long">Appends an event handler to this object.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The name of the event to listen for.</div></li><li><code>handler</code> : Function<div class="sub-desc">The method the event invokes.</div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope (<code><b>this</b></code> reference) in which the handler function is executed.
+<b>If omitted, defaults to the object which fired the event.</b></div></li><li><code>options</code> : Object<div class="sub-desc">(optional) An object containing handler configuration.
+properties. This may contain any of the following properties:<ul>
+<li><b>scope</b> : Object<div class="sub-desc">The scope (<code><b>this</b></code> reference) in which the handler function is executed.
+<b>If omitted, defaults to the object which fired the event.</b></div></li>
+<li><b>delay</b> : Number<div class="sub-desc">The number of milliseconds to delay the invocation of the handler after the event fires.</div></li>
+<li><b>single</b> : Boolean<div class="sub-desc">True to add a handler to handle just the next firing of the event, and then remove itself.</div></li>
+<li><b>buffer</b> : Number<div class="sub-desc">Causes the handler to be scheduled to run in an <a href="output/Rs.util.DelayedTask.html" ext:cls="Rs.util.DelayedTask">Rs.util.DelayedTask</a> delayed
+by the specified number of milliseconds. If the event fires again within that time, the original
+handler is <em>not</em> invoked, but the new handler is scheduled in its place.</div></li>
+<li><b>target</b> : Observable<div class="sub-desc">Only call the handler if the event was fired on the target Observable, <i>not</i>
+if the event was bubbled up from a child Observable.</div></li>
+</ul><br>
+<p>
+<b>Combining Options</b><br>
+Using the options argument, it is possible to combine different types of listeners:<br>
+<br>
+A delayed, one-time listener.
+<pre><code>myDataView.on(<em>'click'</em>, this.onClick, this, {
+single: true,
+delay: 100
+});</code></pre>
+<p>
+<b>Attaching multiple handlers in 1 call</b><br>
+The method also allows for a single argument to be passed which is a config object containing properties
+which specify multiple handlers.
+<p>
+<pre><code>myGridPanel.on({
+<em>'click'</em> : {
+    fn: this.onClick,
+    scope: this,
+    delay: 100
+},
+<em>'mouseover'</em> : {
+    fn: this.onMouseOver,
+    scope: this
+},
+<em>'mouseout'</em> : {
+    fn: this.onMouseOut,
+    scope: this
+}
+});</code></pre>
+<p>
+Or a shorthand syntax:<br>
+<pre><code>myGridPanel.on({
+<em>'click'</em> : this.onClick,
+<em>'mouseover'</em> : this.onMouseOver,
+<em>'mouseout'</em> : this.onMouseOut,
+ scope: this
+});</code></pre></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#addListener" ext:member="#addListener" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-addMoveListener"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-addMoveListener">addMoveListener</a></b>(&nbsp;<code>Function&nbsp;callback</code>,&nbsp;<code>Object&nbsp;scope</code>,&nbsp;<code>Object&nbsp;options</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">添加位置调整监听器,当应用程序位置的大小发生变化时可修改应用程序窗体的大小</div><div class="long">添加位置调整监听器,当应用程序位置的大小发生变化时可修改应用程序窗体的大小<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>callback</code> : Function<div class="sub-desc"></div></li><li><code>scope</code> : Object<div class="sub-desc"></div></li><li><code>options</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-addResizeListener"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-addResizeListener">addResizeListener</a></b>(&nbsp;<code>Function&nbsp;callback</code>,&nbsp;<code>Object&nbsp;scope</code>,&nbsp;<code>Object&nbsp;options</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">添加大小调整监听器,当应用程序位置的大小发生变化时可修改应用程序窗体的大小</div><div class="long">添加大小调整监听器,当应用程序位置的大小发生变化时可修改应用程序窗体的大小<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>callback</code> : Function<div class="sub-desc"></div></li><li><code>scope</code> : Object<div class="sub-desc"></div></li><li><code>options</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-applyApp"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-applyApp">applyApp</a></b>(&nbsp;<code>Rs.app.Application&nbsp;app</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">将要安装到该位置的应用程序配置信息应用到该位置</div><div class="long">将要安装到该位置的应用程序配置信息应用到该位置<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>app</code> : Rs.app.Application<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-beforeDestroy"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-beforeDestroy">beforeDestroy</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">当该应用程序位置被销毁之前,执行该方法</div><div class="long">当该应用程序位置被销毁之前,执行该方法<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-callOverridden"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-callOverridden">callOverridden</a></b>(&nbsp;<code>Array/Arguments&nbsp;args</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Call the original method that was previously overridden with Rs.Base.override&#13;
+Rs.define('My.Cat', {&#13;
+constructor: fu...</div><div class="long">Call the original method that was previously overridden with <a href="output/Rs.Base.html#Rs.Base-override" ext:member="override" ext:cls="Rs.Base">Rs.Base.override</a>
+Rs.define('My.Cat', {
+constructor: function() {
+alert("I'm a cat!");
+return this;
+}
+});
+My.Cat.override({
+constructor: function() {
+alert("I'm going to be a cat!");
+var instance = this.callOverridden();
+alert("Meeeeoooowwww");
+return instance;
+}
+});
+var kitty = new My.Cat(); // alerts "I'm going to be a cat!"
+// alerts "I'm a cat!"
+// alerts "Meeeeoooowwww"<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>args</code> : Array/Arguments<div class="sub-desc">The arguments, either an array or the `arguments` object</div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">Returns the result after calling the overridden method</div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#callOverridden" ext:member="#callOverridden" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-callParent"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-callParent">callParent</a></b>(&nbsp;<code>Array/Arguments&nbsp;args</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Call the parent's overridden method. For example:&#13;
+Rs.define('My.own.A', {&#13;
+constructor: function(test) {&#13;
+alert(test...</div><div class="long">Call the parent's overridden method. For example:
+Rs.define('My.own.A', {
+constructor: function(test) {
+alert(test);
+}
+});
+Rs.define('My.own.B', {
+extend: 'My.own.A',
+constructor: function(test) {
+alert(test);
+this.callParent([test + 1]);
+}
+});
+Rs.define('My.own.C', {
+extend: 'My.own.B',
+constructor: function() {
+alert("Going to call parent's overriden constructor...");
+this.callParent(arguments);
+}
+});
+var a = new My.own.A(1); // alerts '1'
+var b = new My.own.B(1); // alerts '1', then alerts '2'
+var c = new My.own.C(2); // alerts "Going to call parent's overriden constructor..."
+// alerts '2', then alerts '3'<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>args</code> : Array/Arguments<div class="sub-desc">The arguments, either an array or the `arguments` object
+from the current method, for example: `this.callParent(arguments)`</div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">Returns the result from the superclass' method</div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#callParent" ext:member="#callParent" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-close"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-close">close</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">关闭该应用程序</div><div class="long">关闭该应用程序<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-destroy"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-destroy">destroy</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">销毁该应用程序位置</div><div class="long">销毁该应用程序位置<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-fireEvent"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-fireEvent">fireEvent</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Object...&nbsp;args</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Fires the specified event with the passed parameters (minus the event name).&#13;
+An event may be set to bubble up an Obs...</div><div class="long"><p>Fires the specified event with the passed parameters (minus the event name).</p>
+<p>An event may be set to bubble up an Observable parent hierarchy (See <a href="output/Rs.Component.html#Rs.Component-getBubbleTarget" ext:member="getBubbleTarget" ext:cls="Rs.Component">Rs.Component.getBubbleTarget</a>)
+by calling <a href="output/Rs.util.Observable.html#Rs.util.Observable-enableBubble" ext:member="enableBubble" ext:cls="Rs.util.Observable">enableBubble</a>.</p><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The name of the event to fire.</div></li><li><code>args</code> : Object...<div class="sub-desc">Variable number of parameters are passed to handlers.</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc">returns false if any of the handlers return false otherwise it returns true.</div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#fireEvent" ext:member="#fireEvent" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-getRawEl"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-getRawEl">getRawEl</a></b>()
+    :
+                                        HTTPDOMElement<div class="mdesc"><div class="short">获取该应用程序位置的原始dom节点,&#13;
+在应用程序的main方法中可直接将应用程序渲染到该dom节点上</div><div class="long">获取该应用程序位置的原始dom节点,
+在应用程序的main方法中可直接将应用程序渲染到该dom节点上<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>HTTPDOMElement</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-getSize"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-getSize">getSize</a></b>()
+    :
+                                        Object<div class="mdesc"><div class="short">获取大小</div><div class="long">获取大小<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-getTargetEl"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-getTargetEl">getTargetEl</a></b>()
+    :
+                                        Rs.Element<div class="mdesc"><div class="short">获取目标节点</div><div class="long">获取目标节点<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Rs.Element</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-hasListener"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-hasListener">hasListener</a></b>(&nbsp;<code>String&nbsp;eventName</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Checks to see if this object has any listeners for a specified event</div><div class="long">Checks to see if this object has any listeners for a specified event<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The name of the event to check for</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc">True if the event is being listened for, else false</div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#hasListener" ext:member="#hasListener" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-initConfig"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-initConfig">initConfig</a></b>(&nbsp;<code>Object&nbsp;config</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Initialize configuration for this class. a typical example:&#13;
+Rs.define('My.awesome.Class', {&#13;
+// The default config&#13;
+...</div><div class="long">Initialize configuration for this class. a typical example:
+Rs.define('My.awesome.Class', {
+// The default config
+config: {
+name: 'Awesome',
+isAwesome: true
+},
+constructor: function(config) {
+this.initConfig(config);
+return this;
+}
+});
+var awesome = new My.awesome.Class({
+name: 'Super Awesome'
+});
+alert(awesome.getName()); // 'Super Awesome'<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>config</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">mixins The mixin prototypes as key - value pairs</div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#initConfig" ext:member="#initConfig" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-initEvents"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-initEvents">initEvents</a></b>(&nbsp;<code>Application&nbsp;app</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">当安装应用程序到该位置之后执行该方法</div><div class="long">当安装应用程序到该位置之后执行该方法<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>app</code> : Application<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-isApplyApp"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-isApplyApp">isApplyApp</a></b>()
+    :
+                                        Boolean<div class="mdesc"><div class="short">判断该应用程序位置是否有程序安装</div><div class="long">判断该应用程序位置是否有程序安装<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-on"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-on">on</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Function&nbsp;handler</code>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;scope</code>]</span>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;options</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Appends an event handler to this object (shorthand for addListener.)</div><div class="long">Appends an event handler to this object (shorthand for <a href="output/Rs.util.Observable.html#Rs.util.Observable-addListener" ext:member="addListener" ext:cls="Rs.util.Observable">addListener</a>.)<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The type of event to listen for</div></li><li><code>handler</code> : Function<div class="sub-desc">The method the event invokes</div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope (<code><b>this</b></code> reference) in which the handler function is executed.
+<b>If omitted, defaults to the object which fired the event.</b></div></li><li><code>options</code> : Object<div class="sub-desc">(optional) An object containing handler configuration.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#on" ext:member="#on" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-onDestroy"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-onDestroy">onDestroy</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">当该应用程序位置被销毁时,执行该方法</div><div class="long">当该应用程序位置被销毁时,执行该方法<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-open"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-open">open</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">打开该应用程序</div><div class="long">打开该应用程序<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-purgeListeners"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-purgeListeners">purgeListeners</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Removes all listeners for this object</div><div class="long">Removes all listeners for this object<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#purgeListeners" ext:member="#purgeListeners" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-relayEvents"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-relayEvents">relayEvents</a></b>(&nbsp;<code>Object&nbsp;o</code>,&nbsp;<code>Array&nbsp;events</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Relays selected events from the specified Observable as if the events were fired by this.</div><div class="long">Relays selected events from the specified Observable as if the events were fired by this.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>o</code> : Object<div class="sub-desc">The Observable whose events this object is to relay.</div></li><li><code>events</code> : Array<div class="sub-desc">Array of event names to relay.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#relayEvents" ext:member="#relayEvents" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-removeListener"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-removeListener">removeListener</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Function&nbsp;handler</code>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;scope</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Removes an event handler.</div><div class="long">Removes an event handler.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The type of event the handler was associated with.</div></li><li><code>handler</code> : Function<div class="sub-desc">The handler to remove. <b>This must be a reference to the function passed into the <a href="output/Rs.util.Observable.html#Rs.util.Observable-addListener" ext:member="addListener" ext:cls="Rs.util.Observable">addListener</a> call.</b></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope originally specified for the handler.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#removeListener" ext:member="#removeListener" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-renderTo"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-renderTo">renderTo</a></b>(&nbsp;<code>Rs.Element&nbsp;el</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">渲染应用程序区域</div><div class="long">渲染应用程序区域<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>el</code> : Rs.Element<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-resumeEvents"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-resumeEvents">resumeEvents</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Resume firing events. (see suspendEvents)&#13;
+If events were suspended using the queueSuspended parameter, then all&#13;
+eve...</div><div class="long">Resume firing events. (see <a href="output/Rs.util.Observable.html#Rs.util.Observable-suspendEvents" ext:member="suspendEvents" ext:cls="Rs.util.Observable">suspendEvents</a>)
+If events were suspended using the <tt><b>queueSuspended</b></tt> parameter, then all
+events fired during event suspension will be sent to any listeners now.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#resumeEvents" ext:member="#resumeEvents" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-setHeight"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-setHeight">setHeight</a></b>(&nbsp;<code>Number&nbsp;h</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">设置高度</div><div class="long">设置高度<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>h</code> : Number<div class="sub-desc">高度值</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-setSize"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-setSize">setSize</a></b>(&nbsp;<code>Object&nbsp;box</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">设置大小</div><div class="long">设置大小<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>box</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-setWidth"></a><b><a href="source/rs-debug.html#method-Rs.app.Region-setWidth">setWidth</a></b>(&nbsp;<code>Number&nbsp;w</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">设置宽度</div><div class="long">设置宽度<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>w</code> : Number<div class="sub-desc">宽度值</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-statics"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-statics">statics</a></b>()
+    :
+                                        Rs.Class<div class="mdesc"><div class="short">Get the reference to the class from which this object was instantiated. Note that unlike Rs.Base.self,&#13;
+`this.statics...</div><div class="long">Get the reference to the class from which this object was instantiated. Note that unlike <a href="output/Rs.Base.html#Rs.Base-self" ext:member="self" ext:cls="Rs.Base">Rs.Base.self</a>,
+`this.statics()` is scope-independent and it always returns the class from which it was called, regardless of what
+`this` points to during run-time
+Rs.define('My.Cat', {
+statics: {
+totalCreated: 0,
+speciesName: 'Cat' // My.Cat.speciesName = 'Cat'
+},
+constructor: function() {
+var statics = this.statics();
+alert(statics.speciesName);     // always equals to 'Cat' no matter what 'this' refers to
+// equivalent to: My.Cat.speciesName
+alert(this.self.speciesName);   // dependent on 'this'
+statics.totalCreated++;
+return this;
+},
+clone: function() {
+var cloned = new this.self;                      // dependent on 'this'
+cloned.groupName = this.statics().speciesName;   // equivalent to: My.Cat.speciesName
+return cloned;
+}
+});
+Rs.define('My.SnowLeopard', {
+extend: 'My.Cat',
+statics: {
+speciesName: 'Snow Leopard'     // My.SnowLeopard.speciesName = 'Snow Leopard'
+},
+constructor: function() {
+this.callParent();
+}
+});
+var cat = new My.Cat();                 // alerts 'Cat', then alerts 'Cat'
+var snowLeopard = new My.SnowLeopard(); // alerts 'Cat', then alerts 'Snow Leopard'
+var clone = snowLeopard.clone();
+alert(Rs.getClassName(clone));         // alerts 'My.SnowLeopard'
+alert(clone.groupName);                 // alerts 'Cat'
+alert(My.Cat.totalCreated);             // alerts 3<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Rs.Class</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#statics" ext:member="#statics" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-suspendEvents"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-suspendEvents">suspendEvents</a></b>(&nbsp;<code>Boolean&nbsp;queueSuspended</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Suspend the firing of all events. (see resumeEvents)</div><div class="long">Suspend the firing of all events. (see <a href="output/Rs.util.Observable.html#Rs.util.Observable-resumeEvents" ext:member="resumeEvents" ext:cls="Rs.util.Observable">resumeEvents</a>)<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>queueSuspended</code> : Boolean<div class="sub-desc">Pass as true to queue up suspended events to be fired
+after the <a href="output/Rs.util.Observable.html#Rs.util.Observable-resumeEvents" ext:member="resumeEvents" ext:cls="Rs.util.Observable">resumeEvents</a> call instead of discarding all suspended events;</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#suspendEvents" ext:member="#suspendEvents" ext:cls="Rs.util.Observable">Observable</a></td></tr><tr class="method-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-un"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-un">un</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Function&nbsp;handler</code>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;scope</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Removes an event handler (shorthand for removeListener.)</div><div class="long">Removes an event handler (shorthand for <a href="output/Rs.util.Observable.html#Rs.util.Observable-removeListener" ext:member="removeListener" ext:cls="Rs.util.Observable">removeListener</a>.)<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The type of event the handler was associated with.</div></li><li><code>handler</code> : Function<div class="sub-desc">The handler to remove. <b>This must be a reference to the function passed into the <a href="output/Rs.util.Observable.html#Rs.util.Observable-addListener" ext:member="addListener" ext:cls="Rs.util.Observable">addListener</a> call.</b></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope originally specified for the handler.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource"><a href="output/Rs.util.Observable.html#un" ext:member="#un" ext:cls="Rs.util.Observable">Observable</a></td></tr></tbody></table><a id="Rs.app.Region-events"></a><h2>Public Events</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Event</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-applyapp"></a><b><a href="source/rs-debug.html#event-Rs.app.Region-applyapp">applyapp</a></b> :
+                                      (&nbsp;<code>Rs.app.Region&nbsp;this</code>,&nbsp;<code>Rs.app.Application&nbsp;app</code>&nbsp;)
+    <div class="mdesc"><div class="short">当应用程序被安装当该位置时触发该事件</div><div class="long">当应用程序被安装当该位置时触发该事件<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : Rs.app.Region<div class="sub-desc"></div></li><li><code>app</code> : Rs.app.Application<div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-beforeapplyapp"></a><b><a href="source/rs-debug.html#event-Rs.app.Region-beforeapplyapp">beforeapplyapp</a></b> :
+                                      (&nbsp;<code>Rs.app.Region&nbsp;this</code>,&nbsp;<code>Rs.app.Application&nbsp;app</code>&nbsp;)
+    <div class="mdesc"><div class="short">当应用程序被安装到该位置之前触发该事件</div><div class="long">当应用程序被安装到该位置之前触发该事件<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : Rs.app.Region<div class="sub-desc"></div></li><li><code>app</code> : Rs.app.Application<div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-beforedestroy"></a><b><a href="source/rs-debug.html#event-Rs.app.Region-beforedestroy">beforedestroy</a></b> :
+                                      (&nbsp;<code>WindowRegion&nbsp;this</code>&nbsp;)
+    <div class="mdesc"><div class="short">当窗口销毁前触发该事件</div><div class="long">当窗口销毁前触发该事件<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : WindowRegion<div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-beforerender"></a><b><a href="source/rs-debug.html#event-Rs.app.Region-beforerender">beforerender</a></b> :
+                                      (&nbsp;<code>Rs.app.Region&nbsp;this</code>&nbsp;)
+    <div class="mdesc"><div class="short">在该应用程序位置渲染之前触发该事件</div><div class="long">在该应用程序位置渲染之前触发该事件<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : Rs.app.Region<div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-destroy"></a><b><a href="source/rs-debug.html#event-Rs.app.Region-destroy">destroy</a></b> :
+                                      (&nbsp;<code>WindowRegion&nbsp;this</code>&nbsp;)
+    <div class="mdesc"><div class="short">当窗口被销毁时触发该事件</div><div class="long">当窗口被销毁时触发该事件<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : WindowRegion<div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.app.Region-render"></a><b><a href="source/rs-debug.html#event-Rs.app.Region-render">render</a></b> :
+                                      (&nbsp;<code>Rs.app.Region&nbsp;this</code>&nbsp;)
+    <div class="mdesc"><div class="short">当该应用程序位置渲染完成时触发该事件</div><div class="long">当该应用程序位置渲染完成时触发该事件<div class="mdetail-params"><strong style="font-weight: normal;">Listeners will be called with the following arguments:</strong><ul><li><code>this</code> : Rs.app.Region<div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Region</td></tr></tbody></table></div>

@@ -1,0 +1,139 @@
+-- 此行为注释
+-- 编写要合并的JS文件列表
+-- 一行一个文件,按照文件名称顺序合并。
+
+--MessageBox 主要解决输入框中的字符控制
+rs/ext/MessageBox.js
+
+-- 用户偏好信息维护
+rs/ext/state/Provider.js
+rs/ext/state/StateManager.js
+rs/ext/state/StatePlugin.js
+
+-- 查询面板
+-- rs/ext/query/QueryConditionModel.js
+rs/ext/query/QueryPanel.js
+
+-- 分页树
+rs/ext/tree/TreeLoader.js
+rs/ext/tree/PagingTreeLoader.js
+rs/ext/tree/PagingTreeMoreNode.js
+
+-- 数据
+rs/ext/data/Proxy.js
+rs/ext/data/Reader.js
+rs/ext/data/Writer.js
+rs/ext/data/Store.js
+rs/ext/data/GroupingStore.js
+rs/ext/data/GeneralselStore.js
+
+-- 表格
+rs/ext/grid/SliderPagingToolbar.js
+rs/ext/grid/RowCellSelectionModel.js
+rs/ext/grid/CheckboxCellSelectionModel.js
+rs/ext/grid/GridSummary.js
+rs/ext/grid/GridPageSummary.js
+rs/ext/grid/HybridGridSummary.js
+rs/ext/grid/GroupSummary.js
+rs/ext/grid/HybridGroupSummary.js
+rs/ext/grid/ExportButton.js
+
+rs/ext/grid/TreeColumn.js
+rs/ext/grid/TreeStore.js
+rs/ext/grid/TreeGridPanel.js
+
+rs/ext/grid/GeneralselGridPanel.js
+rs/ext/grid/GeneralselPanel.js
+
+rs/ext/grid/BufferView.js
+
+rs/ext/grid/RowEditor.js
+
+rs/ext/grid/RowExpander.js
+
+rs/ext/grid/ColumnModel.js
+rs/ext/grid/EditorGridViewPlugin.js
+
+rs/ext/grid/LockingGridView.js
+rs/ext/grid/LockingColumnModel.js
+
+--  分页选择插件
+rs/ext/grid/PagingSelectPlugin.js
+
+
+
+--表格相关的插件
+--新增插件
+rs/ext/grid/plugin/GridCreateRecordPlugin.js
+
+--删除插件
+rs/ext/grid/plugin/GridDeleteRecordPlugin.js
+
+--修改插件
+rs/ext/grid/plugin/GridSaveRecordPlugin.js
+
+--设置窗口插件
+--rs/ext/grid/plugin/GridSettingPlugin.js
+
+--JDE查询头插件
+--rs/ext/grid/plugin/JDEQueryHeaderPlugin.js
+
+-- 图形
+--rs/ext/chart/EventProxy.js
+--rs/ext/chart/Chart.js
+--rs/ext/chart/Chart3D.js
+--rs/ext/chart/Chart2D.js
+rs/ext/chart/ChartPanel.js
+
+--rs/ext/chart/HighChartPanel.js
+
+--  Form表单
+rs/ext/form/BasicForm.js
+rs/ext/form/FormPanel.js
+
+--KindEditorPanel 编辑器面板
+rs/ext/form/KindEditorPanel.js
+
+--rs/ext/form/UEditorPanel.js
+
+--简单的上传组件-------
+rs/ext/form/SimpleFileUploadPanel.js
+
+--日期选择器
+rs/ext/form/DateField.js
+-- 月份选择器
+rs/ext/form/PeriodField.js
+
+--时间选择器
+rs/ext/form/TimeField.js
+
+-- 望远镜
+rs/ext/form/GridLoaderField.js
+rs/ext/form/Telescope.js
+
+-- 建议文本框
+rs/ext/form/SuggestTag.js
+
+-- 自动完成文本框
+--rs/ext/form/AutoCompleteField.js
+
+-- 文件上传
+rs/ext/form/SingleUploadField.js
+
+-- 下拉框树
+rs/ext/form/TreeComboBox.js
+
+--幻灯片
+--rs/ext/form/SlidePanel.js
+
+--千分符数字控件
+rs/ext/form/NumberField.js
+
+--颜色选择器
+rs/ext/form/ColorPicker.js
+rs/ext/form/ColorPickerFieldPlus.js
+
+--公用卡片页面程序
+rs/ext/app/Model.js
+rs/ext/app/CardPanel.js
+rs/ext/app/GeneralCardPanel.js

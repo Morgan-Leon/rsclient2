@@ -1,0 +1,16 @@
+
+.app-store-icon16 {
+    background: url(images/app-store-icon16.png) 0px 0px no-repeat;
+}
+
+.app-installed {
+    width : 20px;
+    height : 20px;
+    background: url(images/installed.png) 0px 0px no-repeat;
+}
+
+.app-uninstalled {
+    width : 20px;
+    height : 20px;
+    background: url(images/uninstalled.png) 0px 0px no-repeat;
+}

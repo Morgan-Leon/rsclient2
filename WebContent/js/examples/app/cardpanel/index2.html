@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>公用卡片页面</title>
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+
+<script src="../../../rs/rs-debug.js"></script>
+<script src="/rsc/rsclient/userinfo"></script>
+
+<script type="text/javascript">
+Rs.engine({
+    
+    shell : 'border',
+    
+    onBeforeInitialize : function() {
+        Rs.BASE_PATH = '/rsc/js/rs';
+        
+        GENERALMODEL_DATASERVICE = '/rsc/js/examples/app/cardpanel/generalmodel/dataservice.rsc'
+    },
+    
+    libraries : ['ext-3.3.1-debug'],
+    
+    apps : [{
+        folder : 'generalmodel',
+        region : {
+            rid : 'center'
+        }
+    }]
+});
+</script>
+</head>
+<body>
+</body>
+</html>

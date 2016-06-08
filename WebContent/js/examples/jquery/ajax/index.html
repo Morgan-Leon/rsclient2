@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"
+	src="../../../rs/lib/jquery/jquery-1.5.js"></script>
+<script type="text/javascript" src="../../../rs/rs-debug.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	Rs.onReady(function() {
+		Rs.fly('btn1').on('click', function() {
+			$.ajax( {
+				type : "POST",
+				url : "service.jsp",
+				dataType : "script",
+				success : function(data) {
+					Rs.fly('out').update(data);
+				}
+			});
+		}, this);
+
+		Rs.fly('btn2').on('click', function() {
+			$.ajax( {
+				type : "POST",
+				url : "service.jsp",
+				dataType : "json",
+				success : function(data) {
+					Rs.fly('out').update(data);
+				}
+			});
+		}, this);
+
+		Rs.fly('btn3').on('click', function() {
+			$.ajax( {
+				type : "POST",
+				url : "service.jsp",
+				dataType : "xml",
+				success : function(data) {
+					Rs.fly('out').update(data);
+				}
+			});
+		}, this);
+
+		Rs.fly('btn4').on('click', function() {
+			$.ajax( {
+				type : "POST",
+				url : "service.jsp",
+				dataType : "html",
+				success : function(data) {
+					Rs.fly('out').update(data);
+				}
+			});
+		}, this);
+		
+	}, this);
+</script>
+<input id='btn1' , type='button' value='script' />
+<input id='btn2' , type='button' value='json' />
+<input id='btn3' , type='button' value='xml' />
+<input id='btn4' , type='button' value='html' />
+<hr></hr>
+<p id='out'></p>
+</body>
+</html>

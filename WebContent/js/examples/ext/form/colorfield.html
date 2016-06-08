@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+<link rel="stylesheet" type="text/css" href="Ext.ux.form.ColorPickerFieldPlus.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base-debug.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+
+<script src="../../../rs/ext/form/ColorPicker.js"></script>
+<script src="../../../rs/ext/form/ColorPickerFieldPlus.js"></script>
+
+
+
+<title>form panel</title>
+</head>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		Ext.QuickTips.init();
+		
+		this.color = new Rs.ext.form.ColorPickerFieldPlus({
+			fieldLabel : '颜色选择器' ,
+			value : 'CCC'
+		});
+		
+		var formpanel = new Ext.form.FormPanel({
+			autoWidth: true,
+			autoHeight: true,
+			labelWidth : 200 ,
+			title : '颜色选择器',
+			frame : true ,
+			items : [
+				this.color]	
+		});
+		
+		var note = new Ext.Panel({
+			border: 1,
+			frame: true,
+			html : '该颜色选择器没有正式发布，发布的时候需要在底层压缩样式，样式请参考Ext.ux.form.ColorPickerFieldPlus.css'
+		});
+		
+		new Ext.Viewport({
+             layout: "form",
+             items: [note, formpanel]
+        });
+	}, this);
+</script>
+</html>

@@ -1,0 +1,12 @@
+com.rsc.rsclient
+com.rsc.rsclient.exception
+com.rsc.rsclient.ftp
+com.rsc.rsclient.http
+com.rsc.rsclient.parse
+com.rsc.rsclient.release
+com.rsc.rsclient.servlet
+com.rsc.rsclient.util
+com.test
+com.yahoo.platform.yui.compressor
+login.filter
+org.mozilla.javascript

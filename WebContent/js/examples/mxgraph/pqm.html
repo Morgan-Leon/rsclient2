@@ -1,0 +1,573 @@
+<html>
+<head>
+    <title>Hello, World! example for mxGraph</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+    <script type="text/javascript" src="../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../rs/lib/ext-3.3.1/ext-all.js"></script>
+    
+    <script type="text/javascript">
+        mxBasePath = '../../rs/lib/mxgraph-1.8.0';
+    </script>
+    <script type="text/javascript" src="../../rs/lib/mxgraph-1.8.0/mxclient-ie.js"></script>
+    <script type="text/javascript" src="../../rs/ext/mxgraph/RsGraph.js"></script>
+    <script type="text/javascript" src="../../rs/ext/mxgraph/RsGraphPanel.js"></script>
+    
+    <script type="text/javascript">
+        Ext.onReady(function() {
+            var g1 = new Rs.ext.mxgraph.RsGraph({
+                jsonData : {
+                    vertices : [{
+                        id : '1',
+                        value : '开始',
+                        x : 200, 
+                        y :20,
+                        width : 40,
+                        height : 40,
+                        style : 'start'
+                    }, {
+                        id : '2',
+                        value : '产品报价定义',
+                        x : 180,
+                        y :80,
+                        width : 80,
+                        height : 40,
+                        style : 'completed',
+                        tooltip : '具有产品报价定义权限的用户可使用该功能'
+                    }, {
+                        id : '3',
+                        value : '生成物耗清单',
+                        x : 180,
+                        y :140,
+                        width : 80,
+                        height : 40,
+                        style : 'running',
+                        tooltip : '具有生成物耗清单权限的用户可使用该功能'
+                    }, {
+                        id : '4',
+                        value : '指定工时/定额/换新率',
+                        x : 20,
+                        y :200,
+                        width : 130,
+                        height : 40,
+                        style : 'disabled'
+                    }, {
+                        id : '5',
+                        value : '确定物料价格',
+                        x : 180,
+                        y :200,
+                        width : 80,
+                        height : 40
+                    }, {
+                        id : '6',
+                        value : '确定费用备案',
+                        x : 300,
+                        y :200,
+                        width : 80,
+                        height : 40
+                    }, {
+                        id : '7',
+                        value : '审核',
+                        x : 65,
+                        y :280,
+                        width : 40,
+                        height : 40
+                    }, {
+                        id : '8',
+                        value : '审核',
+                        x : 200,
+                        y :280,
+                        width : 40,
+                        height : 40
+                    }, {
+                        id : '9',
+                        value : '审核',
+                        x : 320,
+                        y :280,
+                        width : 40,
+                        height : 40
+                    }, {
+                        id : '10',
+                        value : '生成报价方案',
+                        x : 180,
+                        y :340,
+                        width : 80,
+                        height :40
+                    }, {
+                        id : '11',
+                        value : '报价方案审核',
+                        x : 180,
+                        y :400,
+                        width : 80,
+                        height : 40
+                    }, {
+                    	id : '12',
+                        value : '结束',
+                        x : 200,
+                        y :460,
+                        width : 40,
+                        height : 40, 
+                        style : 'end'
+                    }],
+                    edges : [{
+                        id : '1-2',
+                        value : '',
+                        source : '1',
+                        target : '2'
+                    }, {
+                        id : '2-3',
+                        value : '',
+                        source : '2',
+                        target : '3'
+                    }, {
+                        id : '3-4',
+                        value : '',
+                        source : '3',
+                        target : '4'
+                    }, {
+                        id : '3-5',
+                        value : '',
+                        source : '3',
+                        target : '5'
+                    }, {
+                        id : '3-6',
+                        value : '',
+                        source : '3',
+                        target : '6'
+                    }, {
+                        id : '4-7',
+                        value : '提交',
+                        source : '4',
+                        target : '7'
+                    }, {
+                        id : '5-8',
+                        value : '提交',
+                        source : '5',
+                        target : '8'
+                    }, {
+                        id : '6-9',
+                        value : '提交',
+                        source : '6',
+                        target : '9'
+                    }, {
+                        id : '7-10',
+                        value : '',
+                        source : '7',
+                        target : '10'
+                    }, {
+                        id : '8-10',
+                        value : '',
+                        source : '8',
+                        target : '10'
+                    }, {
+                        id : '9-10',
+                        value : '',
+                        source : '9',
+                        target : '10'
+                    }, {
+                        id : '10-11',
+                        value : '',
+                        source : '10',
+                        target : '11'
+                    }, {
+                        id : '11-12',
+                        value : '',
+                        source : '11',
+                        target : '12'
+                    }]
+                }
+            });
+            var w1 = new Ext.Window( {
+                layout:'fit',
+                width:500,
+                height:600,
+                closeAction:'hide',
+                plain: true,
+                maximizable : true,
+                items: new Rs.ext.mxgraph.RsGraphPanel({
+                    graph : g1
+                })
+            });
+            Ext.fly('btn1').on('click', function(){
+                w1.show();
+            }, this);
+            Ext.fly('btn2').on('click', function(){
+                var line = ['1', '1-2', '2', '2-3', '3', '3-4', '4', '3-5', '5', '3-6', '6'];
+                line.push('4-7', '7', '5-8', '8', '6-9', '9');
+                line.push('7-10', '10', '8-10', '10', '9-10', '10', '10-11', '11-12', '12');
+                g1.highLightCells(line);
+            }, this);
+
+            Ext.fly('btn3').on('click', function(){
+                g1.setCellWarning('5', '发生错误'/*, 6*/);                
+            }, this);
+
+            Ext.fly('btn4').on('click', function(){
+                g1.setCellWaiting('5', '等待中', 5); 
+                g1.setCellWaiting('6', '等待中', 5);
+            }, this);
+
+            Ext.fly('btn5').on('click', function(){
+            	g1.setCellCompleted('3', '已完成', 5);
+                g1.setCellRunning('5', '运行中', null, 5);                
+            }, this);
+            
+            Ext.fly('btn6').on('click', function(){
+                g1.setCellCompleted('5', '已完成', 5);                
+            }, this);
+
+            //开始  下一步
+            var local = 0,
+                vertex = ['2', '3', ['4', '5', '6'], ['7', '8', '9'], '10', '11'];
+            Ext.fly('btn8').on('click', function(){
+                local = 0;
+                g1.loadData({
+                    vertices : [{
+                        id : '1',
+                        value : '开始',
+                        x : 200, 
+                        y :20,
+                        width : 40,
+                        height : 40,
+                        style : 'start'
+                    }, {
+                        id : '2',
+                        value : '产品报价定义',
+                        x : 180,
+                        y :80,
+                        width : 80,
+                        height : 40,
+                        tooltip : '具有产品报价定义权限的用户可使用该功能'
+                    }, {
+                        id : '3',
+                        value : '生成物耗清单',
+                        x : 180,
+                        y :140,
+                        width : 80,
+                        height : 40,
+                        tooltip : '具有生成物耗清单权限的用户可使用该功能'
+                    }, {
+                        id : '4',
+                        value : '指定工时/定额/换新率',
+                        x : 20,
+                        y :200,
+                        width : 130,
+                        height : 40
+                    }, {
+                        id : '5',
+                        value : '确定物料价格',
+                        x : 180,
+                        y :200,
+                        width : 80,
+                        height : 40
+                    }, {
+                        id : '6',
+                        value : '确定费用备案',
+                        x : 300,
+                        y :200,
+                        width : 80,
+                        height : 40
+                    }, {
+                        id : '7',
+                        value : '审核',
+                        x : 65,
+                        y :280,
+                        width : 40,
+                        height : 40
+                    }, {
+                        id : '8',
+                        value : '审核',
+                        x : 200,
+                        y :280,
+                        width : 40,
+                        height : 40
+                    }, {
+                        id : '9',
+                        value : '审核',
+                        x : 320,
+                        y :280,
+                        width : 40,
+                        height : 40
+                    }, {
+                        id : '10',
+                        value : '生成报价方案',
+                        x : 180,
+                        y :340,
+                        width : 80,
+                        height :40
+                    }, {
+                        id : '11',
+                        value : '报价方案审核',
+                        x : 180,
+                        y :400,
+                        width : 80,
+                        height : 40
+                    }, {
+                        id : '12',
+                        value : '结束',
+                        x : 200,
+                        y :460,
+                        width : 40,
+                        height : 40, 
+                        style : 'end'
+                    }],
+                    edges : [{
+                        id : '1-2',
+                        value : '',
+                        source : '1',
+                        target : '2'
+                    }, {
+                        id : '2-3',
+                        value : '',
+                        source : '2',
+                        target : '3'
+                    }, {
+                        id : '3-4',
+                        value : '',
+                        source : '3',
+                        target : '4'
+                    }, {
+                        id : '3-5',
+                        value : '',
+                        source : '3',
+                        target : '5'
+                    }, {
+                        id : '3-6',
+                        value : '',
+                        source : '3',
+                        target : '6'
+                    }, {
+                        id : '4-7',
+                        value : '提交',
+                        source : '4',
+                        target : '7'
+                    }, {
+                        id : '5-8',
+                        value : '提交',
+                        source : '5',
+                        target : '8'
+                    }, {
+                        id : '6-9',
+                        value : '提交',
+                        source : '6',
+                        target : '9'
+                    }, {
+                        id : '7-10',
+                        value : '',
+                        source : '7',
+                        target : '10'
+                    }, {
+                        id : '8-10',
+                        value : '',
+                        source : '8',
+                        target : '10'
+                    }, {
+                        id : '9-10',
+                        value : '',
+                        source : '9',
+                        target : '10'
+                    }, {
+                        id : '10-11',
+                        value : '',
+                        source : '10',
+                        target : '11'
+                    }, {
+                        id : '11-12',
+                        value : '',
+                        source : '11',
+                        target : '12'
+                    }]
+                });    
+            }, this);
+            Ext.fly('btn9').on('click', function(){
+                var c = vertex[local - 1],
+                    r = vertex[local],
+                    w = vertex[local + 1];
+                if(c != undefined){
+                    if(c instanceof Array){
+                        for(var i = 0; i < c.length; i++){
+                        	g1.setCellCompleted(c[i], '已完成', 3);        
+                        }
+                    }else {
+                    	g1.setCellCompleted(c, '已完成', 3);
+                    }
+                }
+                if(r != undefined){
+                    if(r instanceof Array){
+                        for(var i = 0; i < r.length ;i++){
+                        	g1.setCellRunning(r[i], '运行中', null, 3);
+                        }
+                    }else {
+                    	g1.setCellRunning(r, '运行中', null, 3);    
+                    }
+                }
+                /*
+                if(w != undefined){
+                    if(w instanceof Array){
+                        for(var i = 0 ; i < w.length; i++){
+                        	g1.setCellWaiting(w[i], '等待中', 3);
+                        }
+                    }else {
+                    	g1.setCellWaiting(w, '等待中', 3);    
+                    }
+                }
+                */
+                local++;
+            }, this);
+            
+            var msg = '';
+            g1.on('vertexclick', function(rsgraph, graph, cell){
+                msg += "vertex click " + cell.id + " <br/>";
+                Ext.fly('msg').update(msg);
+            }, this);
+
+            g1.on('edgeclick', function(rsgraph, graph, cell){
+                msg += "edge click " + cell.id + " <br/>";
+                Ext.fly('msg').update(msg);
+            }, this);
+
+            //布局菜单
+            var menu = new Ext.menu.Menu({
+                style: {
+                    overflow: 'visible'
+                },
+                items: [{
+	                  text:'Vertical Partition Layout',
+	                  scope:this,
+	                  handler: function(item) {
+	                      g1.executeLayout(new mxPartitionLayout(g1.graph, false));
+	                  }
+	              }, {
+	                  text:'Horizontal Partition Layout',
+	                  scope:this,
+	                  handler: function(item) {
+	                      g1.executeLayout(new mxPartitionLayout(g1.graph));
+	                  }
+	              }, '-', {
+	                  text:'Vertical Stack Layout',
+	                  scope:this,
+	                  handler: function(item) {
+	                      var layout = new mxStackLayout(g1.graph, false);
+	                      layout.fill = true;
+	                      g1.executeLayout(layout);
+	                  }
+	              }, {
+	                  text:'Horizontal Stack Layout',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      var layout = new mxStackLayout(g1.graph, false);
+	                      layout.fill = true;
+	                      g1.executeLayout(layout);
+	                  }
+	              },
+	              '-',
+	              {
+	                  text:'Place Edge Labels',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      g1.executeLayout(new mxEdgeLabelLayout(g1.graph));
+	                  }
+	              },
+	              {
+	                  text:'Parallel Edges',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      g1.executeLayout(new mxParallelEdgeLayout(g1.graph));
+	                  }
+	              },
+	              '-',
+	              {
+	                  text:'Vertical Hierarchical Layout',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      var layout = new mxHierarchicalLayout(g1.graph);
+	                      g1.executeLayout(layout, true);
+	                  }
+	              },
+	              {
+	                  text:'Horizontal Hierarchical Layout',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      var layout = new mxHierarchicalLayout(g1.graph,
+	                          mxConstants.DIRECTION_WEST);
+	                      g1.executeLayout(layout, true);
+	                  }
+	              },
+	              '-',
+	              {
+	                  text:'Vertical Tree Layout',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      var layout = new mxCompactTreeLayout(g1.graph, false);
+	                      g1.executeLayout(layout, true, true);
+	                  }
+	              },
+	              {
+	                  text:'Horizontal Tree Layout',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      var layout = new mxCompactTreeLayout(g1.graph);
+	                      g1.executeLayout(layout, true, true);
+	                  }
+	              },
+	              '-',
+	              {
+	                  text:'Organic Layout',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      var layout = new mxFastOrganicLayout(g1.graph);
+	                      layout.forceConstant = 80;
+	                      g1.executeLayout(layout, true);
+	                  }
+	              },
+	              {
+	                  text:'Circle Layout',
+	                  scope:this,
+	                  handler: function(item)
+	                  {
+	                      g1.executeLayout(new mxCircleLayout(g1.graph), true);
+	                  }
+	              }]
+            });
+
+             var btn7 = new Ext.Button({
+            	 text:'布局',
+            	 //renderTo : 'btn7',
+                 handler: function(menu) {},
+                 menu: menu
+             });
+
+        }, this);
+    </script>
+</head>
+<body id="body" style="margin:10px;">
+    <div>
+        <input id='btn1' style='float:left;' type='button' value='报价'></input>
+        <span style='float:left;'>___</span>
+        <input id='btn2' style='float:left;' type='button' value='演示'></input>
+        <input id='btn3' style='float:left;' type='button' value='警告'></input>
+        <span style='float:left;'>___</span>
+        <input id='btn4' style='float:left;' type='button' value='等待'></input>
+        <input id='btn5' style='float:left;' type='button' value='运行'></input>
+        <input id='btn6' style='float:left;' type='button' value='完成'></input>
+        <div id="btn7" style='float:left;'></div>
+        <span style='float:left;'>___</span>
+        <input id='btn8' style='float:left;' type='button' value='开始'></input>
+        <input id='btn9' style='float:left;' type='button' value='下一步'></input>
+    </div>
+    <br />
+    <div id="msg" style="float:right"></div>
+    
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+</body>
+</html>

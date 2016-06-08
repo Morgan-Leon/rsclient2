@@ -1,0 +1,189 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/lib/FusionCharts_v3/FusionCharts.js"></script>
+<script src="../../../rs/lib/FusionCharts_v3/FusionChartsExportComponent.js"></script>
+
+<script src="../../../rs/ext/chart/ChartPanel.js"></script>
+
+
+<title>图表组件案例</title>
+<script language="javascript" type="text/javascript">
+
+Ext.onReady(function(){
+	
+	Rs.BASE_PATH = '/rsc/js/rs';
+	
+
+    var store = new Rs.ext.data.Store({
+        autoLoad : true,
+        autoDestroy : true,
+        idProperty: 'month',
+        url : '/rsc/js/examples/fusioncharts/oo/o1.rsc',
+        fields: ['v1', 'v2', 'v3','month'],
+        baseParams : {
+            pm_flag : 'Y'
+        }
+    }) ;
+	
+    var chartPanel = new Rs.ext.chart.ChartPanel({
+        //refreshTime : 5000 ,
+        store : store ,
+        height : 500 ,
+        renderTo : 'div1',
+        chartDir : '/rsc/js/rs/lib/FusionCharts_v3/',
+        chartType : 'MSColumn3DLineDY' ,
+        enableShowValues : false,
+        //可选配置
+        chart : {
+			caption : "Product Sales & Downloads" ,
+			xaxisname : "Month" 
+        },
+        categories : {
+        	dataIndex : 'month',
+        	//header : '月份',
+        	renderer : function(v){
+        	   return v == 'Feb' ? '二月' : v;
+        	}
+        },
+        dataSet : [{
+            seriesname : 'product A',
+            legend : 'v1' ,
+            renderer : function(v){
+                //可进行显示数据的个性化
+                return v > 13000 ? 0 : v;                    
+            }
+        },{
+            seriesname : 'product B',
+            legend : 'v2' ,
+        },{
+            seriesname : 'down',
+            legend : 'v3' , //图例项
+            parentYAxis : 'S',
+            renderer : function(v){
+                return v > 13000 ? 0 : v;                    
+            }
+        }],
+        
+        trendLines : {
+            line : [{
+                startvalue : '500' ,
+                color : '009933' ,
+                displayvalue : '警戒'
+            }]                    
+        },
+        
+        styles : [{
+            definition : [{
+                style : [{
+                    name:"CanvasAnim" ,
+                    type:'font' ,
+                    face:'Verdana', 
+                    size:'20' ,
+                    color:'FF0000', 
+                    bold:'1' ,
+                    bgColor:'FFFFDD'
+                }]            
+            }],
+            
+            application : [{
+                apply : [{
+                    toobject:"Caption",
+                    styles:"CanvasAnim"                
+                }]
+            }]
+        }] 
+         
+    });
+
+    //----------------------------------
+    Ext.apply(store.baseParams.metaData, {
+	    limit : 20
+	});
+	    var grid = new Ext.grid.EditorGridPanel({
+	        autoHeight : true ,
+	        autoWidth: true,
+	        store: store,
+	        columns: [
+	        	{
+	                header   : 'Month', 
+	                width    : 75,
+	                dataIndex: 'month'
+	            },
+	            {
+	                header   : 'Product A Sales', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'v1',
+	                editor : new Ext.form.NumberField()
+	            },
+	            {
+                    header   : 'Product B Sales', 
+                    width    : 100, 
+                    sortable : true, 
+	                editor : new Ext.form.NumberField(),
+                    dataIndex: 'v2'
+                },
+	            {
+	                header   : 'Total Downloads', 
+	                width    : 75,
+	                sortable : true, 
+	                editor : new Ext.form.NumberField(),
+	                dataIndex: 'v3'
+	            }
+	        ],
+	        tbar : [
+				new Ext.Button({
+	                text : '保存',
+	                iconCls : 'rs-action-save',
+	                handler : function(){
+	                	store.save();
+	                },
+	                scope : this
+	            })
+	        ] ,
+	        bbar : new Rs.ext.grid.SliderPagingToolbar({
+                pageSize : 20,
+                hasSlider : true,
+                store : store,
+                displayInfo : true,
+                displayMsg: '共{2}条'
+            }),
+	        stripeRows: true,
+	        title: '表格',
+	        renderTo :'div2'
+	    });
+	    //grid.render('div2');
+});
+
+</script>
+</head>
+<body>
+<div>如果没有数据，请先创建测试表 
+create table TEST_CHART
+(
+  MONTH NVARCHAR2(20),
+  V1    NUMBER,
+  V2    NUMBER,
+  V3    NUMBER
+)<br/>插入的数据SQL请查看本页面根目录下的SQL脚本</div>
+<br/>
+<br/>
+<div>
+	<div id="div1" style="float:left; margin:0px 5px;">
+	</div>
+	<div id="div2"  style="margin:0px 5px;">
+	</div>
+</div>
+</body>
+</html>

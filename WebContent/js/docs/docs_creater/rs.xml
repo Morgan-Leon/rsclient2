@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+    <sources>
+        <source src="../../rs/rs-debug.js" /> 
+        <source src="../../rs/ext/rs-ext-debug.js" />
+        <!--
+        <source src="../../rs/ext/state/Provider.js" />
+		<source src="../../rs/ext/state/StateManager.js" />
+		<source src="../../rs/ext/state/StatePlugin.js" />
+		
+		<source src="../../rs/ext/query/QueryConditionModel.js" />
+		<source src="../../rs/ext/query/QueryPanel.js" />
+		
+		<source src="../../rs/ext/tree/TreeLoader.js" />
+		<source src="../../rs/ext/tree/PagingTreeLoader.js" />
+		<source src="../../rs/ext/tree/PagingTreeMoreNode.js" />
+		
+		<source src="../../rs/ext/data/Proxy.js" />
+		<source src="../../rs/ext/data/Reader.js" />
+		<source src="../../rs/ext/data/Writer.js" />
+		<source src="../../rs/ext/data/Store.js" />
+		<source src="../../rs/ext/data/GeneralselStore.js" />
+		
+		<source src="../../rs/ext/grid/SliderPagingToolbar.js" />
+		<source src="../../rs/ext/grid/TreeColumn.js" />
+		<source src="../../rs/ext/grid/TreeStore.js" />
+		<source src="../../rs/ext/grid/TreeGridPanel.js" />
+        -->
+        
+    </sources>
+    <tags>
+        <tag name="author" title="Author"/>
+        <tag name="version" title="Version"/>
+        <tag name="note" format="&lt;i&gt;NOTE: {0}&lt;/i&gt;"/>
+        <tag name="demo" title="Demo" format="&lt;a href=&quot;{0}&quot;&gt;{0}&lt;/a&gt;" />        
+    </tags>
+</doc>

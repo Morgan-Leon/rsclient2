@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+<script src="../../../rs/ext/form/PeriodField.js"></script>
+
+
+<title>Rs-ext MonthField example</title>
+<script language="javascript" type="text/javascript">
+
+Ext.onReady(function(){
+    var s1 = new Rs.ext.form.PeriodField({
+        renderTo:'div1',
+        format : 'm/Y'
+    });
+    var s2 = new Rs.ext.form.PeriodField({
+        renderTo:'div2',
+        format : 'Y/m'
+    });
+    var s3 = new Rs.ext.form.PeriodField({
+        renderTo:'div3',
+        format : 'Y年m月'
+    });
+    var s4 = new Rs.ext.form.PeriodField({
+        renderTo:'div4',
+        format : 'Y-m'
+    });
+    s4.setValue("2011-03-01");
+    var s5 = new Rs.ext.form.PeriodField({
+        renderTo:'div5',
+        format : 'Y.m'
+    });
+    /*var s = new Ext.Panel({border: true, width:150,height:150, renderTo : 'div1'});*/
+});
+
+</script>
+</head>
+<body>
+<br />
+该实例演示如何使用核算期控件，目前系统中使用的年月日时间控件来表示核算期，当用户选择完后再将时间截取为年月，
+而此核算期控件只有年月，并且可以设置显示的格式
+<hr> 
+<div style="padding-left:100px;">
+	<div id="div1">
+	<br></br>
+	<h1>m/Y格式示例</h1>
+	</div>
+	<div id="div2">
+	<br></br>
+	<h1>Y/m格式示例</h1>
+	</div>
+	<div id="div3">
+	<br></br>
+	<h1>Y年m月格式示例</h1>
+	</div>
+	<div id="div4">
+	<br></br>
+	<h1>Y-m格式示例</h1>
+	</div>
+	<div id="div5">
+	<br></br>
+	<h1>Y.m格式示例</h1>
+	</div>
+</div>
+</body>
+</html>

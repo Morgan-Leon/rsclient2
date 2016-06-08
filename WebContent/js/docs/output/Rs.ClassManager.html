@@ -1,0 +1,240 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Rs.ClassManager-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Rs.ClassManager-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Rs.ClassManager-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="inner-link" href="#Rs.ClassManager-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>&#13;<a class="bookmark" href="../docs/?class=Rs.ClassManager"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/rs-debug.html#cls-Rs.ClassManager">Rs.ClassManager</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Rs</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-debug.html#cls-Rs.ClassManager">rs-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-debug.html#cls-Rs.ClassManager">ClassManager</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr><tr><td class="label">Author:</td><td class="hd-info">Jacky Nguyen <jacky@sencha.com></td></tr></table><div class="description">Rs.ClassManager manages all classes and handles mapping from string class name to
+actual class objects throughout the whole framework. It is not generally accessed directly, rather through
+these convenient shorthands:
+- <a href="output/Rs.html#Rs-define" ext:member="define" ext:cls="Rs">Rs.define</a>
+- <a href="output/Rs.html#Rs-create" ext:member="create" ext:cls="Rs">Rs.create</a>
+- <a href="output/Rs.html#Rs-getClass" ext:member="getClass" ext:cls="Rs">Rs.getClass</a>
+- <a href="output/Rs.html#Rs-getClassName" ext:member="getClassName" ext:cls="Rs">Rs.getClassName</a>
+# Basic syntax:
+Rs.define(className, properties);
+in which `properties` is an object represent a collection of properties that apply to the class. See
+<a href="output/Rs.ClassManager.html#Rs.ClassManager-create" ext:member="create" ext:cls="Rs.ClassManager">Rs.ClassManager.create</a> for more detailed instructions.
+Rs.define('Person', {
+name: 'Unknown',
+constructor: function(name) {
+if (name) {
+this.name = name;
+}
+return this;
+},
+eat: function(foodType) {
+alert("I'm eating: " + foodType);
+return this;
+}
+});
+var aaron = new Person("Aaron");
+aaron.eat("Sandwich"); // alert("I'm eating: Sandwich");
+Rs.Class has a powerful set of extensible <a href="output/Rs.Class.html#Rs.Class-registerPreprocessor" ext:member="registerPreprocessor" ext:cls="Rs.Class">pre-processors</a> which takes care of
+everything related to class creation, including but not limited to inheritance, mixins, configuration, statics, etc.
+# Inheritance:
+Rs.define('Developer', {
+extend: 'Person',
+constructor: function(name, isGeek) {
+this.isGeek = isGeek;
+// Apply a method from the parent class' prototype
+this.callParent([name]);
+return this;
+},
+code: function(language) {
+alert("I'm coding in: " + language);
+this.eat("Bugs");
+return this;
+}
+});
+var jacky = new Developer("Jacky", true);
+jacky.code("JavaScript"); // alert("I'm coding in: JavaScript");
+// alert("I'm eating: Bugs");
+See <a href="output/Rs.Base.html#Rs.Base-callParent" ext:member="callParent" ext:cls="Rs.Base">Rs.Base.callParent</a> for more details on calling superclass' methods
+# Mixins:
+Rs.define('CanPlayGuitar', {
+playGuitar: function() {
+alert("F#...G...D...A");
+}
+});
+Rs.define('CanComposeSongs', {
+composeSongs: function() { ... }
+});
+Rs.define('CanSing', {
+sing: function() {
+alert("I'm on the highway to hell...")
+}
+});
+Rs.define('Musician', {
+extend: 'Person',
+mixins: {
+canPlayGuitar: 'CanPlayGuitar',
+canComposeSongs: 'CanComposeSongs',
+canSing: 'CanSing'
+}
+})
+Rs.define('CoolPerson', {
+extend: 'Person',
+mixins: {
+canPlayGuitar: 'CanPlayGuitar',
+canSing: 'CanSing'
+},
+sing: function() {
+alert("Ahem....");
+this.mixins.canSing.sing.call(this);
+alert("[Playing guitar at the same time...]");
+this.playGuitar();
+}
+});
+var me = new CoolPerson("Jacky");
+me.sing(); // alert("Ahem...");
+// alert("I'm on the highway to hell...");
+// alert("[Playing guitar at the same time...]");
+// alert("F#...G...D...A");
+# Config:
+Rs.define('SmartPhone', {
+config: {
+hasTouchScreen: false,
+operatingSystem: 'Other',
+price: 500
+},
+isExpensive: false,
+constructor: function(config) {
+this.initConfig(config);
+return this;
+},
+applyPrice: function(price) {
+this.isExpensive = (price > 500);
+return price;
+},
+applyOperatingSystem: function(operatingSystem) {
+if (!(/^(iOS|Android|BlackBerry)$/i).test(operatingSystem)) {
+return 'Other';
+}
+return operatingSystem;
+}
+});
+var iPhone = new SmartPhone({
+hasTouchScreen: true,
+operatingSystem: 'iOS'
+});
+iPhone.getPrice(); // 500;
+iPhone.getOperatingSystem(); // 'iOS'
+iPhone.getHasTouchScreen(); // true;
+iPhone.hasTouchScreen(); // true
+iPhone.isExpensive; // false;
+iPhone.setPrice(600);
+iPhone.getPrice(); // 600
+iPhone.isExpensive; // true;
+iPhone.setOperatingSystem('AlienOS');
+iPhone.getOperatingSystem(); // 'Other'
+# Statics:
+Rs.define('Computer', {
+statics: {
+factory: function(brand) {
+// 'this' in static methods refer to the class itself
+return new this(brand);
+}
+},
+constructor: function() { ... }
+});
+var dellComputer = Computer.factory('Dell');
+Also see <a href="output/Rs.Base.html#Rs.Base-statics" ext:member="statics" ext:cls="Rs.Base">Rs.Base.statics</a> and <a href="output/Rs.Base.html#Rs.Base-self" ext:member="self" ext:cls="Rs.Base">Rs.Base.self</a> for more details on accessing
+static properties within class methods<br><br><i>This class is a singleton and cannot be created directly.</i></div><div class="hr"></div><a id="Rs.ClassManager-configs"></a><h2>Config Options</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Config Options</th><th class="msource-header">Defined By</th></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-alias"></a><b><a href="source/rs-debug.html#cfg-Rs.ClassManager-alias">alias</a></b> : String[]<div class="mdesc"></div></td><td class="msource">ClassManager</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-alternateClassName"></a><b><a href="source/rs-debug.html#cfg-Rs.ClassManager-alternateClassName">alternateClassName</a></b> : String/String[]<div class="mdesc"></div></td><td class="msource">ClassManager</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-override"></a><b><a href="source/rs-debug.html#cfg-Rs.ClassManager-override">override</a></b> : String<div class="mdesc"></div></td><td class="msource">ClassManager</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-singleton"></a><b><a href="source/rs-debug.html#cfg-Rs.ClassManager-singleton">singleton</a></b> : Boolean<div class="mdesc"></div></td><td class="msource">ClassManager</td></tr></tbody></table><a id="Rs.ClassManager-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Rs.ClassManager-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-create"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-create">create</a></b>(&nbsp;<code>String&nbsp;className</code>,&nbsp;<code>Object&nbsp;data</code>,&nbsp;<code>Function&nbsp;[createdFn]</code>&nbsp;)
+    :
+                                        Rs.Base<div class="mdesc"><div class="short">Defines a class.&#13;
+定义一个类&#13;
+Rs.define and Rs.ClassManager.create are almost aliases&#13;
+of each other, with the only except...</div><div class="long">Defines a class.
+定义一个类
+<a href="output/Rs.html#Rs-define" ext:member="define" ext:cls="Rs">Rs.define</a> and <a href="output/Rs.ClassManager.html#Rs.ClassManager-create" ext:member="create" ext:cls="Rs.ClassManager">Rs.ClassManager.create</a> are almost aliases
+of each other, with the only exception that Ext.define allows definition of <a href="output/Rs.Class.html#Rs.Class-override" ext:member="override" ext:cls="Rs.Class">overrides</a>.
+To avoid trouble, always use Ext.define.
+Rs.define('My.awesome.Class', {
+someProperty: 'something',
+someMethod: function() { ... }
+...
+}, function() {
+alert('Created!');
+alert(this === My.awesome.Class); // alerts true
+var myInstance = new this();
+});<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>className</code> : String<div class="sub-desc">The class name to create in string dot-namespaced format, for example:
+`My.very.awesome.Class`, `FeedViewer.plugin.CoolPager`. It is highly recommended to follow this simple convention:
+- The root and the class name are 'CamelCased'
+- Everything else is lower-cased</div></li><li><code>data</code> : Object<div class="sub-desc">The key-value pairs of properties to apply to this class. Property names can be of any valid
+strings, except those in the reserved list below:
+- <a href="output/Rs.Base.html#Rs.Base-self" ext:member="self" ext:cls="Rs.Base">self</a>
+- <a href="output/Rs.Class.html#Rs.Class-alias" ext:member="alias" ext:cls="Rs.Class">alias</a>
+- <a href="output/Rs.Class.html#Rs.Class-alternateClassName" ext:member="alternateClassName" ext:cls="Rs.Class">alternateClassName</a>
+- <a href="output/Rs.Class.html#Rs.Class-config" ext:member="config" ext:cls="Rs.Class">config</a>
+- <a href="output/Rs.Class.html#Rs.Class-extend" ext:member="extend" ext:cls="Rs.Class">extend</a>
+- <a href="output/Rs.Class.html#Rs.Class-inheritableStatics" ext:member="inheritableStatics" ext:cls="Rs.Class">inheritableStatics</a>
+- <a href="output/Rs.Class.html#Rs.Class-mixins" ext:member="mixins" ext:cls="Rs.Class">mixins</a>
+- <a href="output/Rs.Class.html#Rs.Class-override" ext:member="override" ext:cls="Rs.Class">override</a> (only when using <a href="output/Ext.html#Ext-define" ext:member="define" ext:cls="Ext">Ext.define</a>)
+- <a href="output/Rs.Class.html#Rs.Class-requires" ext:member="requires" ext:cls="Rs.Class">requires</a>
+- <a href="output/Rs.Class.html#Rs.Class-singleton" ext:member="singleton" ext:cls="Rs.Class">singleton</a>
+- <a href="output/Rs.Class.html#Rs.Class-statics" ext:member="statics" ext:cls="Rs.Class">statics</a>
+- <a href="output/Rs.Class.html#Rs.Class-uses" ext:member="uses" ext:cls="Rs.Class">uses</a></div></li><li><code>[createdFn]</code> : Function<div class="sub-desc">callback to execute after the class is created, the execution scope of which
+(`this`) will be the newly created class itself.</div></li></ul><strong>Returns:</strong><ul><li><code>Rs.Base</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-get"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-get">get</a></b>(&nbsp;<code>String&nbsp;name</code>&nbsp;)
+    :
+                                        Rs.Class<div class="mdesc"><div class="short">Retrieve a class by its name.</div><div class="long">Retrieve a class by its name.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Rs.Class</code><div class="sub-desc">class</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-getAliasesByName"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-getAliasesByName">getAliasesByName</a></b>(&nbsp;<code>String&nbsp;name</code>&nbsp;)
+    :
+                                        String[]<div class="mdesc"><div class="short">Get the aliases of a class by the class name</div><div class="long">Get the aliases of a class by the class name<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>String[]</code><div class="sub-desc">aliases</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-getByAlias"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-getByAlias">getByAlias</a></b>(&nbsp;<code>String&nbsp;alias</code>&nbsp;)
+    :
+                                        Rs.Class<div class="mdesc"><div class="short">Get a reference to the class by its alias.</div><div class="long">Get a reference to the class by its alias.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>alias</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Rs.Class</code><div class="sub-desc">class</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-getClass"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-getClass">getClass</a></b>(&nbsp;<code>Object&nbsp;object</code>&nbsp;)
+    :
+                                        Rs.Class<div class="mdesc"><div class="short">Get the class of the provided object; returns null if it's not an&#13;
+instance of any class created with Rs.define.&#13;
+Rs....</div><div class="long">Get the class of the provided object; returns null if it's not an
+instance of any class created with Rs.define.
+<a href="output/Rs.html#Rs-getClass" ext:member="getClass" ext:cls="Rs">Rs.getClass</a> is alias for
+<a href="output/Rs.ClassManager.html#Rs.ClassManager-getClass" ext:member="getClass" ext:cls="Rs.ClassManager">Rs.ClassManager.getClass</a>.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>object</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Rs.Class</code><div class="sub-desc">class</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-getDisplayName"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-getDisplayName">getDisplayName</a></b>(&nbsp;<code>Object&nbsp;object</code>&nbsp;)
+    :
+                                        String<div class="mdesc"><div class="short">Returns the displayName property or className or object.&#13;
+When all else fails, returns "Anonymous".</div><div class="long">Returns the displayName property or className or object.
+When all else fails, returns "Anonymous".<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>object</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>String</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-getName"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-getName">getName</a></b>(&nbsp;<code>Rs.Class/Object&nbsp;object</code>&nbsp;)
+    :
+                                        String<div class="mdesc"><div class="short">Get the name of the class by its reference or its instance.&#13;
+Rs.getClassName is alias for&#13;
+Rs.ClassManager.getName.</div><div class="long">Get the name of the class by its reference or its instance.
+<a href="output/Rs.html#Rs-getClassName" ext:member="getClassName" ext:cls="Rs">Rs.getClassName</a> is alias for
+<a href="output/Rs.ClassManager.html#Rs.ClassManager-getName" ext:member="getName" ext:cls="Rs.ClassManager">Rs.ClassManager.getName</a>.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>object</code> : Rs.Class/Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>String</code><div class="sub-desc">className</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-getNameByAlias"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-getNameByAlias">getNameByAlias</a></b>(&nbsp;<code>String&nbsp;alias</code>&nbsp;)
+    :
+                                        String<div class="mdesc"><div class="short">Get the name of a class by its alias.</div><div class="long">Get the name of a class by its alias.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>alias</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>String</code><div class="sub-desc">className</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-getNameByAlternate"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-getNameByAlternate">getNameByAlternate</a></b>(&nbsp;<code>String&nbsp;alternate</code>&nbsp;)
+    :
+                                        String<div class="mdesc"><div class="short">Get the name of a class by its alternate name.</div><div class="long">Get the name of a class by its alternate name.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>alternate</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>String</code><div class="sub-desc">className</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-getNamesByExpression"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-getNamesByExpression">getNamesByExpression</a></b>(&nbsp;<code>String&nbsp;expression</code>&nbsp;)
+    :
+                                        String[]<div class="mdesc"><div class="short">Converts a string expression to an array of matching class names. An expression can either refers to class aliases&#13;
+o...</div><div class="long">Converts a string expression to an array of matching class names. An expression can either refers to class aliases
+or class names. Expressions support wildcards:<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>expression</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>String[]</code><div class="sub-desc">classNames</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-instantiate"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-instantiate">instantiate</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>Object...&nbsp;args</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Instantiate a class by either full name, alias or alternate name.&#13;
+Rs.create is alias for Rs.ClassManager.instantiate...</div><div class="long">Instantiate a class by either full name, alias or alternate name.
+<a href="output/Rs.html#Rs-create" ext:member="create" ext:cls="Rs">Rs.create</a> is alias for <a href="output/Rs.ClassManager.html#Rs.ClassManager-instantiate" ext:member="instantiate" ext:cls="Rs.ClassManager">Rs.ClassManager.instantiate</a>.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc"></div></li><li><code>args</code> : Object...<div class="sub-desc">Additional arguments after the name will be passed to the class' constructor.</div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">instance</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-instantiateByAlias"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-instantiateByAlias">instantiateByAlias</a></b>(&nbsp;<code>String&nbsp;alias</code>,&nbsp;<code>Object...&nbsp;args</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Instantiate a class by its alias.&#13;
+Rs.createByAlias is alias for &#13;
+Rs.ClassManager.instantiateByAlias.</div><div class="long">Instantiate a class by its alias.
+<a href="output/Rs.html#Rs-createByAlias" ext:member="createByAlias" ext:cls="Rs">Rs.createByAlias</a> is alias for 
+<a href="output/Rs.ClassManager.html#Rs.ClassManager-instantiateByAlias" ext:member="instantiateByAlias" ext:cls="Rs.ClassManager">Rs.ClassManager.instantiateByAlias</a>.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>alias</code> : String<div class="sub-desc"></div></li><li><code>args</code> : Object...<div class="sub-desc">Additional arguments after the alias will be passed to the
+class constructor.</div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">instance</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-isCreated"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-isCreated">isCreated</a></b>(&nbsp;<code>String&nbsp;className</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Checks if a class has already been created.</div><div class="long">Checks if a class has already been created.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>className</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc">exist</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-registerPostprocessor"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-registerPostprocessor">registerPostprocessor</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>Function&nbsp;postprocessor</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Register a post-processor function.</div><div class="long">Register a post-processor function.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc"></div></li><li><code>postprocessor</code> : Function<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-set"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-set">set</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>Object&nbsp;value</code>&nbsp;)
+    :
+                                        Rs.ClassManager<div class="mdesc"><div class="short">Sets a name reference to a class.</div><div class="long">Sets a name reference to a class.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc"></div></li><li><code>value</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Rs.ClassManager</code><div class="sub-desc">this</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-setAlias"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-setAlias">setAlias</a></b>(&nbsp;<code>Rs.Class/String&nbsp;cls</code>,&nbsp;<code>String&nbsp;alias</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Register the alias for a class.</div><div class="long">Register the alias for a class.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>cls</code> : Rs.Class/String<div class="sub-desc">a reference to a class or a className</div></li><li><code>alias</code> : String<div class="sub-desc">Alias to use when referring to this class</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-setDefaultPostprocessorPosition"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-setDefaultPostprocessorPosition">setDefaultPostprocessorPosition</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>String&nbsp;offset</code>,&nbsp;<code>String&nbsp;relativeName</code>&nbsp;)
+    :
+                                        Rs.ClassManager<div class="mdesc"><div class="short">Insert this post-processor at a specific position in the stack,&#13;
+optionally relative to any existing post-processor</div><div class="long">Insert this post-processor at a specific position in the stack,
+optionally relative to any existing post-processor<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc">The post-processor name. Note that it needs to be
+registered with
+<a href="output/Rs.ClassManager.html#Rs.ClassManager-registerPostprocessor" ext:member="registerPostprocessor" ext:cls="Rs.ClassManager">Rs.ClassManager.registerPostprocessor</a> before this</div></li><li><code>offset</code> : String<div class="sub-desc">The insertion position. Four possible values are:
+'first', 'last', or: 'before', 'after' (relative to the
+name provided in the third argument)</div></li><li><code>relativeName</code> : String<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Rs.ClassManager</code><div class="sub-desc">this</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-setDefaultPostprocessors"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-setDefaultPostprocessors">setDefaultPostprocessors</a></b>(&nbsp;<code>String/String[]&nbsp;The</code>&nbsp;)
+    :
+                                        Rs.ClassManager<div class="mdesc"><div class="short">Set the default post processors array stack which are applied to&#13;
+every class.</div><div class="long">Set the default post processors array stack which are applied to
+every class.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>The</code> : String/String[]<div class="sub-desc">name of a registered post processor or an array of
+registered names.</div></li></ul><strong>Returns:</strong><ul><li><code>Rs.ClassManager</code><div class="sub-desc">this</div></li></ul></div></div></div></td><td class="msource">ClassManager</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ClassManager-setNamespace"></a><b><a href="source/rs-debug.html#method-Rs.ClassManager-setNamespace">setNamespace</a></b>(&nbsp;<code>String&nbsp;name</code>,&nbsp;<code>Object&nbsp;value</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Creates a namespace and assign the `value` to the created object&#13;
+Rs.ClassManager.setNamespace('MyCompany.pkg.Example...</div><div class="long">Creates a namespace and assign the `value` to the created object
+Rs.ClassManager.setNamespace('MyCompany.pkg.Example', someObject);
+alert(MyCompany.pkg.Example === someObject); // alerts true<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>name</code> : String<div class="sub-desc"></div></li><li><code>value</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">ClassManager</td></tr></tbody></table><a id="Rs.ClassManager-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

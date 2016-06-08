@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+
+<script src="../../../rs/lib/FusionCharts_v3/FusionCharts.js"></script>
+<script src="../../../rs/lib/FusionCharts_v3/FusionChartsExportComponent.js"></script>
+
+<script src="../../../rs/ext/chart/EventProxy.js"></script>
+<script src="../../../rs/ext/chart/Chart.js"></script>
+<script src="../../../rs/ext/data/ChartStore.js"></script>
+<script src="../../../rs/ext/chart/Chart2D.js"></script>
+<script src="../../../rs/ext/chart/Chart3D.js"></script>
+<script src="../../../rs/ext/chart/ChartPanel.js"></script>
+
+
+<title>Rs-ext MonthField example</title>
+<script language="javascript" type="text/javascript">
+
+Ext.onReady(function(){
+    var json1 = new Rs.ext.chart.Chart2D({
+    	url : '/rsc/js/examples/fusioncharts/mscolumn3dlinedy/dataservice.rsc' ,
+    	chartType : 'mscolumn3dlinedy',
+    	refreshTime : 10000
+    });
+    
+    var s1 = new Rs.ext.chart.ChartPanel({
+        renderTo : 'div1', 
+        chart : json1,
+        width : 600 ,
+        height : 500
+    });
+    
+    var store = new Rs.ext.data.Store({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url : '/rsc/js/examples/fusioncharts/mscolumn3dlinedy/dataservice.rsc' ,
+	        fields: ['v1', 'v2', 'v3'],
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+	    Ext.apply(store.baseParams.metaData, {
+		    limit : 20
+		});
+	    var grid = new Ext.grid.GridPanel({
+	        store: store,
+	        columns: [
+	            {
+	                header   : 'Product A Sales', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'v1'
+	            },
+	            {
+                    header   : 'Product B Sales', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'v2'
+                },
+	            {
+	                header   : 'Total Downloads', 
+	                width    : 75,
+	                sortable : true, 
+	                dataIndex: 'v3'
+	            }
+	        ],
+	        stripeRows: true,
+	        height: 350,
+	        width: 400,
+	        title: '表格'
+	    });
+	    grid.render('div2');
+});
+</script>
+</head>
+<body>
+<div id="div1">
+</div>
+
+<div id="div2">
+</div>
+</body>
+</html>

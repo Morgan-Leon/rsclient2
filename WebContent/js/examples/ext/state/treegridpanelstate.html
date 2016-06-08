@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/grid/TreeStore.js"></script>
+<script src="../../../rs/ext/grid/TreeColumn.js"></script>
+<script src="../../../rs/ext/grid/TreeGridPanel.js"></script>
+<script src="../../../rs/ext/state/Provider.js"></script>
+<script src="../../../rs/ext/state/StateManager.js"></script>
+<script src="../../../rs/ext/state/StatePlugin.js"></script>
+
+<title>tree grid</title>
+</head>
+<body>
+<b>本实例演示如何使用 Rs.ext.grid.TreeGridPanel</b>
+<br />
+<br /> 
+<hr />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div2" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div3" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div4" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div5" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div6" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+    Rs.onReady(function() {
+
+        Ext.QuickTips.init();
+        
+        var plugin = new Rs.ext.state.StatePlugin( { 
+		     scheme : false
+		});
+
+        //树表格
+        var store = new Rs.ext.grid.TreeStore({
+            autoDestroy: true,
+            remoteSort : false,
+            url: '../grid/service.jsp',
+            idProperty: 'code',
+            fields: ['code', 'name', 'leaf'],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        var grid = new Rs.ext.grid.TreeGridPanel({
+            store: store,
+            columns: [{
+	                id       : 'code',
+	                xtype    : 'treecolumn',
+	                header   : '编码', 
+	                width    : 150, 
+	                sortable : true, 
+	                dataIndex: 'code'
+	            }, {
+	                header   : '名称', 
+	                width    : 150, 
+	                sortable : true, 
+	                dataIndex: 'name'
+	            }],
+            stripeRows: true,
+            height: 500,
+            width: 400,
+            title: '树表格',
+            stateful: true,
+	        stateId: 'rs-ext-treegridstate-example',
+	        stateEvents: ['columnmove', 'columnresize', 'sortchange', 'groupchange'],
+	        plugins : plugin
+        });
+        grid.render('grid-div2');
+    }, this);
+</script>
+</html>

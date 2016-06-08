@@ -1,0 +1,41 @@
+create table GENERALFORM_FIELDLINE
+(
+  form_code    NVARCHAR2(30) not null,
+  line_no      NUMBER not null,
+  field_no     NUMBER not null,
+  xtype        NVARCHAR2(30),
+  data_index   NVARCHAR2(30),
+  field_label  NVARCHAR2(30),
+  value        NVARCHAR2(100),
+  width        NVARCHAR2(10),
+  column_width NVARCHAR2(10),
+  read_only    NVARCHAR2(10),
+  field_config NVARCHAR2(3000),
+  read_only_expression NVARCHAR2(500)
+); 
+comment on column GENERALFORM_FIELDLINE.form_code
+  is '表单编码';
+comment on column GENERALFORM_FIELDLINE.line_no
+  is '行号';
+comment on column GENERALFORM_FIELDLINE.field_no
+  is '字段号';
+comment on column GENERALFORM_FIELDLINE.xtype
+  is '编辑器类型对应Ext组件的xtype';
+comment on column GENERALFORM_FIELDLINE.data_index
+  is '对应数据模型中字段';
+comment on column GENERALFORM_FIELDLINE.field_label
+  is '标签';
+comment on column GENERALFORM_FIELDLINE.value
+  is '值';
+comment on column GENERALFORM_FIELDLINE.width
+  is '宽度';
+comment on column GENERALFORM_FIELDLINE.column_width
+  is '占行宽比例';
+comment on column GENERALFORM_FIELDLINE.read_only
+  is '是否只读';
+comment on column GENERALFORM_FIELDLINE.field_config
+  is '其他字段编辑器配置';
+comment on column GENERALFORM_FIELDLINE.read_only_expression
+  is '只读表达式';
+alter table GENERALFORM_FIELDLINE
+  add constraint PK_GENERALFORM_FIELDLINE primary key (FORM_CODE, LINE_NO, FIELD_NO);

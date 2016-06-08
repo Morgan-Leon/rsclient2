@@ -1,0 +1,37 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Ext.util.Observable-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Ext.util.Observable-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Ext.util.Observable-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="bookmark" href="../docs/?class=Ext.util.Observable"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/rs-ext-debug.html#cls-Ext.util.Observable">Ext.util.Observable</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Ext.util</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Ext.util.Observable">rs-ext-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Ext.util.Observable">Observable</a></td></tr><tr><td class="label">Subclasses:</td><td class="hd-info"><a href="output/Rs.ext.query.QueryConditionModel.html" ext:cls="Rs.ext.query.QueryConditionModel">QueryConditionModel</a>,&#13;<a href="output/Rs.ext.state.Provider.html" ext:cls="Rs.ext.state.Provider">Provider</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description"></div><div class="hr"></div><a id="Ext.util.Observable-props"></a><h2>Public Properties</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Property</th><th class="msource-header">Defined By</th></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.util.Observable-function"></a><b><a href="source/rs-ext-debug.html#prop-Ext.util.Observable-function">function</a></b> : Object<div class="mdesc">修改时间控件当核算期控件使用出错的问题.</div></td><td class="msource">Observable</td></tr></tbody></table><a id="Ext.util.Observable-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.util.Observable-enableBubble"></a><b><a href="source/rs-ext-debug.html#method-Ext.util.Observable-enableBubble">enableBubble</a></b>(&nbsp;<code>String/Array&nbsp;events</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Enables events fired by this Observable to bubble up an owner hierarchy by calling&#13;
+this.getBubbleTarget() if present...</div><div class="long"><p>Enables events fired by this Observable to bubble up an owner hierarchy by calling
+<code>this.getBubbleTarget()</code> if present. There is no implementation in the Observable base class.</p>
+<p>This is commonly used by Ext.Components to bubble events to owner Containers. See <a href="output/Ext.Component.getBubbleTarget.html" ext:cls="Ext.Component.getBubbleTarget">Ext.Component.getBubbleTarget</a>. The default
+implementation in Ext.Component returns the Component's immediate owner. But if a known target is required, this can be overridden to
+access the required target more quickly.</p>
+<p>Example:</p><pre><code>Ext.override(Ext.form.Field, {
+    
+    initComponent : Ext.form.Field.prototype.initComponent.createSequence(<b>function</b>() {
+        this.enableBubble(<em>'change'</em>);
+    }),
+
+    
+    getBubbleTarget : <b>function</b>() {
+        <b>if</b> (!this.formPanel) {
+            this.formPanel = this.findParentByType(<em>'form'</em>);
+        }
+        <b>return</b> this.formPanel;
+    }
+});
+
+<b>var</b> myForm = <b>new</b> Ext.formPanel({
+    title: <em>'User Details'</em>,
+    items: [{
+        ...
+    }],
+    listeners: {
+        change: <b>function</b>() {
+            
+            myForm.header.setStyle(<em>'color'</em>, <em>'red'</em>);
+        }
+    }
+});</code></pre><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>events</code> : String/Array<div class="sub-desc">The event name to bubble, or an Array of event names.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.util.Observable-relayEvents"></a><b><a href="source/rs-ext-debug.html#method-Ext.util.Observable-relayEvents">relayEvents</a></b>(&nbsp;<code>Object&nbsp;o</code>,&nbsp;<code>Array&nbsp;events</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Relays selected events from the specified Observable as if the events were fired by this.</div><div class="long">Relays selected events from the specified Observable as if the events were fired by <tt><b>this</b></tt>.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>o</code> : Object<div class="sub-desc">The Observable whose events this object is to relay.</div></li><li><code>events</code> : Array<div class="sub-desc">Array of event names to relay.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr></tbody></table><a id="Ext.util.Observable-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

@@ -1,0 +1,496 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>jqGrid</title>
+
+
+<!-- rs css -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/jquery-ui-1.8.17.custom.css" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/ui.jqgrid.css" />
+
+<!-- rs css -->
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/resources/css/rs-all.css" />
+
+<script type="text/javascript" src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+
+<!-- rs src -->
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<!-- jqGrid src -->
+<script src="../../../rs/lib/jquery/jquery-1.7.min.js" type="text/javascript"></script>
+<script src="../../../rs/lib/jquery/jqGrid/grid.locale-cn.js" type="text/javascript"></script>
+<script src="../../../rs/lib/jquery/jqGrid/jquery.jqGrid.src.js" type="text/javascript"></script>
+
+<script src="../../../rs/jquery/Grid.js"></script>
+</head>
+<body>
+<p>带有列复选框及cell可编辑的grid</p>
+<table id="list1"></table>
+<div id="pager1"></div>
+<br />
+<a href="javascript:void(0)" id="s1">Set new width</a>
+<a href="javascript:void(0)" id="s2">Set new height</a>
+<a href="javascript:void(0)" id="s3">Set new title</a>
+<a href="javascript:void(0)" id="s4">get url</a>
+<a href="javascript:void(0)" id="s5">setColSort</a>
+<a href="javascript:void(0)" id="s6">get title</a>
+<a href="javascript:void(0)" id="s7">setPageLimit</a>
+<a href="javascript:void(0)" id="s8">getRowNum</a>
+<a href="javascript:void(0)" id="s9">getRecords</a>
+<a href="javascript:void(0)" id="s10">getRowData(第一行的信息)</a>
+<a href="javascript:void(0)" id="s11">delRowData</a>
+<a href="javascript:void(0)" id="s12">addRowData</a>
+<a href="javascript:void(0)" id="s13">updateRowData</a>
+<br />
+
+<table id="list2"></table>
+<div id="pager2"></div>
+
+</body>
+<script type="text/javascript">
+	
+	var grid = new Rs.jquery.Grid(
+			{
+				url: "testservice.jsp",
+				datatype: "json",
+				method: "read", 
+		        height: 350,
+		        render: "#list1",
+		        fields: ['COMPANY_CODE',
+		                 'ORG_ID',
+		                 'code', 
+		                 'name',
+		                 'price',
+		                 'ITEM_ABV', 
+		                 'GB_CODE',
+		                 'DRAWING_NO',
+		                 'REFER_CODE',
+		                 'MEMORY_CODE',
+		                 'NORMAL_CLASS',
+		                 'PM_FLAG',
+		                 'OM_FLAG',
+		                 'INV_FLAG',
+		                 'QC_FLAG',
+		                 'SPECIAL_CLASS',
+		                 'LOT_FLAG',
+		                 'STOCK_UNIT',
+		                 'BI_UNIT_FLAG',
+		                 'SECOND_UNIT',
+		                 'ASSIST_UNIT',
+		                 'PM_UNIT',
+		                 'OM_UNIT',
+		                 'PM_STOCK_RATE',
+						 'OM_STOCK_RATE',
+		                 'STOCK2_RATE',
+		                 'UNIQUE_FLAG',
+		                 'TOLERANCE',
+		                 'PRICE_SYS',
+		                 'ABC_CLASS',
+		                 'ON_HAND_QTY',
+		                 'ON_HAND_AMT',
+		                 'COST_FLAG',
+						 'NET_WEIGHT',
+		                 'NET_UNIT',
+		                 'BYPRODUCT_FLAG',
+		                 'MRP_FLAG',
+		                 'LOT_POLICY',
+						 'LOT_QTY',
+		                 'ROUND_TIMES'
+		        ],
+		        cm: [  
+		              {
+							name: 'COMPANY_CODE',
+				            label   : 'COMPANY_CODE', 
+				            width    : 100,
+				            sortable : true, 
+				            index: 'COMPANY_CODE',
+				            //设置所在cell为可编辑的
+				            editable: true
+				        },
+			            {
+							name: 'ORG_ID',
+			                label   : 'ORG_ID', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ORG_ID',
+			                editable: true
+			            },
+			            {
+			                name       :'code',
+			                label   : '物料编码',
+			                width    : 100, 
+			                sortable : true, 
+			                index: 'code',
+                             editable: true
+			            },
+			            {
+							name: 'name',
+		                    label   : '物料名称',
+		                    width    : 100, 
+		                    sortable : true, 
+		                    index: 'name',
+                            editable: true
+		                },
+			            {
+							name: 'price',
+			                label   : '物料价格',
+			                formatter:'currency',
+			                width    : 100,
+			                sortable : true, 
+			                index: 'price',
+                            editable: true
+			            },
+			            {
+							name: 'ITEM_ABV',
+			                label   : 'ITEM_ABV', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ITEM_ABV',
+                            editable: true
+			            },
+			            {
+							name: 'GB_CODE',
+			                label   : 'GB_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'GB_CODE',
+                            editable: true
+			            },
+			            {	
+							name: 'DRAWING_NO',
+			                label   : 'DRAWING_NO', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'DRAWING_NO',
+                            editable: true
+			            },
+			            {
+							name: 'REFER_CODE',
+			                label   : 'REFER_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'REFER_CODE',
+                            editable: true
+			            },
+			            {
+							name: 'MEMORY_CODE',
+			                label   : 'MEMORY_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'MEMORY_CODE',
+                            editable: true
+			            },
+			            {
+							name: 'NORMAL_CLASS',
+			                label   : 'NORMAL_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'NORMAL_CLASS',
+                            editable: true
+			            },
+			            {
+							name: 'PM_FLAG',
+			                label   : 'PM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'PM_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'OM_FLAG',
+			                label   : 'OM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'OM_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'INV_FLAG',
+			                label   : 'INV_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'INV_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'QC_FLAG',
+			                label   : 'QC_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'QC_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'SPECIAL_CLASS',
+			                label   : 'SPECIAL_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'SPECIAL_CLASS',
+                            editable: true
+			            },
+			            {
+							name: 'LOT_FLAG',
+			                label   : 'LOT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'LOT_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'STOCK_UNIT',
+			                label   : 'STOCK_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'STOCK_UNIT',
+                            editable: true
+			            },
+			            {
+							name: 'BI_UNIT_FLAG',
+			                label   : 'BI_UNIT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'BI_UNIT_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'SECOND_UNIT',
+			                label   : 'SECOND_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'SECOND_UNIT',
+                            editable: true
+			            },
+			            {
+							name: 'ASSIST_UNIT',
+			                label   : 'ASSIST_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ASSIST_UNIT',
+                            editable: true
+			            },
+			            {
+							name: 'PM_UNIT',
+			                label   : 'PM_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'PM_UNIT',
+                            editable: true
+			            },
+			            {
+							name: 'OM_UNIT',
+			                label   : 'OM_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'OM_UNIT',
+                            editable: true
+			            },
+			            {
+							name: 'PM_STOCK_RATE',
+			                label   : 'PM_STOCK_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'PM_STOCK_RATE',
+                            editable: true
+			            },
+			            {
+							name: 'OM_STOCK_RATE',
+			                label   : 'OM_STOCK_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'OM_STOCK_RATE',
+                            editable: true
+			            },
+			            {
+							name: 'STOCK2_RATE',
+			                label   : 'STOCK2_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'STOCK2_RATE',
+                            editable: true
+			            },
+			            {
+							name: 'UNIQUE_FLAG',
+			                label   : 'UNIQUE_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'UNIQUE_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'TOLERANCE',
+			                label   : 'TOLERANCE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'TOLERANCE',
+                            editable: true
+			            },
+			            {
+							name: 'PRICE_SYS',
+			                label   : 'PRICE_SYS', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'PRICE_SYS',
+                            editable: true
+			            },
+			            {
+							name: 'ABC_CLASS',
+			                label   : 'ABC_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ABC_CLASS',
+                            editable: true
+			            },
+			            {
+							name: 'ON_HAND_QTY',
+			                label   : 'ON_HAND_QTY', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ON_HAND_QTY',
+                            editable: true
+			            },
+			            {
+							name: 'ON_HAND_AMT',
+			                label   : 'ON_HAND_AMT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ON_HAND_AMT',
+                            editable: true
+			            },
+			            {
+							name: 'COST_FLAG',
+			                label   : 'COST_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'COST_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'NET_WEIGHT',
+			                label   : 'NET_WEIGHT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'NET_WEIGHT',
+                            editable: true
+			            },
+			            {
+							name: 'NET_UNIT',
+			                label   : 'NET_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'NET_UNIT',
+                            editable: true
+			            },
+			            {
+							name: 'BYPRODUCT_FLAG',
+			                label   : 'BYPRODUCT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'BYPRODUCT_FLAG',
+                            editable: true
+			            },
+			            {
+							 name: 'BYPRODUCT_FLAG',
+			                label   : 'BYPRODUCT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'BYPRODUCT_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'MRP_FLAG',
+			                label   : 'MRP_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'MRP_FLAG',
+                            editable: true
+			            },
+			            {
+							name: 'LOT_POLICY',
+			                label   : 'LOT_POLICY', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'LOT_POLICY',
+                            editable: true
+			            },
+			            {
+							name: 'LOT_QTY',
+			                label   : 'LOT_QTY', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'LOT_QTY',
+                            editable: true
+			            },
+			            {
+							name: 'ROUND_TIMES',
+			                label   : 'ROUND_TIMES', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ROUND_TIMES',
+                            editable: true
+			            }
+		        ],  
+		        limit: 200,
+		        rowList: [200,500,1000],  
+		        pager: "#pager1",  
+		        //设置有列复选框
+                multiselect : true ,
+		        title: "JQGrid",
+		        sortField: "code",
+		        baseParams: {"pm_flag": "Y"}
+			});
+					
+			grid.on("cellSelect",function(r,ic,c,e) {
+				alert(grid.getRowData(r));
+			});
+		
+			jQuery("#s1").click( function() {
+				grid.setWidth(500);
+			});
+			jQuery("#s2").click( function() {
+				grid.setHeight(200);
+			});
+			jQuery("#s3").click( function() {
+				grid.setTitle("new Title");
+			});
+			jQuery("#s4").click( function() {
+				alert(grid.getUrl());
+			});
+			jQuery("#s5").click( function() {
+				grid.setColSort(name,"asc");
+			});
+			jQuery("#s6").click( function() {
+				alert(grid.getTitle());
+			});
+			jQuery("#s7").click( function() {
+				grid.setPageLimit(30);
+			});        
+			jQuery("#s8").click( function() {
+				alert(grid.getRowNum());
+			});
+			jQuery("#s9").click( function() {
+				alert(grid.getRecords());
+			});
+			jQuery("#s10").click( function() {
+				var rs = grid.getRowData(1);
+				for (var i in rs) {
+					alert(i);
+				}
+			});
+			jQuery("#s11").click( function() {
+				 grid.delRowData(1);		
+			});
+			jQuery("#s12").click( function() {
+				 grid.addRowData(200,{COMPANY_CODE:12.23,ORG_ID : 11,code: "sdsd"},"first");		
+			});
+			jQuery("#s13").click( function() {
+				 grid.updateRowData(1,{COMPANY_CODE:12.23,ORG_ID : 11,code: "sdsd"});		
+			});
+</script>
+</html>

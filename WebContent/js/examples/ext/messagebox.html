@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+
+<link rel="stylesheet" type="text/css" href="../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../rs/ext/resources/css/rs-ext-all.css" />
+
+<script src="../../rs/lib/ext-3.3.1/adapter/ext/ext-base-debug.js"></script>
+<script src="../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+<script src="../../rs/rs-mini.js"></script>
+<script src="../../rs/ext/rs-ext-debug.js"></script>
+
+<title>MessageBox演示</title>
+</head>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		Ext.QuickTips.init();
+		
+		var doAlert = function(){
+			Rs.ext.MessageBox.alert('Alert演示','Hello MessageBox.alert');
+		};
+		
+		var doConfirm = function(){
+			Rs.ext.MessageBox.confirm('confirm演示','Hello MessageBox.confirm');
+		};
+		
+		var doPrompt = function(){
+			Rs.ext.MessageBox.prompt('prompt演示','Hello MessageBox.prompt', function(btn, text){
+				
+			});
+		}
+		
+		var doShow = function(){
+			Rs.ext.MessageBox.show({
+			   title:'Save Changes?',
+			   msg: 'You are closing a tab that has unsaved changes. Would you like to save your changes?',
+			   buttons: Rs.ext.MessageBox.YESNOCANCEL,
+			   icon: Rs.ext.MessageBox.QUESTION
+			});
+		}
+		
+		var panel = new Ext.Panel({
+			title: 'MessageBox演示',
+			tbar:[{
+				text: 'Alert演示',
+				scope: this,
+				handler: doAlert
+			}, {
+				text: 'confirm演示',
+				scope: this,
+				handler: doConfirm
+			}, {
+				text: 'prompt演示',
+				scope: this,
+				handler: doPrompt
+			}, {
+				text: 'show演示',
+				scope: this,
+				handler: doShow
+			}],
+			html : '<div style="font-size:16px;color:red;">主要参考：《RS10系统字符使用说明.doc》<br/>RS10系统中不允许使用的字符包括以下字符<br/>英文字符：  %  *  ? \'  "  ,  :  ;<br/></div>'
+		});
+		
+		new Ext.Viewport({
+             layout: "fit",
+             items: [panel]
+        });
+	}, this);
+</script>
+</html>

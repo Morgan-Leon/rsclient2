@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+
+<link rel="stylesheet" type="text/css"
+    href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/tree/TreeLoader.js"></script>
+<script src="../../../rs/ext/tree/PagingTreeMoreNode.js"></script>
+<script src="../../../rs/ext/tree/PagingTreeLoader.js"></script>
+
+
+<title>Rs.ext.state example</title>
+</head>
+<body>
+<br />
+<hr />
+<br />
+该实例演示如何使用分页树，分页数会在每一次翻页时都从后台获取数据，可以提高子节点数据量大时的效率。
+<br />
+<div>
+<div id="tree-div" style="margin-left: 20px; float: left;"></div>
+<div id="tree-div2" style="margin-left: 20px; float: left;"></div>
+<div id="tree-div3" style="margin-left: 20px; float: left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		
+		var myMask = new Ext.LoadMask(Ext.getBody(), {msg:"Please wait..."});
+		myMask.show();
+		
+		
+		//一个简单的树		
+		var tree = new Ext.tree.TreePanel( {
+			renderTo : 'tree-div',
+			title : '科目树',
+			height : 500,
+			width : 400,
+			useArrows : true,
+			autoScroll : true,
+			animate : true,
+			containerScroll : true,
+			rootVisible : false,
+			frame : true,
+			bodyStyle : 'background-color:#FFFFFF;',
+			root : {
+				nodeType : 'async',
+				code : 'root',
+				type : 'root'
+			},
+			loader : new Rs.ext.tree.TreeLoader( {
+				dataUrl : 'service.jsp',
+				method : 'getSubAccounts',
+				nodeAttrsParams : [
+						"code",
+						"type" ]
+			})
+		});
+
+		//分页树
+		var tree2 = new Ext.tree.TreePanel( {
+			renderTo : 'tree-div2',
+			title : '分页科目树',
+			height : 500,
+			width : 400,
+			useArrows : true,
+			autoScroll : true,
+			animate : true,
+			containerScroll : true,
+			rootVisible : false,
+			frame : true,
+			bodyStyle : 'background-color:#FFFFFF;',
+			root : {
+				nodeType : 'async',
+				code : 'root',
+				type : 'root'
+			},
+			loader : new Rs.ext.tree.PagingTreeLoader( {
+				dataUrl : 'service.jsp',
+				method : 'getSubAccountsPaging',
+				nodeAttrsParams : [
+						"code",
+						"type" ],
+				pageSize : 12
+			})
+		});
+
+		//分页树
+		var tree3 = new Ext.tree.TreePanel( {
+			renderTo : 'tree-div3',
+			title : '分页科目树',
+			height : 500,
+			width : 400,
+			useArrows : true,
+			autoScroll : true,
+			animate : true,
+			containerScroll : true,
+			rootVisible : false,
+			frame : true,
+			root : {
+				nodeType : 'async',
+				code : 'root'
+			},
+			loader : new Rs.ext.tree.PagingTreeLoader( {
+				dataUrl : 'service.jsp',
+				method : 'getSubAccountsPaging2',
+				nodeAttrsParams : "code",
+				pageSize : 13
+			})
+		});
+
+	}, this);
+</script>
+</html>

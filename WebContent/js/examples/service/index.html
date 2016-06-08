@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<title>Rs service example</title>
+<script type="text/javascript" src="../../rs/rs-debug.js"></script>
+<!-- 引入Service.js是为了便于测试 -->
+<script type="text/javascript" src="../../rs/data/Service.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	Rs.onReady(function() {
+		Rs.fly('btn1').on('click', function() {
+		    var service = new Rs.data.Service({
+		    	url : 'service.jsp',
+                method : 'getJSON',
+                accept : 'json'
+			});
+			service.call( {
+				params : { id : 101},
+				success : function(sheet) {
+					Rs.fly('out').update(sheet);
+				}
+			});
+		}, this);
+
+		Rs.fly('btn2').on('click', function() {
+			Rs.Service.call( {
+				url : 'service.jsp',
+				method : 'getHTML',
+				accept : 'html'
+			}, function(html) {
+				Rs.fly('out').update(html);
+			}, this);
+		}, this);
+
+		Rs.fly('btn3').on('click', function() {
+			Rs.Service.call( {
+				url : 'service.jsp',
+				method : 'getXML',
+				accept : 'xml'
+			}, function(xml) {
+				alert(xml.xml || xml);
+			}, this);
+		}, this);
+
+		Rs.fly('btn4').on('click', function() {
+			Rs.Service.call( {
+				url : 'service.jsp',
+				method : 'getTEXT',
+				accept : 'text'
+			}, function(text) {
+				Rs.fly('out').update(text);
+			}, this);
+		}, this);
+
+		Rs.fly('btn5').on('click', function() {
+			Rs.Service.call( {
+				url : 'service.jsp',
+				method : 'getSCRIPT',
+				accept : 'script'
+			}, function(script) {
+				Rs.fly('out').update(script);
+			}, this);
+		}, this);
+
+		Rs.fly('btn6').on('click', function() {
+			Rs.Service.call( {
+				url : 'service.jsp',
+				method : 'getANY',
+				accept : '*'
+			}, function(any) {
+				Rs.fly('out').update(any);
+			}, this);
+		}, this);
+	}, this);
+</script>
+</body>
+<h3>此实例演示从后台获取数据，可获取的数据类型有以下几种。</h3>
+
+<br />
+<input id='btn1' type='button' value='json' />
+<input id='btn2' type='button' value='html' />
+<input id='btn3' type='button' value='xml' />
+<input id='btn4' type='button' value='text' />
+<input id='btn5' type='button' value='script' />
+<input id='btn6' type='button' value='*(any)' />
+
+<div id='out'></div>
+<hr>
+
+<pre  style="background-color:E0E0E0;color:blue;font-size:14px;>
+Rs.fly('btn1').on('click', function() {
+	var service = new Rs.data.Service({
+		url : 'service.jsp',
+		method : 'getJSON',
+		accept : 'json'
+	});
+	service.call( {
+		params : { id : 101},
+		success : function(sheet) {
+			Rs.fly('out').update(sheet);
+		}
+	});
+}, this);
+
+Rs.fly('btn2').on('click', function() {
+	Rs.Service.call( {
+		url : 'service.jsp',
+		method : 'getHTML',
+		accept : 'html'
+	}, function(html) {
+		Rs.fly('out').update(html);
+	}, this);
+}, this);
+
+Rs.fly('btn3').on('click', function() {
+	Rs.Service.call( {
+		url : 'service.jsp',
+		method : 'getXML',
+		accept : 'xml'
+	}, function(xml) {
+		alert(xml.xml || xml);
+	}, this);
+}, this);
+
+Rs.fly('btn4').on('click', function() {
+	Rs.Service.call( {
+		url : 'service.jsp',
+		method : 'getTEXT',
+		accept : 'text'
+	}, function(text) {
+		Rs.fly('out').update(text);
+	}, this);
+}, this);
+
+
+Rs.fly('btn5').on('click', function() {
+	Rs.Service.call( {
+		url : 'service.jsp',
+		method : 'getSCRIPT',
+		accept : 'script'
+	}, function(script) {
+		Rs.fly('out').update(script);
+	}, this);
+}, this);
+
+Rs.fly('btn6').on('click', function() {
+	Rs.Service.call( {
+		url : 'service.jsp',
+		method : 'getANY',
+		accept : '*'
+	}, function(any) {
+		Rs.fly('out').update(any);
+	}, this);
+}, this);
+
+</pre>
+</html>

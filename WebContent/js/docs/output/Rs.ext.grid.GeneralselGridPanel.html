@@ -1,0 +1,46 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Rs.ext.grid.GeneralselGridPanel-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Rs.ext.grid.GeneralselGridPanel-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Rs.ext.grid.GeneralselGridPanel-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="inner-link" href="#Rs.ext.grid.GeneralselGridPanel-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>&#13;<a class="bookmark" href="../docs/?class=Rs.ext.grid.GeneralselGridPanel"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/rs-ext-debug.html#cls-Rs.ext.grid.GeneralselGridPanel">Rs.ext.grid.GeneralselGridPanel</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Rs.ext.grid</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Rs.ext.grid.GeneralselGridPanel">rs-ext-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Rs.ext.grid.GeneralselGridPanel">GeneralselGridPanel</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description">望远镜表格
+该类实现通过望远镜编码和查询条件来获取数据的表格。显示的数据列为望远镜定义中定义的列。
+也可以通过columns 和cm 来配置要显示的列。
+<pre><code><b>var</b> grid = <b>new</b> Rs.ext.grid.GeneralselGridPanel( {
+        title : <em>'订单明细表格1'</em>,
+        height : 350,
+        width : 400,
+        progCode : <em>'ordDetail'</em>,
+        progCondition : <em>' a.company_code = \'</em>00\<em>' and rownum < 20 '</em>,
+        sm : <b>new</b> Ext.grid.CheckboxSelectionModel()     <i>//设置selection model</i>
+    });
+    grid.render(<em>'grid-div1'</em>);
+    
+    <i>//store 和grid</i>
+    <b>var</b> store8 = <b>new</b> Rs.ext.data.GeneralselStore({
+        autoLoad : true,
+        autoDestroy : true,
+        progCode : <em>'invVendor'</em>,
+        progCondition : <em>' company_code = \'</em>00\<em>' '</em>
+    });
+    
+    <b>var</b> grid8 = <b>new</b> Rs.ext.grid.GeneralselGridPanel({
+        title : <em>'表格'</em>,
+        height : 350,
+        width : 400,
+        store : store8,
+        <i>//指定要显示的列，如果不指定，则将会根据望远镜定义的列来显示数据</i>
+        columns : [{
+            dataIndex : <em>'VENDOR_NAME'</em>,
+            header : <em>'供应商名称'</em>,
+            width : 200,
+            sortable : true
+        }, {
+            dataIndex : <em>'VENDOR_CODE'</em>,
+            header : <em>'供应商编码'</em>,
+            width : 150,
+            sortable : true
+        }],
+        bbar: <b>new</b> Rs.ext.grid.SliderPagingToolbar({
+            pageSize : 10,
+            hasSlider : true,
+            store : store8,
+            displayInfo : false
+        })
+    });
+    grid8.render(<em>"grid-div8"</em>);</code></pre></div><div class="hr"></div><a id="Rs.ext.grid.GeneralselGridPanel-configs"></a><h2>Config Options</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Config Options</th><th class="msource-header">Defined By</th></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.GeneralselGridPanel-dataCompany"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.grid.GeneralselGridPanel-dataCompany">dataCompany</a></b> : String<div class="mdesc">dblink公司号</div></td><td class="msource">GeneralselGridPanel</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.GeneralselGridPanel-progCode"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.grid.GeneralselGridPanel-progCode">progCode</a></b> : String<div class="mdesc">望远镜编码</div></td><td class="msource">GeneralselGridPanel</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.grid.GeneralselGridPanel-progCondition"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.grid.GeneralselGridPanel-progCondition">progCondition</a></b> : String<div class="mdesc">望远镜条件</div></td><td class="msource">GeneralselGridPanel</td></tr></tbody></table><a id="Rs.ext.grid.GeneralselGridPanel-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Rs.ext.grid.GeneralselGridPanel-methods"></a><h2>Public Methods</h2><div class="no-members">This class has no public methods.</div><a id="Rs.ext.grid.GeneralselGridPanel-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

@@ -1,0 +1,20 @@
+create table GENERALFORM_HEAD
+(
+  form_code          NVARCHAR2(30) not null,
+  form_name          NVARCHAR2(50) not null,
+  sub_sys            NVARCHAR2(8),
+  model_code         NVARCHAR2(30),
+  business_condition NVARCHAR2(200)
+);
+comment on column GENERALFORM_HEAD.form_code
+  is '表单编码';
+comment on column GENERALFORM_HEAD.form_name
+  is '表单名称';
+comment on column GENERALFORM_HEAD.sub_sys
+  is '子系统编码';
+comment on column GENERALFORM_HEAD.model_code
+  is '数据模型编码';
+comment on column GENERALFORM_HEAD.business_condition
+  is '业务查询条件';
+alter table GENERALFORM_HEAD
+  add constraint PK_GENERALFORM_HEAD primary key (FORM_CODE);

@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-mini.js"></script>
+<script src="../../../rs/ext/grid/SliderPagingToolbar.js"></script>
+
+<script src="../../../rs/ext/grid/GridSummary.js"></script>
+
+<title>Rs.ext.state example</title>
+</head>
+<body style="margin:10px;">
+<br />
+该实例演示如何使用store<br /> 
+<a href="index2.html">循环发送请求</a>测试 <br />
+<a href="index3.html">GeneralselStore</a>测试<br />
+
+<hr />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div2" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div3" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+
+		Ext.QuickTips.init();
+	    
+	    var store = new Rs.ext.data.Store({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url: 'service.jsp',
+	        root: 'items',
+	        idProperty: 'code',
+	        sortField : 'code',
+	        fields: ['code', 'name', {name:'price', type: 'float'}],
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+	    Ext.apply(store.baseParams.metaData, {
+		    limit : 3
+		});
+	    var summary = new Rs.ext.grid.GridSummary();
+	    var grid = new Ext.grid.GridPanel({
+	        store: store,
+	        columns: [
+	            {
+	                id       :'code',
+	                header   : '物料编码', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'code',
+	                summaryType: 'count'
+	            },
+	            {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'name'
+                },
+	            {
+	                header   : '计划价', 
+	                width    : 75,
+	                sortable : true, 
+	                dataIndex: 'price',
+	                summaryType: 'sum'
+	            }
+	        ],
+		    plugins: [summary],
+	        stripeRows: true,
+	        autoExpandColumn: 'code',
+	        height: 350,
+	        width: 400,
+	        title: '普通表格'
+	    });
+	    grid.render('grid-div1');
+
+	    
+	    //可编辑表格
+	    var store2 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            readUrl: 'readService.jsp',
+            readMethod : 'readItems',
+            updateUrl : 'updateService.jsp', 
+            updateMethod : 'updateItems',
+            createUrl : 'createService.jsp',
+            createMethod : 'createItems',
+            destroyUrl : 'destroyService.jsp',
+            destroyMethod : 'destroyItems',
+            root: 'items',
+            idProperty: 'code',
+            sortField : 'name',
+            fields: ['code', 'name', {name:'price', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+	    Ext.apply(store2.baseParams.metaData, {
+            limit : 3
+        });
+        
+	    var sm = new Ext.grid.CheckboxSelectionModel({});
+        var grid2 = new Ext.grid.EditorGridPanel({
+            store: store2,
+            sm : sm,
+            columns: [sm, {
+                    id       : 'code', //ID作为主键, 不能编辑
+                    header   : '物料编码', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'code'
+                }, {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'name',
+                    editor   : new Ext.form.Field({})
+                }, {
+                    header   : '计划价', 
+                    width    : 75,
+                    sortable : true, 
+                    dataIndex: 'price',
+                    editor   : new Ext.form.Field({})
+                }],
+            stripeRows: true,
+            autoExpandColumn: 'code',
+            height: 350,
+            width: 400,
+            title: '编辑表格',
+            tbar: [{
+	                text: 'create',
+	                handler : function(){
+                        var i = store2.getCount() + 1;
+	                    var data = {
+	                        code : 'ITEM-CODE-' + i,
+	                        name : 'ITEM-NAME-' + i,
+	                        price: 10 + i
+	                    };
+	                    grid2.stopEditing();
+	                    store2.insert(0, new store2.recordType(data)); 
+	                    grid2.startEditing(0, 0);
+	                }
+	            }, new Ext.Button({
+	                text : 'remove all',
+	                handler : function(){
+	                    store2.removeAll();
+	                },
+	                scope : this
+	            }), new Ext.Button({
+	                text : 'remove',
+	                handler : function(){
+	                    store2.remove(grid2.getSelectionModel().getSelections());
+	                },
+	                scope : this
+	            }), new Ext.Button({
+	                text : 'save',
+	                handler : function(){
+	                    store2.save();
+	                },
+	                scope : this
+	            })]
+        });
+        grid2.render('grid-div2');	  
+
+        //可编辑表格
+        var store3 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'service.jsp',
+            root: 'items',
+            idProperty : 'code',
+            sortField : 'price',
+            fields: ['code', 'name', {name:'price', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        
+        var sm3 = new Ext.grid.CheckboxSelectionModel({});
+        var grid3 = new Ext.grid.GridPanel({
+            store: store3,
+            sm : sm3,
+            columns: [sm3, {
+                    id       : 'code',
+                    header   : '物料编码', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'code' 
+                }, {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'name'
+                }, {
+                    header   : '计划价', 
+                    width    : 75,
+                    sortable : true, 
+                    dataIndex: 'price'
+                }],
+            stripeRows: true,
+            autoExpandColumn: 'code',
+            height: 350,
+            width: 400,
+            title: '分页表格',
+            bbar: new Rs.ext.grid.SliderPagingToolbar({
+                pageSize : 10,
+                hasSlider : true,
+                store : store3,
+                displayInfo : false
+            })
+        });
+        grid3.render('grid-div3');
+        
+	}, this);
+</script>
+</html>

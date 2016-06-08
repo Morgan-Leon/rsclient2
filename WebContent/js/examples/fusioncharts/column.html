@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../rs/resources/css/rs-all.css" />
+
+<script src="../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+<script src="../../rs/rs-debug.js"></script>
+<script src="../../rs/ext/rs-ext-debug.js"></script>
+
+
+<script src="../../rs/lib/FusionCharts_v3/FusionCharts.js"></script>
+<script src="../../rs/lib/FusionCharts_v3/FusionChartsExportComponent.js"></script>
+
+<script src="../../rs/ext/chart/EventProxy.js"></script>
+<script src="../../rs/ext/chart/Chart.js"></script>
+<script src="../../rs/ext/chart/Chart3D.js"></script>
+<script src="../../rs/ext/chart/ChartPanel.js"></script>
+
+<title>Rs-ext MonthField example</title>
+<script language="javascript" type="text/javascript">
+
+Ext.onReady(function(){
+	json1 = new Rs.ext.chart.Chart3D({});
+    s1 = new Rs.ext.chart.ChartPanel({ 
+        renderTo : 'div1', 
+        chart : json1
+    });
+    //var s1 = new Rs.ext.chart.ChartPanel3D({renderTo : 'div2', chartType : 'curve'});
+});
+
+/*function addxlabel(){
+	json1.addXLabel('China',['32675','29816','36482']);
+	s1.setData(json1.getJSON());
+};*/
+function addxlabel(){
+	json1.addXLabel('China',{'China&1996':'32675','China&1997':'29816','China&1998':'36482'});
+	//s1.setData(json1.getJSON());
+};
+function removexlabel(){
+	json1.removeXLabel('B');
+	//s1.setData(json1.getJSON());
+};
+function setxlabels(){
+	json1.setXLabels(['A','B','F','G','U']);
+	//s1.setData(json1.getJSON());
+};
+
+function setlegends(){
+	json1.setLegends(['1','2']);
+	//s1.setData(json1.getJSON());
+};
+
+/*function setlegends(){
+	json1.setLegends(['1','2'],[['1234','2341'],['3214','3421'],['4123','1324'],['1423','2314'],['2431','3142']]);
+	s1.setData(json1.getJSON());
+};
+function setlegends(){
+	json1.setLegends(['1','2'],{'A&1':'1234','B&1':'2341','G&11':'3214','F&1':'3421','U&1':'4123','A&2':'2134','B&2':'1423','F&2':'2314','G&2':'2431','U&2':'3142'});
+	s1.setData(json1.getJSON());
+};*/
+
+/*function addlegend(){
+	json1.addLegend('3',['2675','9816','6482']);
+	s1.setData(json1.getJSON());
+};*/
+
+function addlegend(){
+	json1.addLegend('3',{'A&3':'2675','B&3':'9816','C&3':'6482'});
+	//s1.setData(json1.getJSON());
+};
+
+function removelegend(){
+	json1.removeLegend('2');
+	//s1.setData(json1.getJSON());
+};
+
+function setxlabelswithdatainarray(){
+	json1.setXLabels(['A','B','F','G'],[['1234','2234','3234'],['1345','2345','3345'],['1245','2245','3245'],['1456','2456','3456']]);
+	//s1.setData(json1.getJSON());
+};
+function setxlabelswithdatainobject(){
+	json1.setXLabels(['A','B','F','G'],{
+		'A&1998':'1523',
+		'A&1996':'2523',
+		'A&1997':'3523',
+		'B&1997':'1987',
+		'B&1998':'2987',
+		'B&1996':'987',
+		'G&1996':'1765',
+		'G&1997':'2765',
+		'G&1998':'3765',
+		'F&1996':'1487',
+		'F&1997':'2487',
+		'F&1998':'3487'});
+	//s1.setData(json1.getJSON());
+};
+
+function addlegendcolor(){
+	json1.setLegendColor('1997','00FF00');
+	//s1.setData(json1.getJSON());
+};
+
+function addcolor(){
+	json1.setColor('B','1998','FF0000');
+	//s1.setData(json1.getJSON());
+}
+
+function setJSON(){
+	json1.setJSON({ "chart": { "caption": "Country Comparison", "showlabels": "1", "showvalues": "0", "numberprefix": "$" }, "categories": [ { "category": [ { "label": "Austria" }, { "label": "Brazil" }, { "label": "France" },{ "label": "Germany" }, { "label": 
+		"USA" } ] } ], "dataset": [ {"seriesname": "1996", "color": "AFD8F8", "showvalues": "0", "data": [ { "value": "25601.34" }, 
+		{ "value": "20148.82" }, { "value": "17372.76" }, { "value": "35407.15" }, { "value": "38105.68" } ] }, {"seriesname": 
+		"1997", "color": "F6BD0F", "showvalues": "0", "data": [ { "value": "57401.85" }, { "value": "41941.19" }, { "value": 
+		"45263.37" }, { "value": "117320.16" }, { "value": "114845.27" } ] }, { "seriesname": "1998", "color": "8BBA00", 
+		"showvalues": "0", "data": [ { "value": "45000.65" }, { "value": "44835.76" }, { "value": "18722.18" }, { "value": 
+		"77557.31" }, { "value": "92633.68" } ] } ] });
+	//s1.setData(json1.getJSON());
+};
+
+function clickevent(){
+	json1.setClickEventFlag(true);
+	//s1.setData(json1.getJSON());
+	json1.on('click',function(chart, json, xlabel, sname, value){alert(value);});
+};
+
+function addtrendline(){
+	json1.addTrendlines({
+		"startvalue":"23000",
+		"color":"009933",
+		"displayvalue":"Target",
+		"valueOnRight" : '1'});
+	//s1.setData(json1.getJSON());
+};
+
+function addvline(){
+	json1.setVLine('F','G',{ "color": "FF5904", "thickness": "2", "vline": "true" });
+	//s1.setData(json1.getJSON());
+};
+function adddata(){
+	json1.buildJSON(['R','M'],['1','11'],{'R&1':'12', 'R&11':'9','M&1':'2','M&11':'15' });
+	//s1.setData(json1.getJSON());
+};
+
+
+</script>
+</head>
+<body>
+<div id="div1">
+</div>
+<input type="button" value="设置json" onclick="javascript:setJSON()" />
+<input type="button" value="更新水平轴" onclick="javascript:setxlabels()" />
+<input type="button" value="更新水平轴及数值(数组)" onclick="javascript:setxlabelswithdatainarray()" />
+<input type="button" value="更新水平轴及数值(对象)" onclick="javascript:setxlabelswithdatainobject()" />
+<input type="button" value="设置单个块颜色" onclick="javascript:addcolor()" />
+<input type="button" value="增加单个水平轴" onclick="javascript:addxlabel()" />
+<input type="button" value="删除单个水平轴" onclick="javascript:removexlabel()" />
+<input type="button" value="更新图例项" onclick="javascript:setlegends()" />
+<input type="button" value="增加单个图例项" onclick="javascript:addlegend()" />
+<input type="button" value="删除单个图例项" onclick="javascript:removelegend()" />
+<input type="button" value="设置单个图例项颜色" onclick="javascript:addlegendcolor()" />
+<input type="button" value="增加水平线" onclick="javascript:addtrendline()" />
+<input type="button" value="增加垂直线" onclick="javascript:addvline()" />
+<input type="button" value="设置水平轴、图例项及数值" onclick="javascript:adddata()" />
+<input type="button" value="点击事件" onclick="javascript:clickevent()" />
+</body>
+</html>

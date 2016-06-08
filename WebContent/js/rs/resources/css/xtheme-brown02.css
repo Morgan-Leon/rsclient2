@@ -1,0 +1,127 @@
+
+.x-app-header {
+	background-image: url(../images/brown02/panel/white-top-bottom.gif);
+}
+
+.x-app-header-text {
+	color:#15428b;
+	font : bold 11px tahoma,arial,verdana,sans-serif;
+}
+
+.x-app-collapser {
+	background-color :#DDCAA9;
+}
+
+.x-app-collapser-over {
+    background-color : #CDB282;
+}
+
+.x-app-split {
+	background-color : #DDCAA9;
+}
+
+.x-app-tool {
+	background-image: url(../images/brown02/panel/tool-sprites.gif);
+}
+
+.x-app-tool-middle-collapse-north, .x-app-tool-middle-expand-south {
+	background-image: url(../images/brown02/layout/mini-top.gif);
+}
+
+.x-app-tool-middle-expand-north, .x-app-tool-middle-collapse-south {
+	background-image: url(../images/brown02/layout/mini-bottom.gif);
+}
+
+.x-app-tool-middle-expand-west, .x-app-tool-middle-collapse-east {
+	background-image: url(../images/brown02/layout/mini-right.gif);
+}
+
+.x-app-tool-middle-collapse-west, .x-app-tool-middle-expand-east {
+	background-image: url(../images/brown02/layout/mini-left.gif);
+}
+
+.x-app-window-tl .rs-app-window-header {
+    color:#15428b;
+	font:bold 11px tahoma,arial,verdana,sans-serif;
+}
+
+.x-app-window-tc {
+	background-image: url(../images/brown02/window/top-bottom.png);
+}
+
+.x-app-window-tl {
+	background-image: url(../images/brown02/window/left-corners.png);
+}
+
+.x-app-window-tr {
+	background-image: url(../images/brown02/window/right-corners.png);
+}
+
+.x-app-window-bc {
+    border-color:#99bbe8;
+    font: normal 11px tahoma,arial,helvetica,sans-serif;
+}
+
+.x-app-window-bl {
+    background-image: url(../images/brown02/window/left-right.png);
+}
+
+.x-app-window-br {
+    background-image: url(../images/brown02/window/left-right.png);
+}
+
+.x-app-window-body {
+	background-color : #dfe8f6;
+}
+
+
+.x-app-window-fl {
+    background-image: url(../images/brown02/window/left-corners.png);
+}
+
+.x-app-window-fr {
+    background-image: url(../images/brown02/window/right-corners.png);
+}
+
+.x-app-window-fc {
+    background-image: url(../images/brown02/window/top-bottom.png);
+}
+
+
+.x-tab-scroller-left {
+    border-bottom-color: #232D38;
+    background-image: url(../images/black/tabs/scroll-left.gif);
+}
+
+.x-tab-scroller-right {
+    border-bottom-color: #232D38;
+    background-image: url(../images/black/tabs/scroll-right.gif);
+}
+
+.x-tab-shell-tabheader {
+    background-color: #DDCAA9;
+    border-color: #CDB282;
+}
+
+.x-tab-strip-top {
+    border-bottom-color: #343D4E;
+    background-color: #343843;
+    background-image: url(../images/black/tabs/tab-strip-bg.gif);
+}
+
+.x-tab-strip-top .rs-tab-strip-closable a.rs-tab-strip-close {
+    background-image: url(../images/black/tabs/tab-close.gif);
+}
+
+.x-tab-strip-top .rs-tab-strip-closable a.x-tab-strip-close:hover{
+	background-image:url(../images/black/tabs/tab-close.gif);
+}
+
+
+.x-tab-strip-top .rs-tab-right, .x-tab-strip-top .rs-tab-left, .x-tab-strip-top .rs-tab-strip-inner {
+    background-image: url(../images/black/tabs/tabs-sprite.gif);
+}
+
+.x-tab-strip-top span.rs-tab-strip-text {
+    color : white;
+}

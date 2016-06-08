@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<title></title>
+<script type="text/javascript" src="../../rs/rs-debug.js"></script>
+<script type="text/javascript">
+Rs.onReady(function() {
+
+    /**
+     * 测试hashcode
+     */
+	function printlog(log){
+	    var out = Rs.fly('out'),
+	        a = out.dom.innerHTML + "<hr/>" + log;
+	    out.update(a);
+    }
+
+	function hashcode(a, b){
+		var msg = "<b style='color:green;'>hashcode:</b><b style='color:blue;'>a:</b>" + ((a === undefined)? 'undefined':(a === null)?'null':Rs.encode(a)) 
+            msg += "<br/> <b style='color:blue;'>b:</b>" + ((b === undefined)? 'undefined':(b === null)?'null':Rs.encode(b))
+            msg += "<br/> <b style='color:red;'>result:</b>" + (Rs.hashCode(a) == Rs.hashCode(b));
+        return msg;
+    }
+
+	function equals(a, b){
+		var msg = "<b style='color:green;'>equals:</b><b style='color:blue;'>a:</b>" + ((a === undefined)? 'undefined':(a === null)?'null':Rs.encode(a)) 
+            msg += "<br/> <b style='color:blue;'>b:</b>" + ((b === undefined)?'undefined':(b === null)?'null':Rs.encode(b))
+            msg += "<br/> <b style='color:red;'>result:</b>" + (Rs.equals(a, b));
+        return msg;
+	}
+    
+    var a = {
+        id : 100,
+        name : "tiger",
+        books : [{id: 120, name : 'C编程', code : 'C'},{id: 120, name : 'C++编程', code : 'c++'}]
+    }
+    var b = {
+        books : [{id: 120, name : 'C++编程', code : 'c++'},{id: 120, name : 'C编程', code : 'C'}],
+        name : 'tiger',
+        id : 100,
+        fn : function(){
+             return 1 == 1;
+        }
+    }
+    printlog(hashcode(a, b));
+    printlog(equals(a, b));
+
+    a = {};
+    b = [];
+    printlog(hashcode(a, b));
+    printlog(equals(a, b));
+
+    a = 1;
+    b = '1';
+    printlog(hashcode(a, b));
+    printlog(equals(a, b));
+
+    a = {a : 1, b : 2, c : [1,2,3,4,555,2,3,3,4,55,444]};
+    b = {c : [1,2,3,4,555,2,3,3,4,55,444], a : 1, b : 2};
+    printlog(hashcode(a, b));
+    printlog(equals(a, b));
+
+    a = null;
+    b = undefined;
+    printlog(hashcode(a, b));
+    printlog(equals(a, b));
+
+    a = null;
+    b = null;
+    printlog(hashcode(a, b));
+    printlog(equals(a, b));
+
+    a = undefined;
+    b = undefined;
+    printlog(hashcode(a, b));
+    printlog(equals(a, b));
+    
+}, this);
+</script>
+</head>
+<body>
+<p id='out'></p>
+</body>
+</html>

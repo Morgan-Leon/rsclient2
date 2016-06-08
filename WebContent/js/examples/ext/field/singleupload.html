@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+        
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+<script src="../../../rs/ext/form/SingleUploadField.js"></script>
+
+
+<title>Rs-ext MonthField example</title>
+<script language="javascript" type="text/javascript">
+Ext.onReady(function(){
+    Ext.QuickTips.init();
+	var s1 = new Rs.ext.form.SingleUploadField({
+		fieldLable : '文件' ,
+        width : 300 ,
+        listeners : {
+            fileselected : function(field , v){
+                alert("1");
+            }
+        }
+    });
+    var fp = new Ext.FormPanel({
+        renderTo: Ext.getBody(),
+        fileUpload: true,              //标志此表单数据中包含文件数据
+        width: 500,
+        frame: true,
+        title: '上传文件',
+        autoHeight: true,
+        bodyStyle: 'padding: 10px 10px 0 10px;',
+        labelWidth: 50,
+        defaults: {
+            anchor: '95%',
+            allowBlank: false,
+            msgTarget: 'side'
+        },
+        items: [s1],
+        buttons: [{
+            text: '保存',
+            handler: function(){
+                if(fp.getForm().isValid()){
+                     fp.getForm().submit({
+                         url: '/rsc/rsclient/attachment?Rs-method=upload&fileDir=oa&Rs-accept=html',
+                         waitMsg: '正在上传...',
+                         success: function(fp, o){
+                             Ext.MessageBox.alert('恭喜您', '上传 "'+o.result.file+'" 成功！');
+                         }
+                     });
+                }
+            }
+        },{
+            text: '重置',
+            handler: function(){
+                fp.getForm().reset();
+            }
+        }]
+    });
+});
+
+</script>
+</head>
+<body>
+</body>
+</html>

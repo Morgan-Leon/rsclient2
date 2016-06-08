@@ -1,0 +1,416 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Rs.util.Observable-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Rs.util.Observable-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Rs.util.Observable-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="inner-link" href="#Rs.util.Observable-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>&#13;<a class="bookmark" href="../docs/?class=Rs.util.Observable"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/rs-debug.html#cls-Rs.util.Observable">Rs.util.Observable</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Rs.util</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-debug.html#cls-Rs.util.Observable">rs-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-debug.html#cls-Rs.util.Observable">Observable</a></td></tr><tr><td class="label">Subclasses:</td><td class="hd-info"><a href="output/Rs.app.Application.html" ext:cls="Rs.app.Application">Application</a>,&#13;<a href="output/Rs.app.Engine.html" ext:cls="Rs.app.Engine">Engine</a>,&#13;<a href="output/Rs.app.EventBus.html" ext:cls="Rs.app.EventBus">EventBus</a>,&#13;<a href="output/Rs.app.Region.html" ext:cls="Rs.app.Region">Region</a>,&#13;<a href="output/Rs.app.Shell.html" ext:cls="Rs.app.Shell">Shell</a>,&#13;<a href="output/Rs.data.Connection.html" ext:cls="Rs.data.Connection">Connection</a>,&#13;<a href="output/Rs.data.Service.html" ext:cls="Rs.data.Service">Service</a>,&#13;<a href="output/Rs.util.MixedCollection.html" ext:cls="Rs.util.MixedCollection">MixedCollection</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description">Base class that provides a common interface for publishing events. Subclasses are expected to
+to have a property "events" with all the events defined, and, optionally, a property "listeners"
+with configured listeners defined.<br>
+For example:
+<pre><code>Employee = Rs.extend(Rs.util.Observable, {
+    constructor: <b>function</b>(config){
+        this.name = config.name;
+        this.addEvents({
+            <em>"fired"</em> : true,
+            <em>"quit"</em> : true
+        });
+
+        <i>// Copy configured listeners into *this* object so that the base class&#39;s</i>
+        <i>// constructor will add them.</i>
+        this.listeners = config.listeners;
+
+        <i>// Call our superclass constructor to complete construction process.</i>
+        Employee.superclass.constructor.call(config)
+    }
+});</code></pre>
+This could then be used like this:<pre><code><b>var</b> newEmployee = <b>new</b> Employee({
+    name: employeeName,
+    listeners: {
+        quit: <b>function</b>() {
+            <i>// By <b>default</b>, <em>"this"</em> will be the object that fired the event.</i>
+            alert(this.name + <em>" has quit!"</em>);
+        }
+    }
+});</code></pre></div><div class="hr"></div><a id="Rs.util.Observable-configs"></a><h2>Config Options</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Config Options</th><th class="msource-header">Defined By</th></tr><tr class="config-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-listeners"></a><b><a href="source/rs-debug.html#cfg-Rs.util.Observable-listeners">listeners</a></b> : Object<div class="mdesc"><div class="short">A config object containing one or more event handlers to be added to this&#13;
+object during initialization.  This should...</div><div class="long"><p>A config object containing one or more event handlers to be added to this
+object during initialization.  This should be a valid listeners config object as specified in the
+<a href="output/Rs.util.Observable.html#Rs.util.Observable-addListener" ext:member="addListener" ext:cls="Rs.util.Observable">addListener</a> example for attaching multiple handlers at once.</p>
+<br><p><b><u>DOM events from ExtJs <a href="output/Rs.Component.html" ext:cls="Rs.Component">Components</a></u></b></p>
+<br><p>While <i>some</i> ExtJs Component classes export selected DOM events (e.g. "click", "mouseover" etc), this
+is usually only done when extra value can be added. For example the <a href="output/Rs.DataView.html" ext:cls="Rs.DataView">DataView</a>'s
+<b><code><a href="output/Rs.DataView.html#Rs.DataView-click" ext:member="click" ext:cls="Rs.DataView">click</a></code></b> event passing the node clicked on. To access DOM
+events directly from a Component's HTMLElement, listeners must be added to the <i><a href="output/Rs.Component.html#Rs.Component-getEl" ext:member="getEl" ext:cls="Rs.Component">Element</a></i> after the Component
+has been rendered. A plugin can simplify this step:<pre><code><i>// Plugin is configured <b>with</b> a listeners config object.</i>
+<i>// The Component is appended to the argument list of all handler functions.</i>
+Rs.DomObserver = Rs.extend(Object, {
+    constructor: <b>function</b>(config) {
+        this.listeners = config.listeners ? config.listeners : config;
+    },
+
+    <i>// Component passes itself into plugin&#39;s init method</i>
+    init: <b>function</b>(c) {
+        <b>var</b> p, l = this.listeners;
+        <b>for</b> (p <b>in</b> l) {
+            <b>if</b> (Ext.isFunction(l[p])) {
+                l[p] = this.createHandler(l[p], c);
+            } <b>else</b> {
+                l[p].fn = this.createHandler(l[p].fn, c);
+            }
+        }
+
+        <i>// Add the listeners to the Element immediately following the render call</i>
+        c.render = c.render.<a href="output/Function.html#Function-createSequence" ext:member="createSequence" ext:cls="Function">createSequence</a>(<b>function</b>() {
+            <b>var</b> e = c.getEl();
+            <b>if</b> (e) {
+                e.on(l);
+            }
+        });
+    },
+
+    createHandler: <b>function</b>(fn, c) {
+        <b>return</b> <b>function</b>(e) {
+            fn.call(this, e, c);
+        };
+    }
+});
+
+<b>var</b> combo = <b>new</b> Rs.form.ComboBox({
+
+    <i>// Collapse combo when its element is clicked on</i>
+    plugins: [ <b>new</b> Rs.DomObserver({
+        click: <b>function</b>(evt, comp) {
+            comp.collapse();
+        }
+    })],
+    store: myStore,
+    typeAhead: true,
+    mode: <em>'local'</em>,
+    triggerAction: <em>'all'</em>
+});</code></pre></p></div></div></td><td class="msource">Observable</td></tr></tbody></table><a id="Rs.util.Observable-props"></a><h2>Public Properties</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Property</th><th class="msource-header">Defined By</th></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-Rs.enumerables"></a><b><a href="source/rs-debug.html#prop-Rs.util.Observable-Rs.enumerables">Rs.enumerables</a></b> : Array<div class="mdesc">An array containing extra enumerables for old browsers</div></td><td class="msource">Observable</td></tr><tr class="property-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-self"></a><b><a href="source/rs-debug.html#prop-Rs.util.Observable-self">self</a></b> : Rs.Class<div class="mdesc"><div class="short">Get the reference to the current class from which this object was instantiated. Unlike Rs.Base.statics,&#13;
+`this.self` ...</div><div class="long">Get the reference to the current class from which this object was instantiated. Unlike <a href="output/Rs.Base.html#Rs.Base-statics" ext:member="statics" ext:cls="Rs.Base">Rs.Base.statics</a>,
+`this.self` is scope-dependent and it's meant to be used for dynamic inheritance. See <a href="output/Rs.Base.html#Rs.Base-statics" ext:member="statics" ext:cls="Rs.Base">Rs.Base.statics</a>
+for a detailed comparison
+Rs.define('My.Cat', {
+statics: {
+speciesName: 'Cat' // My.Cat.speciesName = 'Cat'
+},
+constructor: function() {
+alert(this.self.speciesName); / dependent on 'this'
+return this;
+},
+clone: function() {
+return new this.self();
+}
+});
+Rs.define('My.SnowLeopard', {
+extend: 'My.Cat',
+statics: {
+speciesName: 'Snow Leopard'         // My.SnowLeopard.speciesName = 'Snow Leopard'
+}
+});
+var cat = new My.Cat();                     // alerts 'Cat'
+var snowLeopard = new My.SnowLeopard();     // alerts 'Snow Leopard'
+var clone = snowLeopard.clone();
+alert(Rs.getClassName(clone));             // alerts 'My.SnowLeopard'</div></div></td><td class="msource">Observable</td></tr></tbody></table><a id="Rs.util.Observable-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-Observable.releaseCapture"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-Observable.releaseCapture">Observable.releaseCapture</a></b>(&nbsp;<code>Observable&nbsp;o</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Removes all added captures from the Observable.</div><div class="long">&lt;static&gt;&nbsp;Removes <b>all</b> added captures from the Observable.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>o</code> : Observable<div class="sub-desc">The Observable to release</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-addEvents"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-addEvents">addEvents</a></b>(&nbsp;<code>Object/String&nbsp;o</code>,&nbsp;<code>string&nbsp;Optional.</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Adds the specified events to the list of events which this Observable may fire.</div><div class="long">Adds the specified events to the list of events which this Observable may fire.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>o</code> : Object/String<div class="sub-desc">Either an object with event names as properties with a value of <code>true</code>
+or the first event name string if multiple event names are being passed as separate parameters.</div></li><li><code>Optional.</code> : string<div class="sub-desc">Event name if multiple event names are being passed as separate parameters.
+Usage:<pre><code>this.addEvents(<em>'storeloaded'</em>, <em>'storecleared'</em>);</code></pre></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-addListener"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-addListener">addListener</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Function&nbsp;handler</code>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;scope</code>]</span>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;options</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Appends an event handler to this object.</div><div class="long">Appends an event handler to this object.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The name of the event to listen for.</div></li><li><code>handler</code> : Function<div class="sub-desc">The method the event invokes.</div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope (<code><b>this</b></code> reference) in which the handler function is executed.
+<b>If omitted, defaults to the object which fired the event.</b></div></li><li><code>options</code> : Object<div class="sub-desc">(optional) An object containing handler configuration.
+properties. This may contain any of the following properties:<ul>
+<li><b>scope</b> : Object<div class="sub-desc">The scope (<code><b>this</b></code> reference) in which the handler function is executed.
+<b>If omitted, defaults to the object which fired the event.</b></div></li>
+<li><b>delay</b> : Number<div class="sub-desc">The number of milliseconds to delay the invocation of the handler after the event fires.</div></li>
+<li><b>single</b> : Boolean<div class="sub-desc">True to add a handler to handle just the next firing of the event, and then remove itself.</div></li>
+<li><b>buffer</b> : Number<div class="sub-desc">Causes the handler to be scheduled to run in an <a href="output/Rs.util.DelayedTask.html" ext:cls="Rs.util.DelayedTask">Rs.util.DelayedTask</a> delayed
+by the specified number of milliseconds. If the event fires again within that time, the original
+handler is <em>not</em> invoked, but the new handler is scheduled in its place.</div></li>
+<li><b>target</b> : Observable<div class="sub-desc">Only call the handler if the event was fired on the target Observable, <i>not</i>
+if the event was bubbled up from a child Observable.</div></li>
+</ul><br>
+<p>
+<b>Combining Options</b><br>
+Using the options argument, it is possible to combine different types of listeners:<br>
+<br>
+A delayed, one-time listener.
+<pre><code>myDataView.on(<em>'click'</em>, this.onClick, this, {
+single: true,
+delay: 100
+});</code></pre>
+<p>
+<b>Attaching multiple handlers in 1 call</b><br>
+The method also allows for a single argument to be passed which is a config object containing properties
+which specify multiple handlers.
+<p>
+<pre><code>myGridPanel.on({
+<em>'click'</em> : {
+    fn: this.onClick,
+    scope: this,
+    delay: 100
+},
+<em>'mouseover'</em> : {
+    fn: this.onMouseOver,
+    scope: this
+},
+<em>'mouseout'</em> : {
+    fn: this.onMouseOut,
+    scope: this
+}
+});</code></pre>
+<p>
+Or a shorthand syntax:<br>
+<pre><code>myGridPanel.on({
+<em>'click'</em> : this.onClick,
+<em>'mouseover'</em> : this.onMouseOver,
+<em>'mouseout'</em> : this.onMouseOut,
+ scope: this
+});</code></pre></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-addStatics"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-addStatics">addStatics</a></b>(&nbsp;<code>Object&nbsp;members</code>&nbsp;)
+    :
+                                        Rs.Base<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Add / override static properties of this class.&#13;
+Rs.define('My.cool.Class', {&#13;
+...&#13;
+});&#13;
+My.cool.Class.addStatics({&#13;
+...</div><div class="long">&lt;static&gt;&nbsp;Add / override static properties of this class.
+Rs.define('My.cool.Class', {
+...
+});
+My.cool.Class.addStatics({
+someProperty: 'someValue',      // My.cool.Class.someProperty = 'someValue'
+method1: function() { ... },    // My.cool.Class.method1 = function() { ... };
+method2: function() { ... }     // My.cool.Class.method2 = function() { ... };
+});<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>members</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Rs.Base</code><div class="sub-desc">this</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-borrow"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-borrow">borrow</a></b>(&nbsp;<code>Rs.Base&nbsp;fromClass</code>,&nbsp;<code>String/String[]&nbsp;members</code>&nbsp;)
+    :
+                                        rs.Base<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Borrow another class' members to the prototype of this class.&#13;
+Rs.define('Bank', {&#13;
+money: '$$$',&#13;
+printMoney: functi...</div><div class="long">&lt;static&gt;&nbsp;Borrow another class' members to the prototype of this class.
+Rs.define('Bank', {
+money: '$$$',
+printMoney: function() {
+alert('$$$$$$$');
+}
+});
+Rs.define('Thief', {
+...
+});
+Thief.borrow(Bank, ['money', 'printMoney']);
+var steve = new Thief();
+alert(steve.money); // alerts '$$$'
+steve.printMoney(); // alerts '$$$$$$$'<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>fromClass</code> : Rs.Base<div class="sub-desc">The class to borrow members from</div></li><li><code>members</code> : String/String[]<div class="sub-desc">The names of the members to borrow</div></li></ul><strong>Returns:</strong><ul><li><code>rs.Base</code><div class="sub-desc">this</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-callOverridden"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-callOverridden">callOverridden</a></b>(&nbsp;<code>Array/Arguments&nbsp;args</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Call the original method that was previously overridden with Rs.Base.override&#13;
+Rs.define('My.Cat', {&#13;
+constructor: fu...</div><div class="long">Call the original method that was previously overridden with <a href="output/Rs.Base.html#Rs.Base-override" ext:member="override" ext:cls="Rs.Base">Rs.Base.override</a>
+Rs.define('My.Cat', {
+constructor: function() {
+alert("I'm a cat!");
+return this;
+}
+});
+My.Cat.override({
+constructor: function() {
+alert("I'm going to be a cat!");
+var instance = this.callOverridden();
+alert("Meeeeoooowwww");
+return instance;
+}
+});
+var kitty = new My.Cat(); // alerts "I'm going to be a cat!"
+// alerts "I'm a cat!"
+// alerts "Meeeeoooowwww"<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>args</code> : Array/Arguments<div class="sub-desc">The arguments, either an array or the `arguments` object</div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">Returns the result after calling the overridden method</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-callParent"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-callParent">callParent</a></b>(&nbsp;<code>Array/Arguments&nbsp;args</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Call the parent's overridden method. For example:&#13;
+Rs.define('My.own.A', {&#13;
+constructor: function(test) {&#13;
+alert(test...</div><div class="long">Call the parent's overridden method. For example:
+Rs.define('My.own.A', {
+constructor: function(test) {
+alert(test);
+}
+});
+Rs.define('My.own.B', {
+extend: 'My.own.A',
+constructor: function(test) {
+alert(test);
+this.callParent([test + 1]);
+}
+});
+Rs.define('My.own.C', {
+extend: 'My.own.B',
+constructor: function() {
+alert("Going to call parent's overriden constructor...");
+this.callParent(arguments);
+}
+});
+var a = new My.own.A(1); // alerts '1'
+var b = new My.own.B(1); // alerts '1', then alerts '2'
+var c = new My.own.C(2); // alerts "Going to call parent's overriden constructor..."
+// alerts '2', then alerts '3'<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>args</code> : Array/Arguments<div class="sub-desc">The arguments, either an array or the `arguments` object
+from the current method, for example: `this.callParent(arguments)`</div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">Returns the result from the superclass' method</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-create"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-create">create</a></b>()
+    :
+                                        Object<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Create a new instance of this Class.&#13;
+Rs.define('My.cool.Class', {&#13;
+...&#13;
+});&#13;
+My.cool.Class.create({&#13;
+someConfig: tru...</div><div class="long">&lt;static&gt;&nbsp;Create a new instance of this Class.
+Rs.define('My.cool.Class', {
+...
+});
+My.cool.Class.create({
+someConfig: true
+});
+All parameters are passed to the constructor of the class.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">the created instance.</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-createAlias"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-createAlias">createAlias</a></b>(&nbsp;<code>String/Object&nbsp;alias</code>,&nbsp;<code>String/Object&nbsp;origin</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Create aliases for existing prototype methods. Example:&#13;
+Rs.define('My.cool.Class', {&#13;
+method1: function() { ... },&#13;
+...</div><div class="long">&lt;static&gt;&nbsp;Create aliases for existing prototype methods. Example:
+Rs.define('My.cool.Class', {
+method1: function() { ... },
+method2: function() { ... }
+});
+var test = new My.cool.Class();
+My.cool.Class.createAlias({
+method3: 'method1',
+method4: 'method2'
+});
+test.method3(); // test.method1()
+My.cool.Class.createAlias('method5', 'method3');
+test.method5(); // test.method3() -> test.method1()<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>alias</code> : String/Object<div class="sub-desc">The new method name, or an object to set multiple aliases</div></li><li><code>origin</code> : String/Object<div class="sub-desc">The original method name</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-fireEvent"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-fireEvent">fireEvent</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Object...&nbsp;args</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Fires the specified event with the passed parameters (minus the event name).&#13;
+An event may be set to bubble up an Obs...</div><div class="long"><p>Fires the specified event with the passed parameters (minus the event name).</p>
+<p>An event may be set to bubble up an Observable parent hierarchy (See <a href="output/Rs.Component.html#Rs.Component-getBubbleTarget" ext:member="getBubbleTarget" ext:cls="Rs.Component">Rs.Component.getBubbleTarget</a>)
+by calling <a href="output/Rs.util.Observable.html#Rs.util.Observable-enableBubble" ext:member="enableBubble" ext:cls="Rs.util.Observable">enableBubble</a>.</p><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The name of the event to fire.</div></li><li><code>args</code> : Object...<div class="sub-desc">Variable number of parameters are passed to handlers.</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc">returns false if any of the handlers return false otherwise it returns true.</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-getName"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-getName">getName</a></b>()
+    :
+                                        String<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Get the current class' name in string format.&#13;
+Rs.define('My.cool.Class', {&#13;
+constructor: function() {&#13;
+alert(this.se...</div><div class="long">&lt;static&gt;&nbsp;Get the current class' name in string format.
+Rs.define('My.cool.Class', {
+constructor: function() {
+alert(this.self.getName()); // alerts 'My.cool.Class'
+}
+});
+My.cool.Class.getName(); // 'My.cool.Class'<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>String</code><div class="sub-desc">className</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-hasListener"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-hasListener">hasListener</a></b>(&nbsp;<code>String&nbsp;eventName</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Checks to see if this object has any listeners for a specified event</div><div class="long">Checks to see if this object has any listeners for a specified event<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The name of the event to check for</div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc">True if the event is being listened for, else false</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-implement"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-implement">implement</a></b>(&nbsp;<code>Object&nbsp;members</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Add methods / properties to the prototype of this class.&#13;
+Rs.define('My.awesome.Cat', {&#13;
+constructor: function() {&#13;
+....</div><div class="long">&lt;static&gt;&nbsp;Add methods / properties to the prototype of this class.
+Rs.define('My.awesome.Cat', {
+constructor: function() {
+...
+}
+});
+My.awesome.Cat.implement({
+meow: function() {
+alert('Meowww...');
+}
+});
+var kitty = new My.awesome.Cat;
+kitty.meow();<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>members</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-initConfig"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-initConfig">initConfig</a></b>(&nbsp;<code>Object&nbsp;config</code>&nbsp;)
+    :
+                                        Object<div class="mdesc"><div class="short">Initialize configuration for this class. a typical example:&#13;
+Rs.define('My.awesome.Class', {&#13;
+// The default config&#13;
+...</div><div class="long">Initialize configuration for this class. a typical example:
+Rs.define('My.awesome.Class', {
+// The default config
+config: {
+name: 'Awesome',
+isAwesome: true
+},
+constructor: function(config) {
+this.initConfig(config);
+return this;
+}
+});
+var awesome = new My.awesome.Class({
+name: 'Super Awesome'
+});
+alert(awesome.getName()); // 'Super Awesome'<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>config</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Object</code><div class="sub-desc">mixins The mixin prototypes as key - value pairs</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-on"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-on">on</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Function&nbsp;handler</code>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;scope</code>]</span>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;options</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Appends an event handler to this object (shorthand for addListener.)</div><div class="long">Appends an event handler to this object (shorthand for <a href="output/Rs.util.Observable.html#Rs.util.Observable-addListener" ext:member="addListener" ext:cls="Rs.util.Observable">addListener</a>.)<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The type of event to listen for</div></li><li><code>handler</code> : Function<div class="sub-desc">The method the event invokes</div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope (<code><b>this</b></code> reference) in which the handler function is executed.
+<b>If omitted, defaults to the object which fired the event.</b></div></li><li><code>options</code> : Object<div class="sub-desc">(optional) An object containing handler configuration.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-override"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-override">override</a></b>(&nbsp;<code>Object&nbsp;members</code>&nbsp;)
+    :
+                                        Rs.Base<div class="mdesc"><div class="short">&lt;static&gt;&nbsp;Override prototype members of this class. Overridden methods can be invoked via&#13;
+Rs.Base.callOverridden&#13;
+Rs.define('M...</div><div class="long">&lt;static&gt;&nbsp;Override prototype members of this class. Overridden methods can be invoked via
+<a href="output/Rs.Base.html#Rs.Base-callOverridden" ext:member="callOverridden" ext:cls="Rs.Base">Rs.Base.callOverridden</a>
+Rs.define('My.Cat', {
+constructor: function() {
+alert("I'm a cat!");
+return this;
+}
+});
+My.Cat.override({
+constructor: function() {
+alert("I'm going to be a cat!");
+var instance = this.callOverridden();
+alert("Meeeeoooowwww");
+return instance;
+}
+});
+var kitty = new My.Cat(); // alerts "I'm going to be a cat!"
+// alerts "I'm a cat!"
+// alerts "Meeeeoooowwww"<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>members</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li><code>Rs.Base</code><div class="sub-desc">this</div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-purgeListeners"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-purgeListeners">purgeListeners</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Removes all listeners for this object</div><div class="long">Removes all listeners for this object<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-relayEvents"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-relayEvents">relayEvents</a></b>(&nbsp;<code>Object&nbsp;o</code>,&nbsp;<code>Array&nbsp;events</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Relays selected events from the specified Observable as if the events were fired by this.</div><div class="long">Relays selected events from the specified Observable as if the events were fired by this.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>o</code> : Object<div class="sub-desc">The Observable whose events this object is to relay.</div></li><li><code>events</code> : Array<div class="sub-desc">Array of event names to relay.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-removeListener"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-removeListener">removeListener</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Function&nbsp;handler</code>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;scope</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Removes an event handler.</div><div class="long">Removes an event handler.<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The type of event the handler was associated with.</div></li><li><code>handler</code> : Function<div class="sub-desc">The handler to remove. <b>This must be a reference to the function passed into the <a href="output/Rs.util.Observable.html#Rs.util.Observable-addListener" ext:member="addListener" ext:cls="Rs.util.Observable">addListener</a> call.</b></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope originally specified for the handler.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-resumeEvents"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-resumeEvents">resumeEvents</a></b>()
+    :
+                                        void<div class="mdesc"><div class="short">Resume firing events. (see suspendEvents)&#13;
+If events were suspended using the queueSuspended parameter, then all&#13;
+eve...</div><div class="long">Resume firing events. (see <a href="output/Rs.util.Observable.html#Rs.util.Observable-suspendEvents" ext:member="suspendEvents" ext:cls="Rs.util.Observable">suspendEvents</a>)
+If events were suspended using the <tt><b>queueSuspended</b></tt> parameter, then all
+events fired during event suspension will be sent to any listeners now.<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-statics"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-statics">statics</a></b>()
+    :
+                                        Rs.Class<div class="mdesc"><div class="short">Get the reference to the class from which this object was instantiated. Note that unlike Rs.Base.self,&#13;
+`this.statics...</div><div class="long">Get the reference to the class from which this object was instantiated. Note that unlike <a href="output/Rs.Base.html#Rs.Base-self" ext:member="self" ext:cls="Rs.Base">Rs.Base.self</a>,
+`this.statics()` is scope-independent and it always returns the class from which it was called, regardless of what
+`this` points to during run-time
+Rs.define('My.Cat', {
+statics: {
+totalCreated: 0,
+speciesName: 'Cat' // My.Cat.speciesName = 'Cat'
+},
+constructor: function() {
+var statics = this.statics();
+alert(statics.speciesName);     // always equals to 'Cat' no matter what 'this' refers to
+// equivalent to: My.Cat.speciesName
+alert(this.self.speciesName);   // dependent on 'this'
+statics.totalCreated++;
+return this;
+},
+clone: function() {
+var cloned = new this.self;                      // dependent on 'this'
+cloned.groupName = this.statics().speciesName;   // equivalent to: My.Cat.speciesName
+return cloned;
+}
+});
+Rs.define('My.SnowLeopard', {
+extend: 'My.Cat',
+statics: {
+speciesName: 'Snow Leopard'     // My.SnowLeopard.speciesName = 'Snow Leopard'
+},
+constructor: function() {
+this.callParent();
+}
+});
+var cat = new My.Cat();                 // alerts 'Cat', then alerts 'Cat'
+var snowLeopard = new My.SnowLeopard(); // alerts 'Cat', then alerts 'Snow Leopard'
+var clone = snowLeopard.clone();
+alert(Rs.getClassName(clone));         // alerts 'My.SnowLeopard'
+alert(clone.groupName);                 // alerts 'Cat'
+alert(My.Cat.totalCreated);             // alerts 3<div class="mdetail-params"><strong>Parameters:</strong><ul><li>None.</li></ul><strong>Returns:</strong><ul><li><code>Rs.Class</code><div class="sub-desc"></div></li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-suspendEvents"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-suspendEvents">suspendEvents</a></b>(&nbsp;<code>Boolean&nbsp;queueSuspended</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Suspend the firing of all events. (see resumeEvents)</div><div class="long">Suspend the firing of all events. (see <a href="output/Rs.util.Observable.html#Rs.util.Observable-resumeEvents" ext:member="resumeEvents" ext:cls="Rs.util.Observable">resumeEvents</a>)<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>queueSuspended</code> : Boolean<div class="sub-desc">Pass as true to queue up suspended events to be fired
+after the <a href="output/Rs.util.Observable.html#Rs.util.Observable-resumeEvents" ext:member="resumeEvents" ext:cls="Rs.util.Observable">resumeEvents</a> call instead of discarding all suspended events;</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.util.Observable-un"></a><b><a href="source/rs-debug.html#method-Rs.util.Observable-un">un</a></b>(&nbsp;<code>String&nbsp;eventName</code>,&nbsp;<code>Function&nbsp;handler</code>,&nbsp;<span title="Optional" class="optional">[<code>Object&nbsp;scope</code>]</span>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">Removes an event handler (shorthand for removeListener.)</div><div class="long">Removes an event handler (shorthand for <a href="output/Rs.util.Observable.html#Rs.util.Observable-removeListener" ext:member="removeListener" ext:cls="Rs.util.Observable">removeListener</a>.)<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>eventName</code> : String<div class="sub-desc">The type of event the handler was associated with.</div></li><li><code>handler</code> : Function<div class="sub-desc">The handler to remove. <b>This must be a reference to the function passed into the <a href="output/Rs.util.Observable.html#Rs.util.Observable-addListener" ext:member="addListener" ext:cls="Rs.util.Observable">addListener</a> call.</b></div></li><li><code>scope</code> : Object<div class="sub-desc">(optional) The scope originally specified for the handler.</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Observable</td></tr></tbody></table><a id="Rs.util.Observable-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

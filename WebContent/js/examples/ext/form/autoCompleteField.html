@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base-debug.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/form/AutoCompleteField.js"></script>
+
+<title>自动完成组件AutoCompleteField</title>
+</head>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		Ext.QuickTips.init();
+		
+		this.autoCom = new Rs.ext.form.AutoCompleteField({
+			fieldLabel : '自动完成组件-模糊模式[1号]',
+			progCode: 'customerCode',
+	        valueField: 'CUSTOMER_CODE',
+	        displayField: 'CUSTOMER_NAME'
+		});
+		
+		this.autoComDias = new Rs.ext.form.AutoCompleteField({
+			disabled: true,
+			fieldLabel : '自动完成组件-模糊模式-disabled状态[2号]',
+			progCode: 'customerCode',
+	        valueField: 'CUSTOMER_CODE',
+	        displayField: 'CUSTOMER_NAME'
+		});
+		
+		this.autoComReadOnly = new Rs.ext.form.AutoCompleteField({
+			readOnly: true,
+			fieldLabel : '自动完成组件-模糊模式-readOnly状态[3号]',
+			progCode: 'customerCode',
+	        valueField: 'CUSTOMER_CODE',
+	        displayField: 'CUSTOMER_NAME'
+		});
+		
+		
+		this.autoComStrictModel = new Rs.ext.form.AutoCompleteField({
+			strictModel:true,
+			fieldLabel : '自动完成组件-严格模式[4号]',
+			progCode: 'customerCode',
+	        valueField: 'CUSTOMER_CODE',
+	        displayField: 'CUSTOMER_NAME'
+		});
+		
+		this.autoComDiasStrictModel = new Rs.ext.form.AutoCompleteField({
+			disabled: true,
+			strictModel:true,
+			fieldLabel : '自动完成组件-严格模式-disabled状态[5号]',
+			progCode: 'customerCode',
+	        valueField: 'CUSTOMER_CODE',
+	        displayField: 'CUSTOMER_NAME'
+		});
+		
+		this.autoComReadOnlyStrictModel = new Rs.ext.form.AutoCompleteField({
+			fieldLabel : '自动完成组件-严格模式-readOnly状态[6号]',
+			readOnly: true,
+			strictModel:true,
+			progCode: 'customerCode',
+	        valueField: 'CUSTOMER_CODE',
+	        displayField: 'CUSTOMER_NAME'
+		});
+		
+		var formpanel = new Ext.form.FormPanel({
+			margins: 5,
+			padding: 5,
+			title : '自动完成控件',
+			labelWidth: 300,
+			frame : true ,
+			tbar:['-', {
+				text: '[1]号设置为严格模式',
+				handler: function(){
+					this.autoCom.setStrictModel(true);
+				},
+				scope: this
+			}, '-',{
+				text: '[1]号设置为readOndy模式',
+				handler: function(){
+					this.autoCom.setReadOnly(true);
+				},
+				scope: this
+			}, '-',{
+				text: '[1]号设置为disabled模式',
+				handler: function(){
+					this.autoCom.setDisabled(true);
+				},
+				scope: this
+			}, '-',{
+				text: '[1]号设置为模糊模式',
+				handler: function(){
+					this.autoCom.setStrictModel(false);
+				},
+				scope: this
+			}, '-',{
+				text: '[1]号设置为非disabled模式',
+				handler: function(){
+					this.autoCom.setDisabled(false);
+				},
+				scope: this
+			}, '-',{
+				text: '[1]号设置为非readOnly模式',
+				handler: function(){
+					this.autoCom.setReadOnly(false);
+				},
+				scope: this
+			}, '-'],
+			items : [{
+				layout:'column',
+				items:[{
+					layout:'form',
+					items:[this.autoCom]
+				},{
+					xtype: 'button',
+					text:'获取值',
+					handler:function(){
+						var value = this.autoCom.getValue();
+						alert(value);
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个正确值',
+					handler:function(){
+						var value = this.autoCom.setValue('上海大众汽车有限公司');
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个错误值',
+					handler:function(){
+						var value = this.autoCom.setValue('上海大众汽车有限');
+					},
+					scope:this
+				}]
+			}, {
+				layout:'column',
+				items:[{
+					layout:'form',
+					items:[this.autoComDias]
+				},{
+					xtype: 'button',
+					text:'获取值',
+					handler:function(){
+						var value = this.autoComDias.getValue();
+						alert(value);
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个正确值',
+					handler:function(){
+						var value = this.autoComDias.setValue('上海大众汽车有限公司');
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个错误值',
+					handler:function(){
+						var value = this.autoComDias.setValue('上海大众汽车有限');
+					},
+					scope:this
+				}]
+			}, {
+				layout:'column',
+				items:[{
+					layout:'form',
+					items:[this.autoComReadOnly]
+				},{
+					xtype: 'button',
+					text:'获取值',
+					handler:function(){
+						var value = this.autoComReadOnly.getValue();
+						alert(value);
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个正确值',
+					handler:function(){
+						var value = this.autoComReadOnly.setValue('上海大众汽车有限公司');
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个错误值',
+					handler:function(){
+						var value = this.autoComReadOnly.setValue('上海大众汽车有限');
+					},
+					scope:this
+				}]
+			}, {
+				layout:'column',
+				items:[{
+					layout:'form',
+					items:[this.autoComStrictModel]
+				},{
+					xtype: 'button',
+					text:'获取值',
+					handler:function(){
+						var value = this.autoComStrictModel.getValue();
+						alert(value);
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个正确值',
+					handler:function(){
+						var value = this.autoComStrictModel.setValue('上海大众汽车有限公司');
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个错误值',
+					handler:function(){
+						var value = this.autoComStrictModel.setValue('上海大众汽车有限');
+					},
+					scope:this
+				}]
+			}, {
+				layout:'column',
+				items:[{
+					layout:'form',
+					items:[this.autoComDiasStrictModel]
+				},{
+					xtype: 'button',
+					text:'获取值',
+					handler:function(){
+						var value = this.autoComDiasStrictModel.getValue();
+						alert(value);
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个正确值',
+					handler:function(){
+						var value = this.autoComDiasStrictModel.setValue('上海大众汽车有限公司');
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个错误值',
+					handler:function(){
+						var value = this.autoComDiasStrictModel.setValue('上海大众汽车有限');
+					},
+					scope:this
+				}]
+			},{
+				layout:'column',
+				items:[{
+					layout:'form',
+					items:[this.autoComReadOnlyStrictModel]
+				},{
+					xtype: 'button',
+					text:'获取值',
+					handler:function(){
+						var value = this.autoComReadOnlyStrictModel.getValue();
+						alert(value);
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个正确值',
+					handler:function(){
+						var value = this.autoComReadOnlyStrictModel.setValue('上海大众汽车有限公司');
+					},
+					scope:this
+				},{
+					xtype: 'button',
+					text:'设置一个错误值',
+					handler:function(){
+						var value = this.autoComReadOnlyStrictModel.setValue('上海大众汽车有限');
+					},
+					scope:this
+				}]
+			}]	
+		});
+		
+		new Ext.Viewport({
+             layout: "fit",
+             items: [formpanel]
+        });
+		
+		this.autoCom.setValue('DK');
+		this.autoComDias.setValue('disabled');
+		this.autoComReadOnly.setValue('readonly');
+		
+		this.autoComStrictModel.setValue('严格DK');
+		this.autoComDiasStrictModel.setValue('严格disabled');
+		this.autoComReadOnlyStrictModel.setValue('严格readonly');
+		
+	}, this);
+</script>
+</html>

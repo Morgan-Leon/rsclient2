@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<title></title>
+<script type="text/javascript" src="../../rs/rs-debug.js"></script>
+<script type="text/javascript">
+	Rs.onReady(function() {
+
+		var a = Rs.extend(Rs.util.Observable, {});
+
+		var b = new a();
+
+		b.on('eventName', function(me, msg) {
+			Rs.fly('out').update(msg);
+		}, this);
+
+		var c = 0;
+		Rs.fly('fe').on('click', function() {
+			b.fireEvent('eventName', b, c++);
+		}, this);
+	}, this);
+</script>
+</head>
+<body>
+<input id='fe' type='button' value='fire events'></input>
+<br>
+<hr />
+<p id="out"></p>
+</body>
+</html>

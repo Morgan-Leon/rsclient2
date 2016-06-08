@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<poolman>
+  <management-mode>local</management-mode>
+  <datasource>
+   <dbname>testerp</dbname>
+    <jndiName>jndi-testdb</jndiName>
+    <driver>oracle.jdbc.driver.OracleDriver</driver>
+    <url>jdbc:oracle:thin:@192.168.168.144:1521:HPORA</url>
+    <username>muapp10g</username>
+    <password>ceshiku</password>
+    <minimumSize>10</minimumSize>
+    <maximumSize>100</maximumSize>
+    <maximumSoft>false</maximumSoft>
+    <nativeResults>true</nativeResults>
+    <debugging>false</debugging>
+  </datasource>
+  <datasource>
+   <dbname>OAPools</dbname>
+    <jndiName>jndi-testdb</jndiName>
+    <driver>oracle.jdbc.driver.OracleDriver</driver>
+    <url>jdbc:oracle:thin:@192.168.168.144:1521:HPORA</url>
+    <username>muapp10g</username>
+    <password>ceshiku</password>
+    <minimumSize>10</minimumSize>
+    <maximumSize>100</maximumSize>
+    <maximumSoft>false</maximumSoft>
+    <nativeResults>true</nativeResults>
+    <debugging>false</debugging>
+  </datasource>
+</poolman>

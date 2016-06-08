@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>rsclient2_bate</display-name>
+  
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>test.filter.LoginFilter</filter-class>
+    <init-param>
+      <param-name>requestEncoding</param-name>
+      <param-value>GB2312</param-value>
+    </init-param>
+    <init-param>
+      <param-name>responseEncoding</param-name>
+      <param-value>GB2312</param-value>
+    </init-param>
+    <init-param>
+      <param-name>companyCode</param-name>
+      <param-value>01</param-value>
+    </init-param>
+    <init-param>
+      <param-name>userId</param-name>
+      <param-value>011</param-value>
+    </init-param>
+    <init-param>
+      <param-name>dbType</param-name>
+      <param-value>Oracle</param-value>
+    </init-param>
+  </filter>
+   
+  <filter>
+    <filter-name>RsDocEncodingFilter</filter-name>
+    <filter-class>test.filter.RsDocEncodingFilter</filter-class>
+    <init-param>
+      <param-name>requestEncoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>responseEncoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  
+  <!-- 登陆信息过滤器 -->
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+  
+  <!-- API字符编码-->
+  <filter-mapping>
+    <filter-name>RsDocEncodingFilter</filter-name>
+    <url-pattern>/js/docs/*</url-pattern>
+  </filter-mapping>
+  
+  <servlet>
+    <servlet-name>RSCLIENT_USERINFO</servlet-name>
+    <servlet-class>com.rsc.rsclient.servlet.UserInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>RSCLIENT_STATE</servlet-name>
+    <servlet-class>com.rsc.rsclient.servlet.StateServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>RSCLIENT_GENERALSEL</servlet-name>
+    <servlet-class>com.rsc.rsclient.servlet.GeneralselServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>RSCLIENT_ATTACHMENT</servlet-name>
+    <servlet-class>com.rsc.rsclient.servlet.AttachmentServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>RSCLIENT_EXPORT</servlet-name>
+    <servlet-class>com.rsc.rsclient.servlet.ExportServlet</servlet-class>
+    <init-param>
+    	<param-name>buffersize</param-name>
+        <param-value>5</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>RSCLIENT_PAGESTATE</servlet-name>
+    <servlet-class>com.rsc.rsclient.servlet.PageStateServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>RSCLIENT_AUTOURL</servlet-name>
+    <servlet-class>com.rsc.rsclient.servlet.ServiceJsp</servlet-class>
+    <init-param>
+      <param-name>URLTemplate</param-name>
+      <param-value>{uri[4,-4]}.jsp</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>KindTemplateServlet</servlet-name>
+    <servlet-class>com.rsc.rsclient.servlet.KindTemplateServlet</servlet-class>
+    <init-param>
+        <param-name>templateSavePath</param-name>
+        <param-value>js\rs\lib\kindeditor\plugins\rstemplate\html</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RSCLIENT_USERINFO</servlet-name>
+    <url-pattern>/rsclient/userinfo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RSCLIENT_STATE</servlet-name>
+    <url-pattern>/rsclient/statemanager</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RSCLIENT_GENERALSEL</servlet-name>
+    <url-pattern>/rsclient/generalsel</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RSCLIENT_ATTACHMENT</servlet-name>
+    <url-pattern>/rsclient/attachment</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RSCLIENT_EXPORT</servlet-name>
+    <url-pattern>/rsclient/export</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RSCLIENT_PAGESTATE</servlet-name>
+    <url-pattern>/rsclient/pagestatemanager</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RSCLIENT_AUTOURL</servlet-name>
+    <url-pattern>*.rsc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>KindTemplateServlet</servlet-name>
+    <url-pattern>/rsclient/KindTemplateServlet</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+</web-app>

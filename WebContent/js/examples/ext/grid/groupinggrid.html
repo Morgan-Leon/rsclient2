@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-mini.js"></script>
+<script src="../../../rs/ext/data/GroupingStore.js"></script>
+
+<title>Rs.ext.state example</title>
+</head>
+<body style="margin:10px;">
+<br><span>当页显示分组表格实例：</span>
+<hr />
+<br />
+<br />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+	    var store = new Rs.ext.data.GroupingStore({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url: '../data/service.jsp',
+	        root: 'items',
+	        idProperty: 'code',
+	        sortField : 'code',
+	        fields: ['code', 'name', {name:'price', type: 'float'}],
+	        remoteGroup : true,
+	        groupField : 'name',
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+	    Ext.apply(store.baseParams.metaData, {
+		    limit : 50
+		});
+	    var grid = new Ext.grid.GridPanel({
+	        store: store,
+	        columns: [
+	            {
+	                id       :'code',
+	                header   : '物料编码', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'code',
+	                summaryType: 'count'
+	            },
+	            {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'name'
+                },
+	            {
+	                header   : '计划价', 
+	                width    : 75,
+	                sortable : true, 
+	                dataIndex: 'price',
+	                summaryType: 'sum'
+	            }
+	        ],
+	        view: new Ext.grid.GroupingView({
+	            forceFit:true,
+	            showGroupName: false,
+	            enableNoGroups:false,
+	            enableGroupingMenu:false,
+	            hideGroupedColumn: true
+	        }),
+	        stripeRows: true,
+	        height: 450,
+	        width: 800,
+	        title: '分组表格'
+	    });
+	    grid.render('grid-div1');       
+	}, this);
+</script>
+</html>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<poolman>
+
+  <management-mode>local</management-mode>
+  <datasource>
+
+   <dbname>testerp</dbname>
+    <jndiName>jndi-testdb</jndiName>
+    <driver>oracle.jdbc.driver.OracleDriver</driver>
+    <url>jdbc:oracle:thin:@192.168.168.8:1521:HPORA</url>
+
+    <username>muapp10g</username>
+    <password>ceshiku</password>
+
+    <minimumSize>10</minimumSize>
+    <maximumSize>100</maximumSize>
+    <maximumSoft>false</maximumSoft>
+    <nativeResults>true</nativeResults>
+   
+    
+    <debugging>false</debugging>
+
+  </datasource>
+  
+  <datasource>
+
+   <dbname>OAPools</dbname>
+    <jndiName>jndi-testdb</jndiName>
+    <driver>oracle.jdbc.driver.OracleDriver</driver>
+    <url>jdbc:oracle:thin:@192.168.168.8:1521:HPORA</url>
+  
+
+    <username>muapp10g</username>
+    <password>ceshiku</password>
+
+    <minimumSize>10</minimumSize>
+    <maximumSize>100</maximumSize>
+    <maximumSoft>false</maximumSoft>
+    <nativeResults>true</nativeResults>
+   
+    
+    <debugging>false</debugging>
+
+  </datasource>
+
+  <datasource>
+  
+  <dbname>opa</dbname>
+    <jndiName>jndi-testdb</jndiName>
+    <driver>oracle.jdbc.driver.OracleDriver</driver>
+    <url>jdbc:oracle:thin:@192.168.168.8:1521:HPORA</url>
+  
+
+    <username>muapp10g</username>
+    <password>ceshiku</password>
+    
+    <minimumSize>10</minimumSize>
+    <maximumSize>100</maximumSize>
+    
+    <nativeResults>true</nativeResults>
+   
+    <logFile>log/rserp.log</logFile>
+    <debugging>false</debugging>
+
+  </datasource>   
+ 
+  <datasource>
+   <dbname>wfm</dbname>
+      <jndiName>jndi-testdb</jndiName>
+    <driver>oracle.jdbc.driver.OracleDriver</driver>
+    <url>jdbc:oracle:thin:@192.168.168.8:1521:HPORA</url>
+
+    <username>muapp10g</username>
+    <password>ceshiku</password>
+    
+    <minimumSize>10</minimumSize>
+    <maximumSize>100</maximumSize>
+    <maximumSoft>false</maximumSoft>
+    <nativeResults>true</nativeResults>
+   
+    <logFile>log/rserp.log</logFile>
+    <debugging>false</debugging>
+
+  </datasource> 
+    <monoobjectpool>
+	<name>mrpPlanSP</name>
+	<objectType>com.rsc.rs.mrp.control.web.impl.MrpPlanRunnable</objectType>
+	<initialObjects>1</initialObjects>
+	<minimumSize>0</minimumSize>
+	<maximumSize>1</maximumSize>
+	<objectTimeout>72000</objectTimeout>
+	<userTimeout>36000</userTimeout>
+	<skimmerFrequency>36000</skimmerFrequency>
+	<shrinkBy>1</shrinkBy>
+	<logFile>log/mrpPlanSP.log</logFile>
+	<debugging>true</debugging>
+  </monoobjectpool>
+  
+  <monoobjectpool>
+	<name>crpMainSp</name>
+	<objectType>com.rsc.rs.crp.control.web.impl.CrpPlanRunable</objectType>
+	<initialObjects>1</initialObjects>
+	<minimumSize>0</minimumSize>
+	<maximumSize>1</maximumSize>
+	<objectTimeout>72000</objectTimeout>
+	<userTimeout>36000</userTimeout>
+	<skimmerFrequency>36000</skimmerFrequency>
+	<shrinkBy>1</shrinkBy>
+	<logFile>log/mrpPlanSP.log</logFile>
+	<debugging>false</debugging>
+  </monoobjectpool> 
+
+ <monoobjectpool>
+	<name>mpsMainSp</name>
+	<objectType>com.rsc.rs.mps.control.web.impl.MpsPlanRunnable</objectType>
+	<initialObjects>1</initialObjects>
+	<minimumSize>0</minimumSize>
+	<maximumSize>1</maximumSize>
+	<objectTimeout>72000</objectTimeout>
+	<userTimeout>36000</userTimeout>
+	<skimmerFrequency>36000</skimmerFrequency>
+	<shrinkBy>1</shrinkBy>
+	<logFile>log/mrpPlanSP.log</logFile>
+	<debugging>false</debugging>
+  </monoobjectpool>
+  
+</poolman>

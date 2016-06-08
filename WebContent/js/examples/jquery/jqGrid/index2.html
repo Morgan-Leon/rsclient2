@@ -1,0 +1,1590 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>jqGrid</title>
+
+
+<!-- rs css -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/jquery-ui-1.8.17.custom.css" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/ui.jqgrid.css" />
+
+<!-- rs css -->
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/resources/css/rs-all.css" />
+
+<script type="text/javascript" src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+
+<!-- rs src -->
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<!-- jqGrid src -->
+<script src="../../../rs/lib/jquery/jquery-1.7.min.js" type="text/javascript"></script>
+<script src="../../../rs/lib/jquery/jqGrid/grid.locale-cn.js" type="text/javascript"></script>
+<script src="../../../rs/lib/jquery/jqGrid/jquery.jqGrid.src.js" type="text/javascript"></script>
+
+<script src="../../../rs/jquery/Grid.js"></script>
+</head>
+<body>
+<p>40列</p>
+<table id="list1"></table>
+<div id="pager1"></div>
+<br />
+<a href="javascript:void(0)" id="s1">Set new width</a>
+<a href="javascript:void(0)" id="s2">Set new height</a>
+<a href="javascript:void(0)" id="s3">Set new title</a>
+<br />
+<p>70列</p>
+<table id="list2"></table>
+<div id="pager2"></div>
+<p>90列</p>
+<table id="list3"></table>
+<div id="pager3"></div>
+</body>
+<script type="text/javascript">
+	var start = new Date();
+	var grid = new Rs.jquery.Grid(
+			{
+				url: "testservice.jsp",
+				datatype: "json",
+				method: "read", 
+		        height: 200,
+		        render: "#list1",
+		        fields: ['COMPANY_CODE',
+		                 'ORG_ID',
+		                 'code', 
+		                 'name',
+		                 'price',
+		                 'ITEM_ABV', 
+		                 'GB_CODE',
+		                 'DRAWING_NO',
+		                 'REFER_CODE',
+		                 'MEMORY_CODE',
+		                 'NORMAL_CLASS',
+		                 'PM_FLAG',
+		                 'OM_FLAG',
+		                 'INV_FLAG',
+		                 'QC_FLAG',
+		                 'SPECIAL_CLASS',
+		                 'LOT_FLAG',
+		                 'STOCK_UNIT',
+		                 'BI_UNIT_FLAG',
+		                 'SECOND_UNIT',
+		                 'ASSIST_UNIT',
+		                 'PM_UNIT',
+		                 'OM_UNIT',
+		                 'PM_STOCK_RATE',
+						 'OM_STOCK_RATE',
+		                 'STOCK2_RATE',
+		                 'UNIQUE_FLAG',
+		                 'TOLERANCE',
+		                 'PRICE_SYS',
+		                 'ABC_CLASS',
+		                 'ON_HAND_QTY',
+		                 'ON_HAND_AMT',
+		                 'COST_FLAG',
+						 'NET_WEIGHT',
+		                 'NET_UNIT',
+		                 'BYPRODUCT_FLAG',
+		                 'MRP_FLAG',
+		                 'LOT_POLICY',
+						 'LOT_QTY',
+		                 'ROUND_TIMES'
+		        ],
+		        cm: [  
+		              {
+							name: 'COMPANY_CODE',
+				            label   : 'COMPANY_CODE', 
+				            width    : 100,
+				            sortable : true, 
+				            index: 'COMPANY_CODE'
+				        },
+			            {
+							index: 'ORG_ID',
+			                label   : 'ORG_ID', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ORG_ID'
+			            },
+			            {
+			                name       :'code',
+			                label   : '物料编码',
+			                width    : 100, 
+			                sortable : true, 
+			                index: 'code'
+			            },
+			            {
+							name: 'name',
+		                    label   : '物料名称',
+		                    width    : 100, 
+		                    sortable : true, 
+		                    index: 'name'
+		                },
+			            {
+							name: 'price',
+			                label   : '物料价格',
+			                formatter:'currency',
+			                width    : 100,
+			                sortable : true, 
+			                index: 'price'
+			            },
+			            {
+							name: 'ITEM_ABV',
+			                label   : 'ITEM_ABV', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ITEM_ABV'
+			            },
+			            {
+							name: 'GB_CODE',
+			                label   : 'GB_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'GB_CODE'
+			            },
+			            {	
+							name: 'DRAWING_NO',
+			                label   : 'DRAWING_NO', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'DRAWING_NO'
+			            },
+			            {
+							name: 'REFER_CODE',
+			                label   : 'REFER_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'REFER_CODE'
+			            },
+			            {
+							name: 'MEMORY_CODE',
+			                label   : 'MEMORY_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'MEMORY_CODE'
+			            },
+			            {
+							name: 'NORMAL_CLASS',
+			                label   : 'NORMAL_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'NORMAL_CLASS'
+			            },
+			            {
+							name: 'PM_FLAG',
+			                label   : 'PM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'PM_FLAG'
+			            },
+			            {
+							name: 'OM_FLAG',
+			                label   : 'OM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'OM_FLAG'
+			            },
+			            {
+							name: 'INV_FLAG',
+			                label   : 'INV_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'INV_FLAG'
+			            },
+			            {
+							name: 'QC_FLAG',
+			                label   : 'QC_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'QC_FLAG'
+			            },
+			            {
+							name: 'SPECIAL_CLASS',
+			                label   : 'SPECIAL_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'SPECIAL_CLASS'
+			            },
+			            {
+							name: 'LOT_FLAG',
+			                label   : 'LOT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'LOT_FLAG'
+			            },
+			            {
+							name: 'STOCK_UNIT',
+			                label   : 'STOCK_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'STOCK_UNIT'
+			            },
+			            {
+							name: 'BI_UNIT_FLAG',
+			                label   : 'BI_UNIT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'BI_UNIT_FLAG'
+			            },
+			            {
+							name: 'SECOND_UNIT',
+			                label   : 'SECOND_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'SECOND_UNIT'
+			            },
+			            {
+							name: 'ASSIST_UNIT',
+			                label   : 'ASSIST_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ASSIST_UNIT'
+			            },
+			            {
+							name: 'PM_UNIT',
+			                label   : 'PM_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'PM_UNIT'
+			            },
+			            {
+							name: 'OM_UNIT',
+			                label   : 'OM_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'OM_UNIT'
+			            },
+			            {
+							name: 'PM_STOCK_RATE',
+			                label   : 'PM_STOCK_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'PM_STOCK_RATE'
+			            },
+			            {
+							name: 'OM_STOCK_RATE',
+			                label   : 'OM_STOCK_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'OM_STOCK_RATE'
+			            },
+			            {
+							name: 'STOCK2_RATE',
+			                label   : 'STOCK2_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'STOCK2_RATE'
+			            },
+			            {
+							name: 'UNIQUE_FLAG',
+			                label   : 'UNIQUE_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'UNIQUE_FLAG'
+			            },
+			            {
+							name: 'TOLERANCE',
+			                label   : 'TOLERANCE', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'TOLERANCE'
+			            },
+			            {
+							name: 'PRICE_SYS',
+			                label   : 'PRICE_SYS', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'PRICE_SYS'
+			            },
+			            {
+							name: 'ABC_CLASS',
+			                label   : 'ABC_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ABC_CLASS'
+			            },
+			            {
+							name: 'ON_HAND_QTY',
+			                label   : 'ON_HAND_QTY', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ON_HAND_QTY'
+			            },
+			            {
+							name: 'ON_HAND_AMT',
+			                label   : 'ON_HAND_AMT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ON_HAND_AMT'
+			            },
+			            {
+							name: 'COST_FLAG',
+			                label   : 'COST_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'COST_FLAG'
+			            },
+			            {
+							name: 'NET_WEIGHT',
+			                label   : 'NET_WEIGHT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'NET_WEIGHT'
+			            },
+			            {
+							name: 'NET_UNIT',
+			                label   : 'NET_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'NET_UNIT'
+			            },
+			            {
+							name: 'BYPRODUCT_FLAG',
+			                label   : 'BYPRODUCT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'BYPRODUCT_FLAG'
+			            },
+			            {
+							 name: 'BYPRODUCT_FLAG',
+			                label   : 'BYPRODUCT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'BYPRODUCT_FLAG'
+			            },
+			            {
+							name: 'MRP_FLAG',
+			                label   : 'MRP_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'MRP_FLAG'
+			            },
+			            {
+							name: 'LOT_POLICY',
+			                label   : 'LOT_POLICY', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'LOT_POLICY'
+			            },
+			            {
+							name: 'LOT_QTY',
+			                label   : 'LOT_QTY', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'LOT_QTY'
+			            },
+			            {
+							name: 'ROUND_TIMES',
+			                label   : 'ROUND_TIMES', 
+			                width    : 100,
+			                sortable : true, 
+			                index: 'ROUND_TIMES'
+			            }
+		        ],  
+		        limit: 200,
+		        rowList: [200,500,1000],  
+		        pager: "#pager1",  
+		        title: "JQGrid",
+		        sortField: "code",
+		        baseParams: {"pm_flag": "Y"}
+			});
+			
+			grid.on("load", function(){
+				var end = new Date();
+				alert(end - start);
+			},this);
+			jQuery("#s1").click( function() {
+				grid.setWidth(500);
+			});
+			jQuery("#s2").click( function() {
+				grid.setHeight(200);
+			});
+			jQuery("#s3").click( function() {
+				grid.setTitle("new Title");
+			});
+			
+			
+			var grid2 = new Rs.jquery.Grid({
+                url: "testservice1.jsp",
+                datatype: "json",
+                method: "read", 
+                height: 200,
+                render: "#list2",
+                fields: [   'COMPANY_CODE',
+                            'ORG_ID',
+                            'code', 
+                            'name', 
+                            'price',
+                            'ITEM_ABV', 
+                            'GB_CODE',
+                            'DRAWING_NO',
+                            'REFER_CODE',
+                            'MEMORY_CODE',
+                            'NORMAL_CLASS',
+                            'PM_FLAG',
+                            'OM_FLAG',
+                            'INV_FLAG',
+                            'QC_FLAG',
+                            'SPECIAL_CLASS',
+                            'LOT_FLAG',
+                            'STOCK_UNIT',
+                            'BI_UNIT_FLAG',
+                            'SECOND_UNIT',
+                            'ASSIST_UNIT',
+                            'PM_UNIT',
+                            'OM_UNIT',
+                            'OM_STOCK_RATE',
+                            'STOCK2_RATE',
+                            'UNIQUE_FLAG',
+                            'TOLERANCE',
+                            'PRICE_SYS',
+                            'ABC_CLASS',
+                            'ON_HAND_QTY',
+                            'ON_HAND_AMT',
+                            'COST_FLAG',
+                            'NET_WEIGHT',
+                            'NET_UNIT',
+                            'BYPRODUCT_FLAG',
+                            'MRP_FLAG',
+                            'LOT_POLICY',
+                            'LOT_QTY',
+                            'ROUND_TIMES',
+                            'DEPT_CODE',
+                            'SCRAP_RATE',
+                            'PRODUCT_FLAG',
+                            'PHANTOM_FLAG',
+                            'ITEM_LIST_FLAG',
+                            'MP_FLAG',
+                            'MPS_FLAG',
+                            'LOT_MERGE_FLAG',
+                            'PSEUDO_FLAG',
+                            'LEAD_TIME_FLAG',
+                            'LEAD_TIME',
+                            'LEAD_DAYS',
+                            'NORM_BATCH',
+                            'PLAN_CONSTANT',
+                            'LOT_DAYS',
+                            'ORDER_POINT',
+                            'ORDER_QTY',
+                            'ONHAND_FLAG',
+                            'PAC_FLAG',
+                            'ROUTING_NO',
+                            'ROUTING_FLAG',
+                            'COOP_FLAG',
+                            'LIMIT_FLAG',
+                            'KEY_PART_FLAG',
+                            'BOM_FLAG',
+                            'MATERIAL_FLAG',
+                            'CREATE_FLAG',
+                            'INPUT_DATE',
+                            'INPUT_ID',
+                            'INPUT_MAN'
+		        ],
+		        cm: [  
+		               {
+                           label   : 'COMPANY_CODE', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'COMPANY_CODE'
+                       },
+                       {
+                           label   : 'ORG_ID', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'ORG_ID'
+                       },
+                       {
+                           id       :'code',
+                           label   : '物料编码', 
+                           width    : 100, 
+                           sortable : true, 
+                           dataIndex: 'code'
+                       },
+                       {
+                           label   : '物料名称', 
+                           width    : 100, 
+                           sortable : true, 
+                           dataIndex: 'name'
+                       },
+                       {
+                           label   : '计划价', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'price'
+                       },
+                       {
+                           label   : 'ITEM_ABV', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'ITEM_ABV'
+                       },
+                       {
+                           label   : 'GB_CODE', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'GB_CODE'
+                       },
+                       {
+                           label   : 'DRAWING_NO', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'DRAWING_NO'
+                       },
+                       {
+                           label   : 'REFER_CODE', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'REFER_CODE'
+                       },
+                       {
+                           label   : 'MEMORY_CODE', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'MEMORY_CODE'
+                       },
+                       {
+                           label   : 'NORMAL_CLASS', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'NORMAL_CLASS'
+                       },
+                       {
+                           label   : 'PM_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'PM_FLAG'
+                       },
+                       {
+                           label   : 'OM_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'OM_FLAG'
+                       },
+                       {
+                           label   : 'INV_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'INV_FLAG'
+                       },
+                       {
+                           label   : 'QC_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'QC_FLAG'
+                       },
+                       {
+                           label   : 'SPECIAL_CLASS', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'SPECIAL_CLASS'
+                       },
+                       {
+                           label   : 'LOT_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'LOT_FLAG'
+                       },
+                       {
+                           label   : 'STOCK_UNIT', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'STOCK_UNIT'
+                       },
+                       {
+                           label   : 'BI_UNIT_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'BI_UNIT_FLAG'
+                       },
+                       {
+                           label   : 'SECOND_UNIT', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'SECOND_UNIT'
+                       },
+                       {
+                           label   : 'ASSIST_UNIT', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'ASSIST_UNIT'
+                       },
+                       {
+                           label   : 'PM_UNIT', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'PM_UNIT'
+                       },
+                       {
+                           label   : 'OM_UNIT', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'OM_UNIT'
+                       },
+                       {
+                           label   : 'PM_STOCK_RATE', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'PM_STOCK_RATE'
+                       },
+                       {
+                           label   : 'OM_STOCK_RATE', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'OM_STOCK_RATE'
+                       },
+                       {
+                           label   : 'STOCK2_RATE', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'STOCK2_RATE'
+                       },
+                       {
+                           label   : 'UNIQUE_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'UNIQUE_FLAG'
+                       },
+                       {
+                           label   : 'TOLERANCE', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'TOLERANCE'
+                       },
+                       {
+                           label   : 'PRICE_SYS', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'PRICE_SYS'
+                       },
+                       {
+                           label   : 'ABC_CLASS', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'ABC_CLASS'
+                       },
+                       {
+                           label   : 'ON_HAND_QTY', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'ON_HAND_QTY'
+                       },
+                       {
+                           label   : 'ON_HAND_AMT', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'ON_HAND_AMT'
+                       },
+                       {
+                           label   : 'COST_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'COST_FLAG'
+                       },
+                       {
+                           label   : 'NET_WEIGHT', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'NET_WEIGHT'
+                       },
+                       {
+                           label   : 'NET_UNIT', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'NET_UNIT'
+                       },
+                       {
+                           label   : 'BYPRODUCT_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'BYPRODUCT_FLAG'
+                       },
+                       {
+                           label   : 'BYPRODUCT_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'BYPRODUCT_FLAG'
+                       },
+                       {
+                           label   : 'MRP_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'MRP_FLAG'
+                       },
+                       {
+                           label   : 'LOT_POLICY', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'LOT_POLICY'
+                       },
+                       {
+                           label   : 'LOT_QTY', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'LOT_QTY'
+                       },
+                       {
+                           label   : 'ROUND_TIMES', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'ROUND_TIMES'
+                       },
+                       {
+                           label   : 'DEPT_CODE', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'DEPT_CODE'
+                       },
+                       {
+                           label   : 'SCRAP_RATE', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'SCRAP_RATE'
+                       },
+                       {
+                           label   : 'PHANTOM_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'PHANTOM_FLAG'
+                       },
+                       {
+                           label   : 'ITEM_LIST_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'ITEM_LIST_FLAG'
+                       },
+                       {
+                           label   : 'MP_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'MP_FLAG'
+                       },
+                       {
+                           label   : 'MPS_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'MPS_FLAG'
+                       },
+                       {
+                           label   : 'LOT_MERGE_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'LOT_MERGE_FLAG'
+                       },
+                       {
+                           label   : 'PSEUDO_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'PSEUDO_FLAG'
+                       },
+                       {
+                           label   : 'LEAD_TIME_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'LEAD_TIME_FLAG'
+                       },
+                       {
+                           label   : 'LEAD_TIME', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'LEAD_TIME'
+                       },
+                       {
+                           label   : 'LEAD_DAYS', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'LEAD_DAYS'
+                       },
+                       {
+                           label   : 'NORM_BATCH', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'NORM_BATCH'
+                       },
+                       {
+                           label   : 'PLAN_CONSTANT', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'PLAN_CONSTANT'
+                       },
+                       {
+                           label   : 'LOT_DAYS', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'LOT_DAYS'
+                       },
+                       {
+                           label   : 'ORDER_POINT', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'ORDER_POINT'
+                       },
+                       {
+                           label   : 'ORDER_QTY', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'ORDER_QTY'
+                       },
+                       {
+                           label   : 'ONHAND_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           formatter:'currency',
+                           dataIndex: 'ONHAND_FLAG'
+                       },
+                       {
+                           label   : 'PAC_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'PAC_FLAG'
+                       },
+                       {
+                           label   : 'ROUTING_NO', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'ROUTING_NO'
+                       },
+                       {
+                           label   : 'ROUTING_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'ROUTING_FLAG'
+                       },
+                       {
+                           label   : 'COOP_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'COOP_FLAG'
+                       },
+                       {
+                           label   : 'LIMIT_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'LIMIT_FLAG'
+                       },
+                       {
+                           label   : 'KEY_PART_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'KEY_PART_FLAG'
+                       },
+                       {
+                           label   : 'BOM_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'BOM_FLAG'
+                       },
+                       {
+                           label   : 'MATERIAL_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'MATERIAL_FLAG'
+                       },
+                       {
+                           label   : 'CREATE_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'CREATE_FLAG'
+                       },
+                       {
+                           label   : 'INPUT_DATE', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'INPUT_DATE'
+                       },
+                       {
+                           label   : 'INPUT_ID', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'INPUT_ID'
+                       },
+                       {
+                           label   : 'PRODUCT_FLAG', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'PRODUCT_FLAG'
+                       },
+                       {
+                           label   : 'INPUT_MAN', 
+                           width    : 100,
+                           sortable : true, 
+                           dataIndex: 'INPUT_MAN'
+                       }
+		        ],  
+		        limit: 200,
+		        rowList: [200,500,1000],  
+		        pager: "#pager2",  
+		        title: "JQGrid2",
+		        sortField: "code",
+		        baseParams: {"pm_flag": "Y"}			       				
+			});				
+			
+			var grid3 = new Rs.jquery.Grid(
+					{
+						url: "testservice2.jsp",
+						datatype: "json",
+						method: "read", 
+				        height: 200,
+				        render: "#list3",
+				        fields: ['COMPANY_CODE',
+		                     'ORG_ID',
+		                     'code', 
+		                     'name', 
+		                     'price', 
+			                 'ITEM_ABV', 
+			                 'GB_CODE',
+			                 'DRAWING_NO',
+			                 'REFER_CODE',
+			                 'MEMORY_CODE',
+			                 'NORMAL_CLASS',
+			                 'PM_FLAG',
+			                 'OM_FLAG',
+			                 'INV_FLAG',
+			                 'QC_FLAG',
+			                 'SPECIAL_CLASS',
+			                 'LOT_FLAG',
+			                 'STOCK_UNIT',
+			                 'BI_UNIT_FLAG',
+			                 'SECOND_UNIT',
+			                 'ASSIST_UNIT',
+			                 'PM_UNIT',
+			                 'OM_UNIT',
+			                 'PM_STOCK_RATE',
+			                 'OM_STOCK_RATE',
+			                 'STOCK2_RATE',
+			                 'UNIQUE_FLAG',
+			                 'TOLERANCE',
+			                 'PRICE_SYS',
+			                 'ABC_CLASS',
+			                 'ON_HAND_QTY',
+			                 'ON_HAND_AMT',
+			                 'COST_FLAG',
+			                 'NET_WEIGHT',
+			                 'NET_UNIT',
+			                 'BYPRODUCT_FLAG',
+			                 'MRP_FLAG',
+			                 'LOT_POLICY',
+			                 'LOT_QTY',
+			                 'ROUND_TIMES',
+			                 'DEPT_CODE',
+			                 'SCRAP_RATE',
+			                 'PRODUCT_FLAG',
+			                 'PHANTOM_FLAG',
+			                 'ITEM_LIST_FLAG',
+			                 'MP_FLAG',
+			                 'MPS_FLAG',
+			                 'LOT_MERGE_FLAG',
+			                 'PSEUDO_FLAG',
+			                 'LEAD_TIME_FLAG',
+			                 'LEAD_TIME',
+			                 'LEAD_DAYS',
+			                 'NORM_BATCH',
+			                 'PLAN_CONSTANT',
+			                 'LOT_DAYS',
+			                 'ORDER_POINT',
+			                 'ORDER_QTY',
+			                 'ONHAND_FLAG',
+			                 'PAC_FLAG',
+			                 'ROUTING_NO',
+			                 'ROUTING_FLAG',
+			                 'COOP_FLAG',
+			                 'LIMIT_FLAG',
+			                 'KEY_PART_FLAG',
+			                 'BOM_FLAG',
+			                 'MATERIAL_FLAG',
+			                 'CREATE_FLAG',
+			                 'INPUT_DATE',
+			                 'INPUT_ID',
+			                 'INPUT_MAN',
+			                 'INPUT_NAME',
+			                 'NEW_FLAG',
+			                 'VALID_FLAG',
+			                 'KEY_CLASS',
+			                 'SET_FLAG',
+			                 'QC_TRACE_TYPE',
+			                 'GL_MP_FLAG',
+			                 'GRP_PM_FLAG',
+			                 'SELF_PM_FLAG',
+			                 'ADMEASURE_FLAG',
+			                 'DISPENSE_FLAG',
+			                 'UPDATE_FLAG',
+			                 'PDM_MATERIAL_FLAG',
+			                 'REPAIR_FLAG',
+			                 'NEW_OLD_FLAG',
+			                 'REPAIR_OP_FLAG',
+			                 'NEW_RATE',
+			                 'CHECK_ACCEPT_FLAG',
+			                 'CUSTOMER_SEARCH_FLAG'
+				        ],
+				        cm: [  
+				               {
+				            label   : 'COMPANY_CODE', 
+				            width    : 100,
+				            sortable : true, 
+				            dataIndex: 'COMPANY_CODE'
+				        },
+			            {
+			                label   : 'ORG_ID', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ORG_ID'
+			            },
+			            {
+			                id       :'code',
+			                label   : '物料编码', 
+			                width    : 100, 
+			                sortable : true, 
+			                dataIndex: 'code'
+			            },
+			            {
+		                    label   : '物料名称', 
+		                    width    : 100, 
+		                    sortable : true, 
+		                    dataIndex: 'name'
+		                },
+			            {
+			                label   : '计划价', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'price'
+			            },
+			            {
+			                label   : 'ITEM_ABV', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ITEM_ABV'
+			            },
+			            {
+			                label   : 'GB_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'GB_CODE'
+			            },
+			            {
+			                label   : 'DRAWING_NO', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'DRAWING_NO'
+			            },
+			            {
+			                label   : 'REFER_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'REFER_CODE'
+			            },
+			            {
+			                label   : 'MEMORY_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'MEMORY_CODE'
+			            },
+			            {
+			                label   : 'NORMAL_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'NORMAL_CLASS'
+			            },
+			            {
+			                label   : 'PM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PM_FLAG'
+			            },
+			            {
+			                label   : 'OM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'OM_FLAG'
+			            },
+			            {
+			                label   : 'INV_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'INV_FLAG'
+			            },
+			            {
+			                label   : 'QC_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'QC_FLAG'
+			            },
+			            {
+			                label   : 'SPECIAL_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'SPECIAL_CLASS'
+			            },
+			            {
+			                label   : 'LOT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LOT_FLAG'
+			            },
+			            {
+			                label   : 'STOCK_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'STOCK_UNIT'
+			            },
+			            {
+			                label   : 'BI_UNIT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'BI_UNIT_FLAG'
+			            },
+			            {
+			                label   : 'SECOND_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'SECOND_UNIT'
+			            },
+			            {
+			                label   : 'ASSIST_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ASSIST_UNIT'
+			            },
+			            {
+			                label   : 'PM_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PM_UNIT'
+			            },
+			            {
+			                label   : 'OM_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'OM_UNIT'
+			            },
+			            {
+			                label   : 'PM_STOCK_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PM_STOCK_RATE'
+			            },
+			            {
+			                label   : 'OM_STOCK_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'OM_STOCK_RATE'
+			            },
+			            {
+			                label   : 'STOCK2_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'STOCK2_RATE'
+			            },
+			            {
+			                label   : 'UNIQUE_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'UNIQUE_FLAG'
+			            },
+			            {
+			                label   : 'TOLERANCE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'TOLERANCE'
+			            },
+			            {
+			                label   : 'PRICE_SYS', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PRICE_SYS'
+			            },
+			            {
+			                label   : 'ABC_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ABC_CLASS'
+			            },
+			            {
+			                label   : 'ON_HAND_QTY', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ON_HAND_QTY'
+			            },
+			            {
+			                label   : 'ON_HAND_AMT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ON_HAND_AMT'
+			            },
+			            {
+			                label   : 'COST_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'COST_FLAG'
+			            },
+			            {
+			                label   : 'NET_WEIGHT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'NET_WEIGHT'
+			            },
+			            {
+			                label   : 'NET_UNIT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'NET_UNIT'
+			            },
+			            {
+			                label   : 'BYPRODUCT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'BYPRODUCT_FLAG'
+			            },
+			            {
+			                label   : 'MRP_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'MRP_FLAG'
+			            },
+			            {
+			                label   : 'LOT_POLICY', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LOT_POLICY'
+			            },
+			            {
+			                label   : 'LOT_QTY', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LOT_QTY'
+			            },
+			            {
+			                label   : 'ROUND_TIMES', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ROUND_TIMES'
+			            },
+			            {
+			                label   : 'DEPT_CODE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'DEPT_CODE'
+			            },
+			            {
+			                label   : 'SCRAP_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'SCRAP_RATE'
+			            },
+			            {
+			                label   : 'PHANTOM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PHANTOM_FLAG'
+			            },
+			            {
+			                label   : 'ITEM_LIST_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ITEM_LIST_FLAG'
+			            },
+			            {
+			                label   : 'MP_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'MP_FLAG'
+			            },
+			            {
+			                label   : 'MPS_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'MPS_FLAG'
+			            },
+			            {
+			                label   : 'LOT_MERGE_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LOT_MERGE_FLAG'
+			            },
+			            {
+			                label   : 'PSEUDO_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PSEUDO_FLAG'
+			            },
+			            {
+			                label   : 'LEAD_TIME_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LEAD_TIME_FLAG'
+			            },
+			            {
+			                label   : 'LEAD_TIME', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LEAD_TIME'
+			            },
+			            {
+			                label   : 'LEAD_DAYS', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LEAD_DAYS'
+			            },
+			            {
+			                label   : 'NORM_BATCH', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'NORM_BATCH'
+			            },
+			            {
+			                label   : 'PLAN_CONSTANT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PLAN_CONSTANT'
+			            },
+			            {
+			                label   : 'LOT_DAYS', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LOT_DAYS'
+			            },
+			            {
+			                label   : 'ORDER_POINT', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ORDER_POINT'
+			            },
+			            {
+			                label   : 'ORDER_QTY', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ORDER_QTY'
+			            },
+			            {
+			                label   : 'ONHAND_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ONHAND_FLAG'
+			            },
+			            {
+			                label   : 'PAC_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PAC_FLAG'
+			            },
+			            {
+			                label   : 'ROUTING_NO', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ROUTING_NO'
+			            },
+			            {
+			                label   : 'ROUTING_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ROUTING_FLAG'
+			            },
+			            {
+			                label   : 'COOP_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'COOP_FLAG'
+			            },
+			            {
+			                label   : 'LIMIT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'LIMIT_FLAG'
+			            },
+			            {
+			                label   : 'KEY_PART_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'KEY_PART_FLAG'
+			            },
+			            {
+			                label   : 'BOM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'BOM_FLAG'
+			            },
+			            {
+			                label   : 'MATERIAL_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'MATERIAL_FLAG'
+			            },
+			            {
+			                label   : 'CREATE_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'CREATE_FLAG'
+			            },
+			            {
+			                label   : 'INPUT_DATE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'INPUT_DATE'
+			            },
+			            {
+			                label   : 'INPUT_ID', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'INPUT_ID'
+			            },
+			            {
+			                label   : 'PRODUCT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PRODUCT_FLAG'
+			            },
+			            {
+			                label   : 'INPUT_MAN', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'INPUT_MAN'
+			            },
+			            {
+			                label   : 'INPUT_NAME', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'INPUT_NAME'
+			            },
+			            {
+			                label   : 'NEW_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'NEW_FLAG'
+			            },
+			            {
+			                label   : 'VALID_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'VALID_FLAG'
+			            },
+			            {
+			                label   : 'KEY_CLASS', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'KEY_CLASS'
+			            },
+			            {
+			                label   : 'SET_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'SET_FLAG'
+			            },
+			            {
+			                label   : 'QC_TRACE_TYPE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'QC_TRACE_TYPE'
+			            },
+			            {
+			                label   : 'GL_MP_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'GL_MP_FLAG'
+			            },
+			            {
+			                label   : 'GRP_PM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'GRP_PM_FLAG'
+			            },
+			            {
+			                label   : 'SELF_PM_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'SELF_PM_FLAG'
+			            },
+			            {
+			                label   : 'ADMEASURE_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'ADMEASURE_FLAG'
+			            },
+			            {
+			                label   : 'DISPENSE_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'DISPENSE_FLAG'
+			            },
+			            {
+			                label   : 'UPDATE_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'UPDATE_FLAG'
+			            },
+			            {
+			                label   : 'PDM_MATERIAL_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'PDM_MATERIAL_FLAG'
+			            },
+			            {
+			                label   : 'REPAIR_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'REPAIR_FLAG'
+			            },
+			            {
+			                label   : 'NEW_OLD_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'NEW_OLD_FLAG'
+			            },
+			            {
+			                label   : 'REPAIR_OP_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'REPAIR_OP_FLAG'
+			            },
+			            {
+			                label   : 'NEW_RATE', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'NEW_RATE'
+			            },
+			            {
+			                label   : 'CHECK_ACCEPT_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'CHECK_ACCEPT_FLAG'
+			            },
+			            {
+			                label   : 'CUSTOMER_SEARCH_FLAG', 
+			                width    : 100,
+			                sortable : true, 
+			                dataIndex: 'CUSTOMER_SEARCH_FLAG'
+			            }
+				        ],  
+				        limit: 200,
+				        rowList: [200,500,1000],  
+				        pager: "#pager3",  
+				        title: "JQGrid3",
+				        sortField: "code",
+				        baseParams: {"pm_flag": "Y"}
+					});
+					
+			
+	        
+</script>
+</html>

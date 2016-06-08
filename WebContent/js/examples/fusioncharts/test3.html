@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css"
+	href="../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../rs/resources/css/rs-all.css" />
+
+<script src="../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+<script src="../../rs/rs-debug.js"></script>
+<script src="../../rs/ext/rs-ext-debug.js"></script>
+
+
+<script src="../../rs/lib/FusionCharts_v3/FusionCharts.js"></script>
+<script src="../../rs/lib/FusionCharts_v3/FusionChartsExportComponent.js"></script>
+
+<script src="../../rs/ext/chart/EventProxy.js"></script>
+<script src="../../rs/ext/chart/Chart.js"></script>
+<script src="../../rs/ext/chart/Chart2D.js"></script>
+<script src="../../rs/ext/chart/Chart3D.js"></script>
+<script src="../../rs/ext/chart/ChartPanel.js"></script>
+
+<title>Rs-ext MonthField example</title>
+<script language="javascript" type="text/javascript">
+	Ext.onReady(function() {
+		 json1 = new Rs.ext.chart.Chart3D({
+				url : '/rsc/js/examples/fusioncharts/dataservice.rsc',
+		    	chartType : 'pie',
+		    	refreshTime : 10000
+		    });
+		    s1 = new Rs.ext.chart.ChartPanel({
+		        renderTo : 'div1', 
+		        chart : json1,
+		        width : 600 ,
+		        height : 500
+		    });
+	});
+    	
+</script>
+</head>
+<body>
+</body>
+</html>

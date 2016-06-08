@@ -1,0 +1,25 @@
+
+.generalmodel-head-icon {
+    width : 20px;
+    height : 16px;
+    background: url(layout-header.png) 0px 0px no-repeat !important;
+}
+
+.generalmodel-delmodel-icon {
+    width : 20px;
+    height : 16px;
+    background: url(table-cell-delete.png) 0px 0px no-repeat !important;
+}
+
+.generalmodel-column-icon {
+	width : 20px;
+    height : 16px;
+    background: url(application-form.png) 0px 0px no-repeat !important;
+}
+
+.generalmodel-delcolumn-icon {
+	width : 20px;
+    height : 16px;
+    background: url(table-column-hide.png) 0px 0px no-repeat !important;
+}
+

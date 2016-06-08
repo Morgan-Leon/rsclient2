@@ -1,0 +1,84 @@
+<map borderColor='005879' baseFontSize='12' showToolTip='0' legendAllowDrag='1'>
+	<entityDef>
+		<entity internalId='CN.NM' sName='��' lName='���ɹ�'/>
+		<entity internalId='CN.BJ' sName='��' lName='����'/>
+		<entity internalId='CN.AH' sName='��' lName='����'/>
+		<entity internalId='CN.CQ' sName='��' lName='����'/>
+		<entity internalId='CN.FJ' sName='��' lName='����'/>
+		<entity internalId='CN.GS' sName='��' lName='����'/>
+		<entity internalId='CN.GD' sName='��' lName='�㶫'/>
+		<entity internalId='CN.GX' sName='��' lName='����'/>
+		<entity internalId='CN.GZ' sName='��' lName='����'/>
+		<entity internalId='CN.HA' sName='��' lName='����'/>
+		<entity internalId='CN.HB' sName='��' lName='�ӱ�'/>
+		<entity internalId='CN.HE' sName='ԥ' lName='����'/>
+		<entity internalId='CN.HU' sName='��' lName='����'/>
+		<entity internalId='CN.HL' sName='��' lName='����'/>
+		<entity internalId='CN.HN' sName='��' lName='����'/>
+		<entity internalId='CN.JS' sName='��' lName='����'/>
+		<entity internalId='CN.JX' sName='��' lName='����'/>
+		<entity internalId='CN.JL' sName='��' lName='����'/>
+		<entity internalId='CN.LN' sName='��' lName='����'/>
+		<entity internalId='CN.NX' sName='��' lName='����'/>
+		<entity internalId='CN.QH' sName='��' lName='�ຣ'/>
+		<entity internalId='CN.SA' sName='��' lName='����'/>
+		<entity internalId='CN.SD' sName='³' lName='ɽ��'/>
+		<entity internalId='CN.SH' sName='��' lName='�Ϻ�'/>
+		<entity internalId='CN.SX' sName='��' lName='ɽ��'/>
+		<entity internalId='CN.SC' sName='��' lName='�Ĵ�'/>
+		<entity internalId='CN.TJ' sName='��' lName='���'/>
+		<entity internalId='CN.XJ' sName='��' lName='�½�'/>
+		<entity internalId='CN.XZ' sName='��' lName='����'/>
+		<entity internalId='CN.YN' sName='��' lName='����'/>
+		<entity internalId='CN.ZJ' sName='��' lName='�㽭'/>
+		<entity internalId='CN.MA' sName='��' lName='����'/>
+		<entity internalId='CN.HK' sName='��' lName='���'/>
+		<entity internalId='CN.TA' sName='̨' lName='̨��'/>
+	</entityDef>
+	<colorRange>
+		<color minValue='1' maxValue='4' displayValue='��������' color='006600' />
+		<color minValue='4' maxValue='9' displayValue='��������' color='999933' />
+		<color minValue='9' maxValue='16' displayValue='��������' color='00FF00' />
+		<color minValue='16' maxValue='19' displayValue='���е���' color='339900' />
+		<color minValue='19' maxValue='22' displayValue='���ϵ���' color='008800' />
+		<color minValue='22' maxValue='27' displayValue='���ϵ���' color='CC6633' />
+		<color minValue='27' maxValue='32' displayValue='��������' color='BB8833' />
+		<color minValue='32' maxValue='35' displayValue='�������' color='FFFF00' />
+	</colorRange>
+	<data>
+		<entity Id='CN.HL' value='1' link="JavaScript:alert('aa');"/>
+		<entity Id='CN.JL' value='2'/>
+		<entity Id='CN.LN' value='3'/>
+		<entity Id='CN.NM' value='4'/>
+		<entity Id='CN.BJ' value='5'/>
+		<entity Id='CN.HB' value='6'/>
+		<entity Id='CN.SX' value='7'/>
+		<entity Id='CN.TJ' value='8'/>
+		<entity Id='CN.AH' value='9'/>
+		<entity Id='CN.FJ' value='10'/>
+		<entity Id='CN.JS' value='11'/>
+		<entity Id='CN.SD' value='12'/>
+		<entity Id='CN.SH' value='13'/>
+		<entity Id='CN.JX' value='14'/>
+		<entity Id='CN.ZJ' value='15'/>
+		<entity Id='CN.HE' value='16'/>
+		<entity Id='CN.HU' value='17'/>
+		<entity Id='CN.HN' value='18'/>
+		<entity Id='CN.GD' value='19'/>
+		<entity Id='CN.GX' value='20'/>
+		<entity Id='CN.HA' value='21'/>
+		<entity Id='CN.CQ' value='22'/>
+		<entity Id='CN.SC' value='23'/>
+		<entity Id='CN.XZ' value='24'/>
+		<entity Id='CN.YN' value='25'/>
+		<entity Id='CN.GZ' value='26'/>
+		<entity Id='CN.GS' value='27'/>
+		<entity Id='CN.NX' value='28'/>
+		<entity Id='CN.QH' value='29'/>
+		<entity Id='CN.SA' value='30'/>
+		<entity Id='CN.XJ' value='31'/>
+		<entity Id='CN.MA' value='32'/>
+		<entity Id='CN.HK' value='33'/>
+		<entity Id='CN.TA' value='34'/>
+	</data>		
+</map>

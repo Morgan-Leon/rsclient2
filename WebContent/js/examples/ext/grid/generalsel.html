@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/data/Reader.js"></script>
+<script src="../../../rs/ext/data/Store.js"></script>
+
+<script src="../../../rs/ext/data/GeneralselStore.js"></script>
+<script src="../../../rs/ext/grid/GeneralselGridPanel.js"></script>
+<script src="../../../rs/ext/grid/SliderPagingToolbar.js"></script>
+
+<title>generalsel grid</title>
+</head>
+<body style="margin: 10px;">
+本实例演示如何使用Rs.ext.grid.GeneralselGridPanel，即望远镜表格，结合了望远镜store，将store中的数据以表格的形式展现。
+<br />
+<br />
+<hr />
+<div>
+	<div id="grid-div1" style="margin-left: 20px; float: left;"></div>
+	<div id="grid-div2" style="margin-left: 20px; float: left;"></div>
+	<div id="grid-div3" style="margin-left: 20px; float: left;"></div>
+	<div id="grid-div4" style="margin-left: 20px; float: left;"></div>
+	<div id="grid-div5" style="margin-left: 20px; float: left;"></div>
+	<div id="grid-div6" style="margin-left: 20px; float: left;"></div>
+	<div id="grid-div7" style="margin-left: 20px; float: left;"></div>
+	<div id="grid-div8" style="margin-left: 20px; float: left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		Ext.QuickTips.init();
+	    
+		//表格1
+		var grid = new Rs.ext.grid.GeneralselGridPanel( {
+			title : '订单明细表格1',
+			height : 350,
+			width : 400,
+			progCode : 'ordDetail',
+			progCondition : ' a.company_code = \'00\' and rownum < 20 ',
+			sm : new Ext.grid.CheckboxSelectionModel()     //设置selection model
+		});
+		grid.render('grid-div1');
+	    
+		//表格2
+		var grid2 = new Rs.ext.grid.GeneralselGridPanel( {
+			title : '订单明细表格2',
+			height : 350,
+			width : 400,
+			progCode : 'ordDetail1',
+			progCondition : ' a.company_code = \'00\' and rownum < 20 ',
+			viewConfig: {                                  //设置行数据样式
+		        forceFit: true,  //设置是否出现横向滚动条
+		        //Return CSS class to apply to rows depending upon data values
+		        getRowClass: function(record, index) {
+		            var c = record.get('ORDER_PRICE');
+		            if (c < 100) {
+		            	return 'price-fall';
+		            } else if (c > 100) {
+		                return 'price-rise';
+		            }
+		        }
+		    }
+		});
+		grid2.render('grid-div2');
+
+		//表格3
+		var grid3 = new Rs.ext.grid.GeneralselGridPanel( {
+			title : '订单明细表格3',
+			height : 350,
+			width : 400,
+			progCode : 'ordDetail2',
+			progCondition : ' a.company_code = \'00\' and rownum < 20 ',
+			collapsible : true, //可以合并，展开
+			collapsed : false,   //处于展开状态
+			animCollapse : true, //动作,
+			enableColumnHide : false, //设置列是否可隐藏
+			enableColumnMove : false,  //设置列是否可移动
+			enableColumnResize : false, //设置列是否可调大小
+			enableHdMenu : true
+		});
+		grid3.render('grid-div3');
+	    
+		//表格4
+        var grid4 = new Rs.ext.grid.GeneralselGridPanel( {
+            title : '订单类型表格',
+            height : 350,
+            width : 400,
+            progCode : 'orderType',
+            progCondition : ' rownum < 20 ',
+            sm: new Ext.grid.CheckboxSelectionModel({singleSelect:true}) //单选
+        });
+        grid4.render('grid-div4');
+
+        //表格5
+        var grid5 = new Rs.ext.grid.GeneralselGridPanel( {
+            title : '人员表格',
+            height : 350,
+            width : 400,
+            progCode : 'invUser',
+            progCondition : ' company_code = \'00\' and rownum < 20 ',
+            disabled : true //设置disabled 不可操作
+        });
+        grid5.render('grid-div5');
+
+        //表格6
+        var grid6 = new Rs.ext.grid.GeneralselGridPanel( {
+            title : '供应商编码表格(试试拖动)',
+            height : 350,
+            width : 400,
+            progCode : 'invVendor',
+            progCondition : ' company_code = \'00\' and rownum < 20 ',
+            draggable: true,
+            bbar: new Ext.Toolbar({
+                items: [{
+                    text: 'bbar Left'
+                },'->',{
+                    text: 'bbar Right'
+                }]
+            }),
+            buttonAlign: 'left',
+            fbar: [{
+                text: 'fbar Left'
+            },'->',{
+                text: 'fbar Right'
+            }]
+        });
+        grid6.render('grid-div6');
+        
+        //表格7
+        var store7 = new Rs.ext.data.GeneralselStore({
+    	    autoLoad : true,
+            autoDestroy: true,
+            progCode : 'invVendor',
+            progCondition : ' company_code = \'00\' and rownum < 20 '
+        });
+        Ext.apply(store7.baseParams.metaData, {
+            limit : 20
+        });
+        var grid7 = new Rs.ext.grid.GeneralselGridPanel({
+            title : '表格',
+            height : 350,
+            width : 400,
+            store : store7
+        });
+        grid7.render("grid-div7");
+
+        //表格8
+        var store8 = new Rs.ext.data.GeneralselStore({
+            autoLoad : true,
+            autoDestroy : true,
+            progCode : 'invVendor',
+            progCondition : ' company_code = \'00\' and vendor_code like \'430%\''
+        });
+        
+        var grid8 = new Rs.ext.grid.GeneralselGridPanel({
+            title : '表格 vendor_code like \'430%\'',
+            height : 350,
+            width : 400,
+            store : store8,
+            //指定要显示的列，如果不指定，将会根据望远镜定义的列来显示数据
+            columns : [{
+                dataIndex : 'VENDOR_NAME',
+                header : '供应商名称',
+                width : 200,
+                sortable : true
+            }, {
+                dataIndex : 'VENDOR_CODE',
+                header : '供应商编码',
+                width : 150,
+                sortable : true
+            }],
+            bbar: new Rs.ext.grid.SliderPagingToolbar({
+                pageSize : 10,
+                hasSlider : true,
+                store : store8,
+                displayInfo : false
+            })
+        });
+        grid8.render("grid-div8");
+        
+	}, this);
+</script>
+</html>

@@ -1,0 +1,64 @@
+<xml>
+
+    <servlet>
+        <servlet-name>RSCLIENT_USERINFO</servlet-name>
+        <servlet-class>com.rsc.rsclient.servlet.UserInfoServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RSCLIENT_PAGESTATE</servlet-name>
+        <servlet-class>com.rsc.rsclient.servlet.PageStateServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RSCLIENT_STATE</servlet-name>
+        <servlet-class>com.rsc.rsclient.servlet.StateServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RSCLIENT_GENERALSEL</servlet-name>
+        <servlet-class>com.rsc.rsclient.servlet.GeneralselServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RSCLIENT_ATTACHMENT</servlet-name>
+        <servlet-class>com.rsc.rsclient.servlet.AttachmentServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RSCLIENT_AUTOURL</servlet-name>
+        <servlet-class>com.rsc.rsclient.servlet.ServiceJsp
+        </servlet-class>
+        <init-param>
+            <param-name>URLTemplate</param-name>
+            <param-value>/com/rsc/rs{uri[0,-4]}.jsp</param-value>
+        </init-param>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>RSCLIENT_USERINFO</servlet-name>
+        <url-pattern>/rsc/rsclient/userinfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RSCLIENT_PAGESTATE</servlet-name>
+        <url-pattern>/rsc/rsclient/pagestatemanager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RSCLIENT_STATE</servlet-name>
+        <url-pattern>/rsc/rsclient/statemanager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RSCLIENT_GENERALSEL</servlet-name>
+        <url-pattern>/rsc/rsclient/generalsel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RSCLIENT_ATTACHMENT</servlet-name>
+        <url-pattern>/rsc/rsclient/attachment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RSCLIENT_AUTOURL</servlet-name>
+        <url-pattern>*.rsc</url-pattern>
+    </servlet-mapping>
+
+</xml>    

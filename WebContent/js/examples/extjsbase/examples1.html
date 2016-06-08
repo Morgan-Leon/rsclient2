@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../js/rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<script src="../../../js/rs/lib/ext-3.3.1/adapter/ext/ext-base-debug.js"></script>
+<script src="../../../js/rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+
+<title>Ext的几个简单方法应用</title>
+	<script language="javascript" type="text/javascript">
+		Ext.onReady(function(){
+			/* var config = {
+				a : 'zs' ,
+				b : 3 ,
+				c : 5	
+			} ;
+			
+			var defaults = {
+				d : 5 ,
+				b : 9
+			} ;
+			var o = {} ;
+			
+			Ext.apply(o , config , defaults);
+			
+			for(var p in o){
+				Ext.Msg.alert("提示" , o[p]);
+			} */
+			
+			var o = {
+				a : 13 ,
+				b : 'object'
+			} ;
+			
+			var config = {
+				a : 17 ,	
+				c : 20	
+			} ; 
+			
+			Ext.apply(o , config);
+			
+			var a = this ;
+			
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>

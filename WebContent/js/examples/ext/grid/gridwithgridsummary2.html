@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-mini.js"></script>
+
+<script src="../../../rs/ext/data/GroupingStore.js"></script>
+
+<script src="../../../rs/ext/grid/GridSummary.js"></script>
+<script src="../../../rs/ext/grid/GroupSummary.js"></script>
+<script src="../../../rs/ext/grid/HybridGroupSummary.js"></script>
+
+<style type="text/css">
+    /*
+    .x-grid3-cell-inner {
+        font-family:"segoe ui",tahoma, arial, sans-serif;
+    }
+    .x-grid-group-hd div {
+        font-family:"segoe ui",tahoma, arial, sans-serif;
+    }
+    .x-grid3-hd-inner {
+        font-family:"segoe ui",tahoma, arial, sans-serif;
+        font-size:12px;
+    }
+    .x-grid3-body .x-grid3-td-cost {
+        background-color:#f1f2f4;
+    }
+    .x-grid3-summary-row .x-grid3-td-cost {
+        background-color:#e1e2e4;
+    }
+    .icon-grid {
+        background-image:url(../shared/icons/fam/grid.png) !important;
+    }
+    .x-grid3-dirty-cell {
+        background-image:none;
+    }
+    */
+</style>
+
+<title>Rs.ext.state example</title>
+</head>
+<body style="margin:10px;">
+
+<br> 当前页合计行插件示例，此插件支持对列进行计数、求和、最大值、最小值和求平均数的操作。
+<hr />
+<br />
+<br />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div2" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div3" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+	    var store = new Rs.ext.data.GroupingStore({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url: 'testservice.jsp',
+	        root: 'items',
+	        idProperty: 'CODE',
+	        sortField : 'CODE',
+	        fields: ['CODE', 'NAME', {name:'PRICE', type: 'float'}],
+	        remoteGroup : true,
+	        groupField : 'NAME',
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+	    Ext.apply(store.baseParams.metaData, {
+		    limit : 30
+		});
+	    var summary = new Rs.ext.grid.HybridGroupSummary();
+	    var grid = new Ext.grid.GridPanel({
+	        store: store,
+	        columns: [
+	            {
+	                id       :'CODE',
+	                header   : '物料编码', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'CODE',
+	                summaryType: 'count'
+	            },
+	            {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'NAME'
+                },
+	            {
+	                header   : '计划价', 
+	                width    : 75,
+	                sortable : true, 
+	                dataIndex: 'PRICE',
+	                summaryType: 'sum'
+	            }
+	        ],
+	        view: new Ext.grid.GroupingView({
+	            forceFit:true,
+	            showGroupName: false,
+	            enableNoGroups:false,
+	            enableGroupingMenu:false,
+	            hideGroupedColumn: true
+	        }),
+		    plugins: [summary],
+	        stripeRows: true,
+	        height: 450,
+	        width: 800,
+	        title: '分组合计表格'
+	    });
+	    grid.render('grid-div1');       
+	}, this);
+</script>
+</html>

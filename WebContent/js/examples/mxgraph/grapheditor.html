@@ -1,0 +1,41 @@
+<!--
+  $Id: grapheditor.html,v 1.7 2010-01-02 09:45:15 gaudenz Exp $
+  Copyright (c) 2006-2010, JGraph Ltd
+  
+  Graph Editor example for mxGraph. This example demonstrates using
+  mxGraph inside an ExtJs panel, and integrating tooltips, popupmenus,
+  toolbars and dialogs into mxGraph.
+-->
+<html>
+<head>
+    <title>Graph Editor</title>
+ 
+    <link rel="stylesheet" type="text/css" href="ext-all/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="ext-all/resources/css/xtheme-default.css" />
+    <script type="text/javascript" src="ext-all/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="ext-all/ext-all.js"></script>
+
+    <script type="text/javascript">
+        mxBasePath = '../../rs/lib/mxgraph-1.8.0';
+    </script>
+    <script type="text/javascript" src="../../rs/lib/mxgraph-1.8.0/mxclient-ff.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="grapheditor.css" />
+    <script type="text/javascript" src="grapheditor.js"></script>
+    <script type="text/javascript">
+        // Replaces the built-in alert dialog with ExtJs message dialog (can't
+        // replace confirm and prompt as they are callback-based and we require
+        // a synchronous call with a return value).
+        // Ext.MessageBox.prompt('Prompt', message, null, null, null, defaultValue);
+        // Ext.MessageBox.confirm('Confirm', message);
+        mxUtils.alert = function(message)
+        {
+            Ext.example.msg(message, '', '');
+        };
+    </script>
+</head>
+
+<body onload="main(); /* see js/GraphEditor.js */ ">
+<div id="header"><div style="float:right;margin:5px;" class="x-small-editor"></div></div>
+</body>
+</html>

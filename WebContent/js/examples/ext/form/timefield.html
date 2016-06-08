@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base-debug.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+
+<script src="../../../rs/ext/form/TimeField.js"></script>
+<script src="../../../rs/ext/form/ColorPicker.js"></script>
+<script src="../../../rs/ext/form/ColorPickerFieldPlus.js"></script>
+
+
+
+<title>form panel</title>
+</head>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		Ext.QuickTips.init();
+		
+		this.timeFiled1 = new Rs.ext.form.TimeField({
+			fieldLabel : 'TimeField [hh:mm:ss]',
+			format: 'hh:mm:ss'
+		});
+		
+		this.timeFiled2 = new Rs.ext.form.TimeField({
+			fieldLabel : 'TimeField',
+			readOnly: true
+		});
+		
+		
+		this.timeFiled3 = new Rs.ext.form.TimeField({
+			fieldLabel : 'TimeField',
+			disabled: true
+		});
+		
+		this.timeFiled4 = new Rs.ext.form.TimeField({
+			fieldLabel : 'TimeField [hhmm]',
+			format: 'hhmm'
+		});
+		
+		this.dateFiled5 = new Ext.form.DateField({
+			fieldLabel : 'dateField',
+			format: 'Y/m/d'
+		});
+		
+		var formpanel = new Ext.form.FormPanel({
+			labelWidth : 200 ,
+			title : '数字控件',
+			frame : true ,
+			tbar : [{
+				text: '重置',
+				handler: function(){
+					this.timeFiled1.reset();
+				},
+				scope: this
+			},{
+				text : '获取表单的值' ,
+				handler : function(){
+					var values = formpanel.getForm().getFieldValues();
+					var message = '';
+					for(var p in values){
+						message += p + " <> " + values[p] + '<br/>';
+					}
+					Ext.Msg.alert('提醒',message);
+				} ,
+				scope : this
+			},{
+				text: '设置只读',
+				handler: function(){
+					this.timeFiled1.setReadOnly(true);
+				},
+				scope: this
+			},{
+				text: '设置非只读',
+				handler: function(){
+					this.timeFiled1.setReadOnly(false);
+				},
+				scope: this
+			},{
+				text: '设置disabled',
+				handler: function(){
+					this.timeFiled1.setDisabled(true);
+				},
+				scope: this
+			},{
+				text: '设置非disabled',
+				handler: function(){
+					this.timeFiled1.setDisabled(false);
+				},
+				scope: this
+			},{
+				text: '设置正确值200506',
+				handler: function(){
+					this.timeFiled1.setValue('200506');
+				},
+				scope: this
+			},{
+				text: '设置错误值24:05:06',
+				handler: function(){
+					this.timeFiled1.setValue('24:05:06');
+				},
+				scope: this
+			},{
+				text: '设置格式hh:mm',
+				handler: function(){
+					this.timeFiled1.setFormat('hh:mm');
+				},
+				scope: this
+			},{
+				text: '设置格式hhmm',
+				handler: function(){
+					this.timeFiled1.setFormat('hhmm');
+				},
+				scope: this
+			},{
+				text: '设置格式hhmmss',
+				handler: function(){
+					this.timeFiled1.setFormat('hhmmss');
+				},
+				scope: this
+			},{
+				text: '设置格式hh:mm:ss',
+				handler: function(){
+					this.timeFiled1.setFormat('hh:mm:ss');
+				},
+				scope: this
+			}] ,
+			items : [
+			         this.timeFiled1, 
+			         this.timeFiled2, 
+			         this.timeFiled3, 
+			         this.timeFiled4, 
+			         this.dateFiled5]	
+		});
+		
+		new Ext.Viewport({
+             layout: "fit",
+             items: [formpanel]
+        });
+	}, this);
+</script>
+</html>

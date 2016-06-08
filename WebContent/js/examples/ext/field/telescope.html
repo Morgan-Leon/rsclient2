@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>telescope</title>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+<style>
+    .required .x-form-item-label {
+        font-weight:bold;
+        color:red;
+    }
+</style>
+
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/grid/GeneralselGridPanel.js"></script>
+<script src="../../../rs/ext/grid/GeneralselPanel.js"></script>
+<script src="../../../rs/ext/form/GridLoaderField.js"></script>
+<script src="../../../rs/ext/form/Telescope.js"></script>
+<script language="javascript" type="text/javascript">
+	Ext.onReady(function() {
+
+		//设置displayField 和 valueField
+		var g1 = new Rs.ext.form.GridLoaderField( {
+			progCode : 'orderType',
+			displayField : 'HEAD_TYPE_NAME',
+			valueField : 'HEAD_TYPE',
+			value : 'OST'
+		});
+		g1.render("div1");
+
+		//设置displayField 和 valueField
+		var g2 = new Rs.ext.form.GridLoaderField( {
+			disabled: true,
+            progCode : 'orderType',
+            valueField : 'HEAD_TYPE_NAME',
+            displayField : 'HEAD_TYPE',
+            value : '普通退货'
+        });
+        g2.render("div2");
+
+        //不可为空 
+        //设置默认的查询条件 companyCode = '00'
+        //当真正查询的时候再添加一个查询条件dept_code = 'A3000'
+        var g3 = new Rs.ext.form.GridLoaderField( {
+            progCode : 'invUser',
+            progCondition : 'company_code = \'00\'',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            buildProgCondtion : function(progCondition){
+                return "dept_code = 'A3000'" + (Ext.isEmpty(progCondition, false)?"": " AND " + progCondition);
+            },
+            gridWidth : 450,
+            gridHeight : 500,
+            allowBlank : false,
+            blankText : '用户名不能为空'
+        });
+        g3.render("div3");
+
+        //隐藏Trigger
+        var g4 = new Rs.ext.form.GridLoaderField( {
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            hideTrigger : true
+        });
+        g4.render("div4");
+
+        //emptyText
+        var g5 = new Rs.ext.form.GridLoaderField( {
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            emptyText : '输入用户名称'
+        });
+        g5.render("div5");
+
+        //disabled
+		var g6 = new Rs.ext.form.GridLoaderField({
+			progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '001',
+            disabled : true
+		});
+		g6.render("div6");
+
+		//editable
+        var g7 = new Rs.ext.form.GridLoaderField({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '001',
+            editable : false
+        });
+        g7.render("div7");
+
+        //hidden 
+        var g8 = new Rs.ext.form.GridLoaderField({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '001',
+            hidden : false 
+        });
+        g8.render("div8");        
+
+        //fieldLabel
+        var g9 = new Rs.ext.form.GridLoaderField({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '001',
+            fieldLabel: '用户名',
+            labelSeparator : '~~~~~>',
+            labelStyle: 'font-weight:bold;'
+        });
+        new Ext.FormPanel({
+            renderTo: 'div9',
+            width : 300,
+            items: [g9]
+        });
+
+        //xtype 
+        new Ext.FormPanel({
+            renderTo: 'div10',
+            width : 300,
+            items: [{
+                xtype: 'rs-ext-gridloaderfield',
+                progCode : 'invUser',
+                valueField : 'USER_UNIQUE_ID',
+                displayField : 'PERSON_NAME',
+                gridWidth : 450,
+                value : '001',
+                fieldLabel: '用户名',
+                itemCls: 'required'  //this label will be styled 该样式定义在上面
+            }]
+        });
+
+        //hidden 
+        var g11 = new Rs.ext.form.GridLoaderField({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '001',
+            listeners : {
+        	   beforeexpand : {
+        	      fn : function(){
+                     alert('beforeexpand');
+                  },
+                  scope : this
+               },
+               expand : function(){
+                   //alert('expand');
+               },
+               select : function(){
+                   //alert('select');
+               },
+               passed : function(){
+                   //alert('passed');
+               },
+               unpassed : function(){
+            	   //alert('unpassed');
+               },
+               beforequery : function(){
+                   //alert('beforequery');
+               },
+               query : function(){
+            	   //alert('query');
+               }
+            }
+        });
+        g11.render("div11");  
+        
+        //readOnly
+        var g12 = new Rs.ext.form.GridLoaderField({
+        	progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '001',
+        	readOnly : true,
+        	listeners : {
+        	    change : function(f, v, ov){
+    	            alert('v:' + v + ' ov:' + ov);
+    	        }
+        	}
+        });
+        g12.render('div12');
+        var b13 = new Ext.Button({
+            text : '设置前一个望远镜非只读',
+            renderTo : 'div13',
+            handler : function(){
+               var ro = g12.readOnly == false;
+               g12.setReadOnly(ro);
+               b13.setText(ro ? "设置前一个望远镜非只读" : "设置前一个望远镜只读");
+            },
+            scope : this
+        });
+
+        //readOnly
+        var g14 = new Rs.ext.form.GridLoaderField({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            readOnly : true
+        });
+        g14.render('div14');
+        var b15 = new Ext.Button({
+            text : '设置前一个望远镜非只读',
+            renderTo : 'div15',
+            handler : function(){
+               var ro = g14.readOnly == false;
+               g14.setReadOnly(ro);
+               b15.setText(ro ? "设置前一个望远镜非只读" : "设置前一个望远镜只读");
+            },
+            scope : this
+        });
+
+        //validator
+        var g16 = new Rs.ext.form.GridLoaderField({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            validator : function(value){
+               return value == '001' ? true : '必须选择系统管理员admin';
+            }
+        });
+        g16.render('div16'); 
+
+		//bind
+        var g17 = new Rs.ext.form.GridLoaderField({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450
+        });
+        g17.render('div28'); 
+
+        //buildProgCondtion
+        var t17 = new Rs.ext.form.Telescope({
+        	disabled: true,
+        	progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            singleSelect : true,
+            value : '11',
+            buildProgCondtion : function(progCondition){
+                return "company_code = \'00\'" + (Ext.isEmpty(progCondition, false)?"": " AND " + progCondition);
+            }
+        });
+        t17.render('div17');
+
+        //多选
+        var t18 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            singleSelect : false
+        });
+        t18.render('div18');
+
+        //
+        var t19 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '02203902,02203533,02203667,02200447,02204476,02201223,02201294'
+        });
+        t19.render('div19');
+        
+        //without trigger
+        var t20 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            hideTrigger : true
+        });
+        t20.render('div20');
+
+      	//without trigger
+        var t21 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '02203902,02203533,02203667,02200447,02204476,02201223,02201294',
+            readOnly : true
+        });
+        t21.render('div21');
+
+      	//
+        var t22 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            emptyText : '输入用户名称'
+        });
+        t22.render('div22');
+
+
+        var t29 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            buildProgCondtion : function(progCondition){
+                return "company_code = \'00\'" + (Ext.isEmpty(progCondition, false)?"": " AND " + progCondition);
+            }
+        });
+        t29.render('div29');
+
+      	//
+        var t23 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '02203902,02203533,02203667,02200447,02204476,02201223,02201294',
+            disabled : true
+        });
+        t23.render('div23');
+
+      //fieldLabel
+      	var t24 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '02203902,02203533,02203667,02200447,02204476,02201223,02201294',
+            fieldLabel: '用户名',
+            labelSeparator : '~~~~~>',
+            labelStyle: 'font-weight:bold;'
+        });
+        new Ext.FormPanel({
+            renderTo: 'div24',
+            width : 300,
+            items: [t24]
+        });
+        
+        new Ext.FormPanel({
+            renderTo: 'div25',
+            width : 300,
+            items: [{
+                xtype: 'rs-ext-telescope',
+                progCode : 'invUser',
+                valueField : 'USER_UNIQUE_ID',
+                displayField : 'PERSON_NAME',
+                gridWidth : 450,
+                value : '001',
+                fieldLabel: '用户名',
+                itemCls: 'required'  //this label will be styled 该样式定义在上面
+            }]
+        });
+
+        var t26 = new Rs.ext.form.Telescope({
+            progCode : 'invUser',
+            valueField : 'USER_UNIQUE_ID',
+            displayField : 'PERSON_NAME',
+            gridWidth : 450,
+            value : '001',
+            listeners : {
+        	   beforeexpand : {
+        	      fn : function(){
+                     alert('beforeexpand');
+                  },
+                  scope : this
+               },
+               expand : function(){
+                   alert('expand');
+               },
+               select : function(){
+                   alert('select');
+               },
+               passed : function(){
+                   //alert('passed');
+               },
+               unpassed : function(){
+            	   //alert('unpassed');
+               }
+            }
+        });
+        t26.render("div26"); 
+	
+        var t27 = new Rs.ext.form.Telescope({
+            progCode : 'buyerCode',
+            valueField : 'PM_GROUP_USER.USER_UNIQUE_ID',
+            displayField : 'PM_USER.USER_NAME',
+            gridWidth : 450,
+            value : '001',
+            fieldLabel: '复杂望远镜',
+            labelSeparator : ':',
+            labelStyle: 'font-weight:bold;'
+        });
+        new Ext.FormPanel({
+            renderTo: 'div27',
+            width : 300,
+            items: [t27]
+        });
+        
+	});
+</script>
+</head>
+<body>
+<span></span>
+         本实例演示如何使用望远镜, 此望远镜改变了系统中展示与选取分离的形式，将二者合并为一个控件，
+并且可通过对不同属性设置不同的值来使望远镜呈现不同的状态及样式。    
+<br />
+<br />
+<hr />
+<b>GridLoaderField</b>
+<div>
+<div id="div1" ></div>
+<div id="div2" ></div>
+<div id="div3" ></div>
+<div id="div4" ></div>
+<div id="div5" ></div>
+<div id="div6" ></div>
+<div id="div7" ></div>
+<div id="div8" ></div>
+<div id="div9" ></div>
+<div id="div10" ></div>
+<div id="div11" ></div>
+<div id="div12" ></div>
+<div id="div13" ></div>
+<div id="div14" ></div>
+<div id="div15" ></div>
+<div id="div16" ></div>
+<div id="div28" ></div>
+</div>
+<b>Telescope</b>
+<div id="div17" ></div>
+<div id="div18" ></div>
+<div id="div19" ></div>
+<div id="div20" ></div>
+<div id="div21" ></div>
+<div id="div22" ></div>
+<div id="div29" ></div>
+<div id="div23" ></div>
+<div id="div24" ></div>
+<div id="div25" ></div>
+<div id="div26" ></div>
+<div id="div27" ></div>
+</body>
+</html>

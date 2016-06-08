@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-mini.js"></script>
+<script src="../../../rs/ext/grid/SliderPagingToolbar.js"></script>
+
+<script src="../../../rs/ext/grid/RowEditor.js"></script>
+
+<title>Rs.ext.state example</title>
+</head>
+<body style="margin:10px;">
+<br> 行编辑器使用示例。行编辑器将行数据作为编辑单元，直观，更便于实现行数据中各个字段的编辑验证。
+<br />
+<hr />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+
+		Ext.QuickTips.init();
+	    
+		//可编辑表格
+	    var store2 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            readUrl: '../data/readService.jsp',
+            readMethod : 'readItems',
+            updateUrl : '../data/updateService.jsp', 
+            updateMethod : 'updateItems',
+            createUrl : '../data/createService.jsp',
+            createMethod : 'createItems',
+            destroyUrl : '../data/destroyService.jsp',
+            destroyMethod : 'destroyItems',
+            root: 'items',
+            idProperty: 'code',
+            sortField : 'name',
+            fields: ['code', 'name', {name:'price', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+	    Ext.apply(store2.baseParams.metaData, {
+            limit : 3
+        });
+        
+	    var editor = new Rs.ext.grid.RowEditor({});
+	    
+	    var sm = new Ext.grid.CheckboxSelectionModel({});
+        var grid2 = new Ext.grid.GridPanel({
+            store: store2,
+            sm : sm,
+            columns: [sm, 
+                {
+                    id       : 'code', //ID作为主键, 不能编辑
+                    header   : '物料编码', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'code',
+                    editor   : new Ext.form.Field({})
+                }, {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'name',
+                    editor   : new Ext.form.Field({})
+                }, {
+                    header   : '计划价', 
+                    width    : 75,
+                    sortable : true, 
+                    dataIndex: 'price',
+                    editor   : new Ext.form.Field({})
+                }],
+            stripeRows: true,
+            autoExpandColumn: 'code',
+            height: 400,
+            width: 800,
+            title: '编辑表格',
+            plugins : [editor],
+            tbar: [{
+	                text: '新建',
+	                handler : function(){
+                        var i = store2.getCount() + 1;
+	                    var data = {
+	                        code : 'ITEM-CODE-' + i,
+	                        name : 'ITEM-NAME-' + i,
+	                        price: 10 + i
+	                    };
+	                    editor.stopEditing();
+	                    store2.insert(0, new store2.recordType(data));
+	                    grid2.getView().refresh();
+	                    grid2.getSelectionModel().selectRow(0);
+	                    editor.startEditing(0);
+	                }
+	            }, new Ext.Button({
+	                text : '删除所有',
+	                handler : function(){
+	                	editor.stopEditing();
+	                    store2.removeAll();
+	                },
+	                scope : this
+	            }), new Ext.Button({
+	                text : '删除',
+	                handler : function(){
+	                	editor.stopEditing();
+	                    store2.remove(grid2.getSelectionModel().getSelections());
+	                },
+	                scope : this
+	            }), new Ext.Button({
+	                text : '保存',
+	                handler : function(){
+	                    store2.save();
+	                },
+	                scope : this
+	            })]
+        });
+        grid2.render('grid-div1');	  
+
+	}, this);
+</script>
+</html>

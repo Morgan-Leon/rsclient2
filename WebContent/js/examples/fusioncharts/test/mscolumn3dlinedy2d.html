@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/lib/FusionCharts_v3/FusionCharts.js"></script>
+<script src="../../../rs/lib/FusionCharts_v3/FusionChartsExportComponent.js"></script>
+
+<script src="../../../rs/ext/test/ChartPanel.js"></script>
+<script src="../../../rs/ext/test/Chart3D.js"></script>
+
+
+<title>Rs-ext MonthField example</title>
+<script language="javascript" type="text/javascript">
+
+Ext.onReady(function(){
+
+    var store = new Rs.ext.data.Store({
+    	//autoSave : true ,
+        autoLoad : true,
+        autoDestroy : true,
+        idProperty: 'month',
+        url : '/rsc/js/examples/fusioncharts/test/dataservice.rsc',
+        fields: ['v1', 'v2', 'v3','month'],
+        baseParams : {
+            pm_flag : 'Y'
+        }
+    }) ;
+	
+    var chartPanel = new Rs.ext.chart.Chart3D({
+    	width : 600,
+    	height : 500 ,
+        renderTo : 'div1', 
+        store : store ,
+    	viewFields: ['v1', 'v2', 'v3'],
+    	viewSeriesname : ['A' , 'B' , 'C' ] ,
+    	parentYAxis : ['Y','S','S'] ,
+    	chartType : 'mscolumn3dlinedy'
+    });
+
+    //----------------------------------
+    Ext.apply(store.baseParams.metaData, {
+		    limit : 20
+		});
+	    var grid = new Ext.grid.EditorGridPanel({
+	        store: store,
+	        columns: [
+	        	{
+	                header   : 'Month', 
+	                width    : 75,
+	                dataIndex: 'month'
+	            },
+	            {
+	                header   : 'Product A Sales', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'v1',
+	                editor : new Ext.form.NumberField()
+	            },
+	            {
+                    header   : 'Product B Sales', 
+                    width    : 100, 
+                    sortable : true, 
+	                editor : new Ext.form.NumberField(),
+                    dataIndex: 'v2'
+                },
+	            {
+	                header   : 'Total Downloads', 
+	                width    : 75,
+	                sortable : true, 
+	                editor : new Ext.form.NumberField(),
+	                dataIndex: 'v3'
+	            }
+	        ],
+	        tbar : [
+				new Ext.Button({
+	                text : '保存',
+	                iconCls : 'rs-action-save',
+	                handler : function(){
+	                	store.save();
+	                },
+	                scope : this
+	            })
+	        ] ,
+	        bbar : new Rs.ext.grid.SliderPagingToolbar({
+                pageSize : 20,
+                hasSlider : true,
+                store : store,
+                displayInfo : true,
+                displayMsg: '共{2}条'
+            }),
+	        stripeRows: true,
+	        height: 350,
+	        width: 400,
+	        title: '表格',
+	        renderTo :'div2'
+	    });
+	    //grid.render('div2');
+});
+
+</script>
+</head>
+<body>
+<div id="div1">
+</div>
+<div id="div2">
+</div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<title>Rs ajax Example</title>
+<script type="text/javascript" src="../../rs/rs-debug.js"></script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+	Rs.onReady(function() {
+		Rs.fly('btn1').on('click', function() {
+			Rs.Ajax.request( {
+				url : 'service.jsp',
+				success : function(response) {
+					Rs.fly('out').update(response.responseText);
+				},
+				failure : function(response) {
+					Rs.fly('out').update(response.responseText);
+				},
+				headers : { 
+					'Rs-method' : 'sayHi'
+				},
+				extraParams : {
+					ep : 'ep1'
+				},
+				jsonData : {
+					foo : 'bar2'
+			    }
+			});
+		}, this);
+
+		Rs.fly('btn2').on('click', function() {
+			Rs.Ajax.request( {
+				url : 'service.jsp',
+				el : 'out',
+				autoAbort : true,
+				failure : function() {
+					alert('error');
+				},
+				headers : { 
+					'Rs-method' : 'sayHiToo',
+					'Rs-accept' : 'json'
+				},
+				params : {
+					name : '程序员',
+					books : {
+					first : {
+					    name : 'c++编程',
+					    price : 23.99,
+					    no : 'XD~*-89_!@#$%^*()_+?,.<>&///\\\@##$#'
+					}, 
+					second : {
+						name : 'c程 序 设 计',
+						price : '$50.00',
+						no : '~!@#$%^*()_+'	
+					}}
+				}
+			});
+		}, this);
+
+		Rs.fly('btn3').on('click', function() {
+			Rs.Ajax.request( {
+				url : 'service.jsp',
+				el : 'out',
+				method : 'GET',
+				headers : { 
+					'Rs-method' : 'sayHiTooo',
+					'Rs-accept' : 'json'
+				},
+				params : { 
+					名字 : '世界是平的'
+				}
+			});
+		}, this);
+
+		Rs.Ajax.on('beforerequest', function(ajax, options){
+			alert('参数:' + Rs.encode(options.params));
+		}, this);
+
+		Rs.Ajax.on('requestcomplete', function(ajax, response){
+			alert('响应:' + response.responseText);
+		}, this)
+
+
+		//调用后台业务方法
+		Rs.fly('btn4').on('click', function() {
+            Rs.Service.call( {
+                url : 'service.jsp',
+                method : 'service2'
+            }, function(any) {
+                Rs.fly('out').update(any);
+            }, this);
+        }, this);
+
+		Rs.fly('btn5').on('click', function() {
+            Rs.Service.call( {
+                url : 'service.jsp',
+                method : 'service5'
+            }, function(any) {
+                Rs.fly('out').update(any);
+            }, this);
+        }, this);
+        
+		Rs.fly('btn6').on('click', function() {
+            Rs.Service.call( {
+                url : 'service.jsp',
+                method : 'service8'
+            }, function(any) {
+                Rs.fly('out').update(any);
+            }, this);
+        }, this);
+	}, this);
+</script>
+
+<h3>此例演示如何使用Rs.Ajax以及在请求头中添加Rs-service传递要调用的后台业务方法.</h3>
+
+<br />
+<input id='btn1' type='button' value='click me' />
+<input id='btn2' type='button' value='click me 2' />
+<input id='btn3' type='button' value='click me 3' />
+<input id='btn4' type='button' value='call service 2' />
+<input id='btn5' type='button' value='call service 5' />
+<input id='btn6' type='button' value='call service 8' />
+
+<p id='out'></p>
+<hr />
+<pre style="background-color:E0E0E0;color:blue;font-size:14px;">
+Rs.fly('btn1').on('click', function() {
+	Rs.Ajax.request( {
+		url : 'service.jsp',
+		success : function(response) {
+			Rs.fly('out').update(response.responseText);
+		},
+		failure : function(response) {
+			Rs.fly('out').update(response.responseText);
+		},
+		headers : { 
+			'Rs-method' : 'sayHi'
+		},
+		extraParams : {
+			ep : 'ep1'
+		},
+		jsonData : {
+			foo : 'bar2'
+		}
+	});
+}, this);
+
+Rs.fly('btn2').on('click', function() {
+	Rs.Ajax.request( {
+		url : 'service.jsp',
+		el : 'out',
+		autoAbort : true,
+		failure : function() {
+			alert('error');
+		},
+		headers : { 
+			'Rs-method' : 'sayHiToo',
+			'Rs-accept' : 'json'
+		},
+		params : {
+			name : '程序员',
+			books : {
+				first : {
+					name : 'c++编程',
+					price : 23.99,
+					no : 'XD~*-89_!@#$%^*()_+?,.<>&///\\\@##$#'
+				}, 
+				second : {
+					name : 'c程 序 设 计',
+					price : '$50.00',
+					no : '~!@#$%^*()_+'	
+				}
+			}
+		}
+	});
+}, this);
+
+Rs.fly('btn3').on('click', function() {
+	Rs.Ajax.request( {
+		url : 'service.jsp',
+		el : 'out',
+		method : 'GET',
+		headers : { 
+			'Rs-method' : 'sayHiTooo',
+			'Rs-accept' : 'json'
+		},
+		params : { 
+			名字 : '世界是平的'
+		}
+	});
+}, this);
+
+Rs.Ajax.on('beforerequest', function(ajax, options){
+	alert('参数:' + Rs.encode(options.params));
+}, this);
+
+Rs.Ajax.on('requestcomplete', function(ajax, response){
+	alert('响应:' + response.responseText);
+}, this)
+
+
+//调用后台业务方法
+Rs.fly('btn4').on('click', function() {
+	Rs.Service.call( {
+		url : 'service.jsp',
+		method : 'service2'
+	}, function(any) {
+		Rs.fly('out').update(any);
+	}, this);
+}, this);
+
+Rs.fly('btn5').on('click', function() {
+	Rs.Service.call( {
+		url : 'service.jsp',
+		method : 'service5'
+	}, function(any) {
+		Rs.fly('out').update(any);
+	}, this);
+}, this);
+        
+Rs.fly('btn6').on('click', function() {
+	Rs.Service.call( {
+		url : 'service.jsp',
+		method : 'service8'
+	}, function(any) {
+		Rs.fly('out').update(any);
+	}, this);
+}, this);	
+</pre>
+</body>
+</html>

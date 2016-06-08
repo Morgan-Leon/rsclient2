@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="release"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="extdoclib/commons-cli-1.1.jar"/>
+	<classpathentry kind="lib" path="extdoclib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="extdoclib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="extdoclib/jargs-1.0.jar"/>
+	<classpathentry kind="lib" path="extdoclib/rhino-1.6R7.jar"/>
+	<classpathentry kind="lib" path="extdoclib/extdoc.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/workspace/rsclient2_bate/extdoclib/log4j.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/rsclient2_bate/extdoclib/rsclient2-v2.1-jdk1.4.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/rsclient2_bate/extdoclib/RS10.rstag.20160401.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/rsclient2_bate/extdoclib/RS10.pubFuncs.20140804.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/rsclient2_bate/extdoclib/RS10.pubout.20131108.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/rsclient2_bate/extdoclib/rsproxy.jar"/>
+	<classpathentry kind="lib" path="E:/workspace/rsclient2_bate/extdoclib/RS10.gcserver.20080827.jar"/>
+	<classpathentry kind="lib" path="D:/Program files/apache-tomcat-9.0.0.M6/lib/servlet-api.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

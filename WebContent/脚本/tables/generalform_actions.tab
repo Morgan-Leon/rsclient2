@@ -1,0 +1,37 @@
+create table GENERALFORM_ACTIONS
+(
+  form_code       NVARCHAR2(30) not null,
+  action_no       NUMBER not null,
+  action_name     NVARCHAR2(30),
+  action_type     NVARCHAR2(30),
+  icon_cls        NVARCHAR2(100),
+  tooltip         NVARCHAR2(100),
+  exec_dml        NVARCHAR2(300),
+  call_sp         NVARCHAR2(300),
+  callback        NVARCHAR2(3000),
+  disabled_expression NVARCHAR2(500)
+);
+
+comment on column GENERALFORM_ACTIONS.form_code
+  is '表单编码';
+comment on column GENERALFORM_ACTIONS.action_no
+  is '操作编号';
+comment on column GENERALFORM_ACTIONS.action_name
+  is '操作名称';
+comment on column GENERALFORM_ACTIONS.action_type
+  is '操作类型   load save clear exec javascript';
+comment on column GENERALFORM_ACTIONS.icon_cls
+  is '图标样式';
+comment on column GENERALFORM_ACTIONS.tooltip
+  is '操作说明';
+comment on column GENERALFORM_ACTIONS.callback
+  is '回调方法';
+comment on column GENERALFORM_ACTIONS.exec_dml
+  is '更新表';
+comment on column GENERALFORM_ACTIONS.call_sp
+  is '调用SP';
+comment on column GENERALFORM_ACTIONS.disabled_expression
+  is '禁用表达式';
+alter table GENERALFORM_ACTIONS
+  add constraint PK_GENERALFORM_ACTIONS primary key (FORM_CODE, ACTION_NO);
+  

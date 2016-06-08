@@ -1,0 +1,7 @@
+-- 此行为注释
+-- 编写要合并的CSS样式文件列表
+-- 一行一个文件,按照文件名称顺序合并。
+-- 合并结果为:rs/ext/resources/rs-ext-all.css
+
+-- 基于Ext开发的控件样式文件
+rs/ext/resources/css/rs-ext.css

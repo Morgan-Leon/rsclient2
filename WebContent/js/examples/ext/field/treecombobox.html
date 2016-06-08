@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/tree/TreeLoader.js"></script>
+<script src="../../../rs/ext/form/TreeComboBox.js"></script>
+<title>Rs.ext.form.TreeComboBox example</title>
+</head>
+<body>
+<br />
+<br />
+<br>下拉框树示例，下拉框树控件是下拉框和树控件的结合，下拉框中可选项是一个树型结构。
+<br>应用场景：要从一个有层级结构的对象中选择成员。
+<br>优点：直观
+<br />
+<br />
+<div>
+<div id = "div1"></div>
+</div>
+</body>
+<script>
+Rs.onReady(function() {
+	var tree = new Ext.tree.TreePanel({
+	        height: 500,
+	        width: 400,
+	        border : false,
+	        useArrows:true,
+	        autoScroll:true,
+	        animate:true,
+	        containerScroll: true,
+	        rootVisible: false,
+	        frame: true,
+	        bodyStyle : 'background-color:#FFFFFF;',
+	        root: {
+	            nodeType: 'async',
+                code : 'root',
+                type : 'root'
+	        },
+	        loader : new Rs.ext.tree.TreeLoader( {
+	            dataUrl: '../tree/service.jsp',
+	            method : 'getSubAccounts',
+	            nodeAttrsParams : ["code", "type"]
+            })
+	    });
+	var tc = new Rs.ext.form.TreeComboBox({
+		tree : tree,
+		fieldLabel : "下拉框树"
+	});
+
+    new Ext.FormPanel({
+        renderTo: 'div1',
+        width : 600,
+		style:'margin-left:20px',
+        border : false,
+        items: [tc]
+    });
+	tc.on('submit',function(box, member){
+		tc.setRawValue(member.text);
+		},this);
+}, this);
+</script>
+</html>

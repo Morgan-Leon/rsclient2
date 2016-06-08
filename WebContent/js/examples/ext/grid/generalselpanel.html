@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/data/GeneralselStore.js"></script>
+<script src="../../../rs/ext/grid/GeneralselGridPanel.js"></script>
+
+<script src="../../../rs/ext/grid/GeneralselPanel.js"></script>
+<script src="../../../rs/ext/grid/SliderPagingToolbar.js"></script>
+
+<title>generalsel panel</title>
+</head>
+<body style="margin: 10px;">
+<br>本实例演示如何使用Rs.ext.grid.GeneralselPanel，即望远镜面板。
+<br>该面板是一个望远镜容器，包括查询头信息（支持多个查询头位置），数据表格等信息。可使用该面板快速开发出简单的查询页面，不用再编写后台查询JSP。
+<br />
+<br />
+<hr />
+<button id='btn1'>窗口1</button>
+<button id='btn2'>窗口2</button>
+<button id='btn3'>窗口3</button>
+<button id='btn4'>窗口4</button>
+<div>
+	<div id="div1" style="margin-left: 20px; float: left;"></div>
+	<div id="div2" style="margin-left: 20px; float: left;"></div>
+	<div id="div3" style="margin-left: 20px; float: left;"></div>
+	<div id="div4" style="margin-left: 20px; float: left;"></div>
+	<div id="div5" style="margin-left: 20px; float: left;"></div>
+	<div id="div6" style="margin-left: 20px; float: left;"></div>
+	<div id="div7" style="margin-left: 20px; float: left;"></div>
+	<div id="div8" style="margin-left: 20px; float: left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Ext.onReady(function() {
+		Ext.QuickTips.init();
+		/**
+		 * 该面板测试调整窗口大小，查询条和表的布局
+		 */
+		var p1 = new Rs.ext.grid.GeneralselPanel( {
+			progCode :  'SelFixValueChange',
+			progCondition : ' company_code = \'00\'',
+			pageSize : false, //不进行分页
+			queryPanelCollapsed : false,  //查询面板自动展开
+		    gridConfig : {
+                 sm : new Ext.grid.CheckboxSelectionModel() //设置selection model
+		    }
+		});
+		var w1 = new Ext.Window({
+			title : '订单明细表格1',
+			layout:'fit',
+			width:500,
+			height:400,
+			modal : true,
+			closeAction:'hide',
+			plain: true,
+			border : false,
+			maximizable : true,
+			items: p1,
+			draggable : false
+		});
+	    Ext.fly('btn1').on('click', function(){
+	    	if(w1.isVisible()){
+	    		w1.hide();
+		    }else {
+		    	w1.show();
+			}
+		}, this);
+	    
+		/**
+		 * RSC2_oraDetail1 该望远镜查询多个表的数据，所以查询条件中必须拼上所要查询的表的别名
+		 */
+		var p2 = new Rs.ext.grid.GeneralselPanel( {
+			title : '订单明细表格2',
+			height : 350,
+			width : 400,
+			queryPanelCollapsed : false,  //查询面板自动展开
+			progCode : 'RSC2_ordDetail1',
+			progCondition : ' a.company_code = \'00\''
+		});
+		p2.render('div2');
+		
+		/**
+		 * 测试分页
+		 */
+		var p3 = new Rs.ext.grid.GeneralselPanel({
+		    height : 350,
+		    width : 400,
+		    progCode : 'invVendor',
+		    pageSize : 100,
+            progCondition : ' company_code = \'00\''
+		});
+		p3.render('div3');
+
+	    //查选面板在右侧
+		var p4 = new Rs.ext.grid.GeneralselPanel({
+			height : 350,
+            width : 400,
+            queryPanelPosition : 'west',
+            progCode : 'invVendor',
+            progCondition : ' company_code = \'00\''
+	    });
+	    var w4 = new Ext.Window({
+	    	title : '',
+            layout:'fit',
+            width:500,
+            height:400,
+            closeAction:'hide',
+            plain: true,
+            border : false,
+            maximizable : true,
+            items: p4
+		});		
+	    Ext.fly('btn2').on('click', function(){
+		    w4.isVisible()?w4.hide():w4.show();
+		}, this);
+
+	    //查询条件较多
+		var p5 = new Rs.ext.grid.GeneralselPanel({
+            height : 350,
+            width : 400,
+            queryPanelPosition : 'east',
+            progCode :  'SelFixValueChange',
+            progCondition : ' company_code = \'00\''
+        });
+        var w5 = new Ext.Window({
+            title : '',
+            layout:'fit',
+            width:500,
+            height:200,
+            closeAction:'hide',
+            plain: true,
+            border : false,
+            maximizable : true,
+            items: p5
+        });
+        Ext.fly('btn3').on('click', function(){
+            w5.isVisible()?w5.hide():w5.show();
+        }, this);
+
+        //查询条件较多
+        var p6 = new Rs.ext.grid.GeneralselPanel({
+            height : 350,
+            width : 400,
+            queryPanelPosition : 'south',
+            progCode :  'SelFixValueChange',
+            progCondition : ' company_code = \'00\''
+        });
+        var w6 = new Ext.Window({
+            title : '',
+            layout:'fit',
+            width:500,
+            height:200,
+            closeAction:'hide',
+            plain: true,
+            border : false,
+            maximizable : true,
+            items: p6
+        });
+        Ext.fly('btn4').on('click', function(){
+            w6.isVisible()?w6.hide():w6.show();
+        }, this);
+        
+        		
+	}, this);
+</script>
+</html>

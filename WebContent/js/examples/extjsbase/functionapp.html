@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../js/rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+<script src="../../../js/rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../js/rs/lib/ext-3.3.1/ext-all-debug.js"></script>
+
+
+<title>Ext的几个简单方法应用</title>
+	<script language="javascript" type="text/javascript">
+		Ext.onReady(function(){
+			/*
+			var cfg1 = {
+				name : 'tom' ,
+				age : 23
+			} ;
+			
+			var cfg2 = {
+				age : 25 ,
+				sex : 'boy'
+			}
+			var o = {} ;
+			Ext.apply(o , cfg1 , cfg2);
+			for(var p in o){
+				alert(o[p]);
+			}
+			
+			var div = {
+				width : 300 ,
+				height : 400 ,
+				'background-color' : 'red'
+			}
+			
+			Ext.applyIf(div , {
+				width : 560 ,
+				float : 'left'
+			});
+			for(var p in div){
+				alert(div[p]);
+			}*/
+				
+			function Animal(){
+			}
+			
+			Animal.prototype.move = function(){
+				alert("移动");
+			}
+			
+			function Person(name , age){
+				this.name = name ;
+				this.age = age ;
+			}
+			
+			Ext.extend(Person , Animal , {
+				say : function(){
+					alert("说话") ;
+				} ,
+				move : function(){
+					alert(this.name + "在走路");
+				}
+			});
+			var p = new Person("Tom" , 23) ;
+			p.say();
+			p.move();
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>

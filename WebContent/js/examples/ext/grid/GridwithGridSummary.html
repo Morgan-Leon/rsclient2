@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+<script src="../../../rs/ext/grid/SliderPagingToolbar.js"></script>
+
+<script src="../../../rs/ext/grid/GridPageSummary.js"></script>
+<script src="../../../rs/ext/grid/HybridGridSummary.js"></script>
+
+<title>Rs.ext.state example</title>
+</head>
+<body style="margin:10px;">
+
+<br> 当前页合计行插件示例，此插件支持对列进行计数、求和、最大值、最小值和求平均数的操作。
+<hr />
+<br />
+<br />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div4" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div2" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div3" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+
+		Ext.QuickTips.init();
+		
+		// custom summary renderer example
+		function totalCompanies(v, params, data) {
+			return v?'共' + v +'条':'' ;
+		}
+		
+	    var store = new Rs.ext.data.Store({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url: 'testservice.jsp',//'../data/service.jsp',
+	        root: 'items',
+	        idProperty: 'CODE',
+	        sortField : 'CODE',
+	        fields: ['CODE', 'NAME', {name:'PRICE', type: 'float'}],
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+	    Ext.apply(store.baseParams.metaData, {
+		    limit : 20
+		});
+	    var summary = new Rs.ext.grid.GridPageSummary();
+	    var grid = new Ext.grid.GridPanel({
+	        store: store,
+	        columns: [
+	            {
+	                id       :'code',
+	                header   : '物料编码', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'CODE',
+	                summaryType: 'count',
+	                summaryRenderer: totalCompanies
+	            },
+	            {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'NAME'
+                },
+	            {
+	                header   : '计划价', 
+	                width    : 75,
+	                sortable : true, 
+	                dataIndex: 'PRICE',
+	                summaryType: 'sum'
+	            }
+	        ],
+		    plugins: [summary],//
+	        stripeRows: true,
+	        //autoExpandColumn: 'CODE',
+	        height: 350,
+	        width: 400,
+	        title: '带有页合计的表格'
+	    });
+	    grid.render('grid-div1');  
+
+	    var store3 = new Rs.ext.data.Store({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url: 'testservice.jsp',//'../data/service.jsp',
+	        root: 'items',
+	        idProperty: 'CODE',
+	        sortField : 'CODE',
+	        fields: ['CODE', 'NAME', {name:'PRICE', type: 'float'}],
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+	    Ext.apply(store3.baseParams.metaData, {
+		    limit : 20
+		});
+	    var summary2 = new Rs.ext.grid.GridSummary();
+	    var grid3 = new Ext.grid.GridPanel({
+	        store: store3,
+	        columns: [
+	            {
+	                id       :'code',
+	                header   : '物料编码', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'CODE',
+	                summaryType: 'count',
+	                summaryRenderer: totalCompanies
+	            },
+	            {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'NAME'
+                },
+	            {
+	                header   : '计划价', 
+	                width    : 75,
+	                sortable : true, 
+	                dataIndex: 'PRICE',
+	                summaryType: 'sum'
+	            }
+	        ],
+		    plugins: [summary2],//
+	        stripeRows: true,
+	        //autoExpandColumn: 'CODE',
+	        height: 350,
+	        width: 400,
+	        title: '带有页合计的表格'
+	    });
+	    grid3.render('grid-div4');
+	    
+	    var store1 = new Rs.ext.data.Store({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url: 'testservice.jsp',//'../data/service.jsp',
+	        root: 'items',
+	        idProperty: 'CODE',
+	        sortField : 'CODE',
+	        fields: ['CODE', 'NAME', {name:'PRICE', type: 'float'}],
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+	    Ext.apply(store1.baseParams.metaData, {
+		    limit : 20
+		});
+	    var totalsummary = new Rs.ext.grid.HybridGridSummary();
+	    var grid1 = new Ext.grid.GridPanel({
+	        store: store1,
+	        columns: [
+	            {
+	                id       :'code',
+	                header   : '物料编码', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'CODE',
+	                summaryType: 'count',
+	                summaryRenderer: totalCompanies
+	            },
+	            {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'NAME'
+                },
+	            {
+	                header   : '计划价', 
+	                width    : 75,
+	                sortable : true, 
+	                dataIndex: 'PRICE',
+	                summaryType: 'sum'
+	            }
+	        ],
+		    plugins: [totalsummary],//
+	        stripeRows: true,
+	        //autoExpandColumn: 'CODE',
+	        height: 350,
+	        width: 400,
+	        title: '带有总合计的表格'
+	    });
+	    grid1.render('grid-div2');
+	    
+
+	    var store2 = new Rs.ext.data.Store({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        url: 'testservice.jsp',//'../data/service.jsp',
+	        root: 'items',
+	        idProperty: 'CODE',
+	        sortField : 'CODE',
+	        fields: ['CODE', 'NAME', {name:'PRICE', type: 'float'}],
+	        baseParams : {
+	            pm_flag : 'Y'
+	        }
+	    });
+	    Ext.apply(store2.baseParams.metaData, {
+		    limit : 20
+		});
+	    var summary1 = new Rs.ext.grid.GridPageSummary();
+	    var totalsummary1 = new Rs.ext.grid.HybridGridSummary();
+	    var grid2 = new Ext.grid.GridPanel({
+	        store: store2,
+	        columns: [
+	            {
+	                id       :'code',
+	                header   : '物料编码', 
+	                width    : 100, 
+	                sortable : true, 
+	                dataIndex: 'CODE',
+	                summaryType: 'count',
+	                summaryRenderer: totalCompanies
+	            },
+	            {
+                    header   : '物料名称', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'NAME'
+                },
+	            {
+	                header   : '计划价', 
+	                width    : 75,
+	                sortable : true, 
+	                dataIndex: 'PRICE',
+	                summaryType: 'sum'
+	            }
+	        ],
+		    plugins: [summary1,totalsummary1],//
+	        stripeRows: true,
+	        //autoExpandColumn: 'CODE',
+	        height: 350,
+	        width: 400,
+	        title: '带有页合计与总合计的表格'
+	    });
+	    grid2.render('grid-div3');
+	}, this);
+</script>
+</html>

@@ -1,0 +1,84 @@
+<div class="body-wrap" xmlns:ext="http://www.extjs.com"><div class="top-tools"><a class="inner-link" href="#Rs.ext.data.Store-props"><img src="resources/images/default/s.gif" class="item-icon icon-prop">Properties</a>&#13;<a class="inner-link" href="#Rs.ext.data.Store-methods"><img src="resources/images/default/s.gif" class="item-icon icon-method">Methods</a>&#13;<a class="inner-link" href="#Rs.ext.data.Store-events"><img src="resources/images/default/s.gif" class="item-icon icon-event">Events</a>&#13;<a class="inner-link" href="#Rs.ext.data.Store-configs"><img src="resources/images/default/s.gif" class="item-icon icon-config">Config Options</a>&#13;<a class="bookmark" href="../docs/?class=Rs.ext.data.Store"><img src="resources/images/default/s.gif" class="item-icon icon-fav">Direct Link</a>&#13;</div><h1>Class <a href="source/rs-ext-debug.html#cls-Rs.ext.data.Store">Rs.ext.data.Store</a></h1><table cellspacing="0"><tr><td class="label">Package:</td><td class="hd-info">Rs.ext.data</td></tr><tr><td class="label">Defined In:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Rs.ext.data.Store">rs-ext-debug.js</a></td></tr><tr><td class="label">Class:</td><td class="hd-info"><a href="source/rs-ext-debug.html#cls-Rs.ext.data.Store">Store</a></td></tr><tr><td class="label">Subclasses:</td><td class="hd-info"><a href="output/Rs.ext.data.GeneralselStore.html" ext:cls="Rs.ext.data.GeneralselStore">GeneralselStore</a>,&#13;<a href="output/Rs.ext.data.GroupingStore.html" ext:cls="Rs.ext.data.GroupingStore">GroupingStore</a>,&#13;<a href="output/Rs.ext.grid.TreeStore.html" ext:cls="Rs.ext.grid.TreeStore">TreeStore</a></td></tr><tr><td class="label">Extends:</td><td class="hd-info">Object</td></tr></table><div class="description">不支持远程对多个字段进行排序, 默认可进行远程排序
+可将对数据的增删改查发送到不同的URL
+如果没有readUrl, upateUrl, createUrl, destroyUrl，则把请求发送给默认的url
+如果没有readMethod, updateMethod, createMethod, destroyMethod 则将调用默认的
+read upate create destroy 方法.
+查询数据URL为readService.jsp 调用的查询方法为readItems
+更新数据URL为updateService.jsp 调用的更新方法为updateItems
+新建数据URL为createService.jsp 调用的新增方法为createItems
+删除数据URL为destroyService.jsp 调用的删除方法为destroyItems
+如下配置即可：
+<pre><code><b>var</b> store2 = <b>new</b> Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            readUrl: <em>'readService.jsp'</em>,
+            readMethod : <em>'readItems'</em>,
+            updateUrl : <em>'updateService.jsp'</em>, 
+            updateMethod : <em>'updateItems'</em>,
+            createUrl : <em>'createService.jsp'</em>,
+            createMethod : <em>'createItems'</em>,
+            destroyUrl : <em>'destroyService.jsp'</em>,
+            destroyMethod : <em>'destroyItems'</em>,
+            root: <em>'items'</em>,
+            idProperty: <em>'code'</em>,
+            sortField : <em>'name'</em>,
+            fields: [<em>'code'</em>, <em>'name'</em>, {name:<em>'price'</em>, type: <em>'float'</em>}],
+            baseParams : {
+                pm_flag : <em>'Y'</em>
+            }
+       });</code></pre></div><div class="hr"></div><a id="Rs.ext.data.Store-configs"></a><h2>Config Options</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Config Options</th><th class="msource-header">Defined By</th></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-autoSave"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-autoSave">autoSave</a></b> : Boolean<div class="mdesc"><p>
+主动保存, 当用户修改或删除了数据,将马上发送请求与后台同步
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-createMethod"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-createMethod">createMethod</a></b> : String<div class="mdesc"><p>
+增加方法名.
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-createUrl"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-createUrl">createUrl</a></b> : String<div class="mdesc"><p>
+增加url.
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-destroyMethod"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-destroyMethod">destroyMethod</a></b> : String<div class="mdesc"><p>
+删除方法名.
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-destroyUrl"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-destroyUrl">destroyUrl</a></b> : String<div class="mdesc"><p>
+删除url.
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-pruneModifiedRecords"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-pruneModifiedRecords">pruneModifiedRecords</a></b> : Boolean<div class="mdesc"></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-readMethod"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-readMethod">readMethod</a></b> : String<div class="mdesc"><p>
+读取方法名.
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-readUrl"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-readUrl">readUrl</a></b> : String<div class="mdesc"><p>
+读取url.
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-remoteSort"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-remoteSort">remoteSort</a></b> : Boolean<div class="mdesc"><p>
+远程排序, 默认为true.
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-updateMethod"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-updateMethod">updateMethod</a></b> : String<div class="mdesc"><p>
+更新方法名.
+</p></div></td><td class="msource">Store</td></tr><tr class="config-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-updateUrl"></a><b><a href="source/rs-ext-debug.html#cfg-Rs.ext.data.Store-updateUrl">updateUrl</a></b> : String<div class="mdesc"><p>
+更新url.
+</p></div></td><td class="msource">Store</td></tr></tbody></table><a id="Rs.ext.data.Store-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Rs.ext.data.Store-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-Store"></a><b><a href="source/rs-ext-debug.html#cls-Rs.ext.data.Store">Store</a></b>(&nbsp;<code>Object&nbsp;config</code>&nbsp;)
+    <div class="mdesc"><div class="short"></div><div class="long"><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>config</code> : Object<div class="sub-desc"></div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Store</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-load"></a><b><a href="source/rs-ext-debug.html#method-Rs.ext.data.Store-load">load</a></b>(&nbsp;<code>Object&nbsp;options</code>&nbsp;)
+    :
+                                        Boolean<div class="mdesc"><div class="short">Loads the Record cache from the configured proxy using the configured reader.&#13;
+Notes:&lt;div class="mdetail-params"&gt;&#13;
+Im...</div><div class="long"><p>Loads the Record cache from the configured <tt><a href="output/Rs.ext.data.Store.html#Rs.ext.data.Store-proxy" ext:member="proxy" ext:cls="Rs.ext.data.Store">proxy</a></tt> using the configured <tt><a href="output/Rs.ext.data.Store.html#Rs.ext.data.Store-reader" ext:member="reader" ext:cls="Rs.ext.data.Store">reader</a></tt>.</p>
+<br><p>Notes:</p><div class="mdetail-params"><ul>
+<li><b><u>Important</u></b>: loading is asynchronous! This call will return before the new data has been
+loaded. To perform any post-processing where information from the load call is required, specify
+the <tt>callback</tt> function to be called, or use a <a href="output/Ext.util.Observable.html#Ext.util.Observable-listeners" ext:member="listeners" ext:cls="Ext.util.Observable">a 'load' event handler</a>.</li>
+<li>If using <a href="output/Ext.PagingToolbar.html" ext:cls="Ext.PagingToolbar">remote paging</a>, the first load call must specify the <tt>start</tt> and <tt>limit</tt>
+properties in the <code>options.params</code> property to establish the initial position within the
+dataset, and the number of Records to cache on each read from the Proxy.</li>
+<li>If using <a href="output/Rs.ext.data.Store.html#Rs.ext.data.Store-remoteSort" ext:member="remoteSort" ext:cls="Rs.ext.data.Store">remote sorting</a>, the configured <code><a href="output/Rs.ext.data.Store.html#Rs.ext.data.Store-sortInfo" ext:member="sortInfo" ext:cls="Rs.ext.data.Store">sortInfo</a></code>
+will be automatically included with the posted parameters according to the specified
+<code><a href="output/Rs.ext.data.Store.html#Rs.ext.data.Store-paramNames" ext:member="paramNames" ext:cls="Rs.ext.data.Store">paramNames</a></code>.</li>
+</ul></div><div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>options</code> : Object<div class="sub-desc">An object containing properties which control loading options:<ul>
+<li><b><tt>params</tt></b> :Object<div class="sub-desc"><p>An object containing properties to pass as HTTP
+parameters to a remote data source. <b>Note</b>: <code>params</code> will override any
+<code><a href="output/Rs.ext.data.Store.html#Rs.ext.data.Store-baseParams" ext:member="baseParams" ext:cls="Rs.ext.data.Store">baseParams</a></code> of the same name.</p>
+<p>Parameters are encoded as standard HTTP parameters using <a href="output/Ext.html#Ext-urlEncode" ext:member="urlEncode" ext:cls="Ext">Ext.urlEncode</a>.</p></div></li>
+<li><b>callback</b> : Function<div class="sub-desc"><p>A function to be called after the Records
+have been loaded. The callback is called after the load event is fired, and is passed the following arguments:<ul>
+<li>r : Ext.data.Record[] An Array of Records loaded.</li>
+<li>options : Options object from the load call.</li>
+<li>success : Boolean success indicator.</li></ul></p></div></li>
+<li><b>scope</b> : Object<div class="sub-desc"><p>Scope with which to call the callback (defaults
+to the Store object)</p></div></li>
+<li><b>add</b> : Boolean<div class="sub-desc"><p>Indicator to append loaded records rather than
+replace the current cache.  <b>Note</b>: see note for <tt><a href="output/Rs.ext.data.Store.html#Rs.ext.data.Store-loadData" ext:member="loadData" ext:cls="Rs.ext.data.Store">loadData</a></tt></p></div></li>
+</ul></div></li></ul><strong>Returns:</strong><ul><li><code>Boolean</code><div class="sub-desc">If the &lt;i&gt;developer&lt;/i&gt; provided &lt;tt&gt;{@link #beforeload}&lt;/tt&gt; event handler returns&#13;
+&lt;tt&gt;false&lt;/tt&gt;, the load call will abort and will return &lt;tt&gt;false&lt;/tt&gt;; otherwise will return &lt;tt&gt;true&lt;/tt&gt;.</div></li></ul></div></div></div></td><td class="msource">Store</td></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Rs.ext.data.Store-singleSort"></a><b><a href="source/rs-ext-debug.html#method-Rs.ext.data.Store-singleSort">singleSort</a></b>(&nbsp;<code>String&nbsp;fieldName</code>,&nbsp;<code>String&nbsp;dir</code>&nbsp;)
+    :
+                                        void<div class="mdesc"><div class="short">重写的Ext.data.Store.singleSort方法, 原方法中，&#13;
+如果是远程排序则，将已经修改的sortToggle和sortInfo又重新赋值给当前Sort对象，这是有问题滴。</div><div class="long">重写的<a href="output/Ext.data.Store.html#Ext.data.Store-singleSort" ext:member="singleSort" ext:cls="Ext.data.Store">Ext.data.Store.singleSort</a>方法, 原方法中，
+如果是远程排序则，将已经修改的sortToggle和sortInfo又重新赋值给当前Sort对象，这是有问题滴。<div class="mdetail-params"><strong>Parameters:</strong><ul><li><code>fieldName</code> : String<div class="sub-desc">排序字段</div></li><li><code>dir</code> : String<div class="sub-desc">排序方式</div></li></ul><strong>Returns:</strong><ul><li>void</li></ul></div></div></div></td><td class="msource">Store</td></tr></tbody></table><a id="Rs.ext.data.Store-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

@@ -1,0 +1,43 @@
+.monitor {
+	background-color : black;
+	overflow : auto;
+	color : green;
+	font-size: 13px;
+}
+.monitor-icon16 {
+	background: url(monitor-1.png) 0px 0px no-repeat;
+}
+
+.monitor-store {
+	color : #00FF00;
+}
+
+.monitor-service {
+	color : #FF8C00;
+}
+
+.monitor-component {
+	color : #FFC0CB;
+}
+
+.monitor-engine {
+	color : #87CEFA;
+}
+
+.monitor-treeloader {
+	color : #8FBC8B;
+}
+
+.monitor-default {
+	color : green;
+}
+
+.monitor-time {
+	font-weight : bold;
+	font-style : oblique; 
+}
+
+.monitor-warning {
+	font-weight : bold;
+	color : yellow;
+}

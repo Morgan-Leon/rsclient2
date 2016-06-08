@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/grid/SliderPagingToolbar.js"></script>
+
+<title>grid</title>
+</head>
+<body>
+<br> 单、多选模型的单元格复制示例。
+<br> 应用场景：某单元格内容与另一已编辑单元格内容相同。
+<br />
+<br /> 
+<hr />
+<div>
+    <div id="grid-div1" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div2" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div3" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div4" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div5" style="margin-left:20px; float:left;"></div>
+    <div id="grid-div6" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+    Rs.onReady(function() {
+        
+        Ext.QuickTips.init();
+
+        var store = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'testservice.jsp',
+            fields: ['CODE', 'NAME', {name:'PRICE', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        var grid = new Ext.grid.GridPanel({
+            store: store,
+            sm : new Rs.ext.grid.RowCellSelectionModel(),
+            title : "不可编辑单选表格，选中单元格所在行被选中，ctrl+c复制此单元格内容",//'Rs.ext.grid.RowCellSelectionModel',
+            columns: [{
+                    header   : 'CODE', 
+                    width    : 170,
+                    sortable : true, 
+                    dataIndex: 'CODE'
+                }, {
+                    header   : 'NAME', 
+                    width    : 150, 
+                    sortable : true, 
+                    dataIndex: 'NAME'
+                }, {
+                	header   : 'PRICE', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'PRICE'
+                }
+            ],
+            height: 350,
+            width: 500,
+            bbar: new Rs.ext.grid.SliderPagingToolbar({
+                pageSize : 20,
+                hasSlider : true,
+                store : store,
+                displayInfo : false
+            })
+        });
+        grid.render('grid-div1');
+
+
+        //表格2
+        var store2 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'testservice.jsp',
+            fields: ['CODE', 'NAME', {name:'PRICE', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        var sm2 = new Rs.ext.grid.CheckboxCellSelectionModel();
+        var grid2 = new Ext.grid.GridPanel({
+            store: store2,
+            title : "不可编辑多选表格，点击复选框选中行，点击单元格，ctrl+c复制此单元格内容",//'Rs.ext.grid.CheckboxCellSelectionModel',
+            sm : sm2,
+            columns: [sm2, {
+                    header   : 'CODE', 
+                    width    : 170,
+                    sortable : true, 
+                    dataIndex: 'CODE'
+                }, {
+                    header   : 'NAME', 
+                    width    : 150, 
+                    sortable : true, 
+                    dataIndex: 'NAME'
+                }, {
+                    header   : 'PRICE', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'PRICE'
+                }
+            ],
+            height: 350,
+            width: 500,
+            bbar: new Rs.ext.grid.SliderPagingToolbar({
+                pageSize : 20,
+                hasSlider : true,
+                store : store2,
+                displayInfo : false
+            })
+        });
+        grid2.render('grid-div2');
+
+
+        //表格4
+        var store4 = new Rs.ext.data.Store({
+            autoLoad : true,
+            autoDestroy: true,
+            url: 'testservice.jsp',
+            fields: ['CODE', 'NAME', {name:'PRICE', type: 'float'}],
+            baseParams : {
+                pm_flag : 'Y'
+            }
+        });
+        var sm4 = new Rs.ext.grid.CheckboxCellSelectionModel();
+        var grid4 = new Ext.grid.EditorGridPanel({
+            store: store4,
+            title : "可编辑多选表格，点击复选框选中行，点击单元格，ctrl+c复制此单元格内容",//'Rs.ext.grid.CheckboxCellSelectionModel',
+            sm : sm4,
+            columns: [sm4, {
+                    header   : 'CODE', 
+                    width    : 170,
+                    sortable : true, 
+                    dataIndex: 'CODE' 
+                }, {
+                    header   : 'NAME', 
+                    width    : 150, 
+                    sortable : true, 
+                    dataIndex: 'NAME',
+                    editor   : new Ext.form.Field({})
+                }, {
+                    header   : 'PRICE', 
+                    width    : 100, 
+                    sortable : true, 
+                    dataIndex: 'PRICE',
+                    editor   : new Ext.form.Field({})
+                }
+            ],
+            height: 350,
+            width: 500,
+            bbar: new Rs.ext.grid.SliderPagingToolbar({
+                pageSize : 20,
+                hasSlider : true,
+                store : store4,
+                displayInfo : false
+            })
+        });
+        grid4.render('grid-div4');
+        
+    }, this);
+</script>
+</html>

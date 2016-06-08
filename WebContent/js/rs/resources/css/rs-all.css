@@ -1,0 +1,2204 @@
+/**
+ * 基本样式规范
+ */
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td{margin:0;padding:0;}img,body,html{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}ol,ul {list-style:none;}caption,th {text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;}q:before,q:after{content:'';}
+html{overflow-y:hidden;overflow-x:hidden;}
+
+/******************************* 操作样式图标 *******************************/
+
+/** 取消 **/
+.rs-action-cancel {
+	width : 20px;
+    height : 16px;
+    background: url(../images/cancel.gif) 0px 0px no-repeat !important;
+}
+
+/** 清空 **/
+.rs-action-clear {
+	width : 20px;
+    height : 16px;
+    background: url(../images/clear.png) 0px 0px no-repeat !important;
+}
+
+/** 保存 **/
+.rs-action-save {
+	width : 20px;
+    height : 16px;
+    background: url(../images/save.png) 0px 0px no-repeat !important;
+}
+
+/** 删除 **/
+.rs-action-remove {
+	width : 20px;
+    height : 16px;
+    background: url(../images/application-delete.png) 0px 0px no-repeat !important;
+}
+.rs-action-documents-remove {
+	width : 20px;
+    height : 16px;
+    background: url(../images/cross.png) 0px 0px no-repeat !important;
+}
+
+/** 修改 **/
+.rs-action-modify {
+    width : 20px;
+    height : 16px;
+    background: url(../images/application-edit.png) 0px 0px no-repeat !important;
+}
+
+/** 修改 **/
+.rs-action-download-enable {
+    width : 20px;
+    height : 16px;
+    background: url(../images/download_green.png) 0px 0px no-repeat !important;
+}
+.rs-action-download-disable {
+    width : 20px;
+    height : 16px;
+    background: url(../images/download_gray.png) 0px 0px no-repeat !important;
+}
+
+/** 帮助 **/
+.rs-action-help {
+    width : 20px;
+    height : 16px;
+    background: url(../images/help-hint.png) 0px -1px no-repeat !important;
+}
+
+/** 成批接收 **/
+.rs-action-batch {
+    width : 20px;
+    height : 16px;
+    background: url(../images/application-cascade.png) 0px 0px no-repeat !important;
+}
+
+/** 修改条件 **/
+.rs-action-condition {
+    width : 20px;
+    height : 16px;
+    background: url(../images/application-form-edit.png) 0px 0px no-repeat !important;
+}
+
+/** 创建方案 **/
+.rs-action-scheme {
+    width : 20px;
+    height : 16px;
+    background: url(../images/page-add.png) 0px 0px no-repeat !important;
+}
+
+/** 例外信息 **/
+.rs-action-exception {
+    width : 20px;
+    height : 16px;
+    background: url(../images/exclamation.png) 0px 0px no-repeat !important;
+}
+
+/** 应用 **/
+.rs-action-apply {
+    width : 20px;
+    height : 16px;
+    background: url(../images/apply.png) 0px 0px no-repeat !important;
+}
+
+/** 设置 **/
+.rs-action-settings {
+    width : 20px;
+    height : 16px;
+    background: url(../images/settings.png) 0px 0px no-repeat !important;
+}
+
+/** 设置默认 **/
+.rs-action-set-default {
+    width : 20px;
+    height : 16px;
+    background: url(../images/set-default.png) 0px 0px no-repeat !important;
+}
+
+/** 查询面板 **/
+.rs-action-querypanel {
+    width : 20px;
+    height : 16px;
+    background: url(../images/application-form-magnify.png) 0px 0px no-repeat !important;
+}
+
+/** 查询 **/
+.rs-action-query {
+    width : 20px;
+    height : 16px;
+    background: url(../images/query.png) 0px 0px no-repeat !important;
+}
+
+/** 重命名 **/
+.rs-action-rename {
+    width : 20px;
+    height : 16px;
+    background: url(../images/rename.png) 0px 0px no-repeat !important;
+}
+
+/** 提交 **/
+.rs-action-commit {
+    width : 20px;
+    height : 16px;
+    background: url(../images/remove.png) 0px 0px no-repeat !important;
+}
+
+/** 审批 **/
+.rs-action-approve {
+    width : 20px;
+    height : 16px;
+    background: url(../images/remove.png) 0px 0px no-repeat !important;
+}
+
+/** 导出 **/
+.rs-action-export {
+    width : 20px;
+    height : 16px;
+    background: url(../images/page-excel.png) 0px 0px no-repeat !important;
+}
+
+/** 打印 **/
+.rs-action-printer {
+    width : 20px;
+    height : 16px;
+    background: url(../images/printer.png) 0px 0px no-repeat !important;
+}
+
+/** 生成导出文件 **/
+.rs-action-exporting {
+    width : 20px;
+    height : 16px;
+    background: url(../images/wait.gif) 0px 0px no-repeat !important;
+}
+
+/** 下一条记录 **/
+.rs-action-next {
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/default/grid/page-next.gif) !important;
+}
+
+/** 上一条记录 **/
+.rs-action-previous {
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/default/grid/page-prev.gif) !important;
+}
+
+
+/** 明细 **/
+.rs-action-detail {
+    width : 20px;
+    height : 16px;
+    background: url(../images/detail.png) 0px 0px no-repeat !important;
+}
+/** 流转 **/
+.rs-action-timego {
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/time_go.png) !important;
+}
+
+/** 展开 **/
+.icon-expand-all {
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/expand-all.gif) !important;
+}
+
+/** 收缩 **/
+.icon-collapse-all {
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/collapse-all.gif) !important;
+}
+
+
+/** 功能 **/
+.icon-function {
+	width : 20px;
+    height : 16px;
+    background-image: url(../images/function.gif) !important;
+}
+/** 部门 **/
+.icon-dept {
+	width : 20px;
+    height : 16px;
+    background-image: url(../images/dept.gif) !important;
+}
+/** 助理(秘书) **/
+.icon-assistant {
+	width : 20px;
+    height : 16px;
+    background-image: url(../images/assistant.gif) !important;
+}
+/** 功能组 **/
+.icon-group {
+	width : 20px;
+    height : 16px;
+    background-image: url(../images/group.gif) !important;
+}
+
+/** 虚拟组 **/
+.icon-group-link{
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/group_link.png) !important;
+}
+
+/** 公司 **/
+.icon-company {
+	width : 20px;
+    height : 16px;
+    background-image: url(../images/company.png) !important;
+}
+
+/** 人员外出 **/
+.rs-action-usergo {
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/user_go.png) !important;
+}
+
+/** 自动分配 **/
+.rs-auto-fenpei {
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/auto-fenpei.png) !important;
+}
+
+/** 回款条件 **/
+.rs-repay-cond {
+    width : 20px;
+    height : 16px;
+    background-image: url(../images/repay-cond.png) !important;
+}
+
+
+
+/** 2013-05-02新添加 **/
+/** 已读 **/
+.rs-action-read {
+    width : 20px;
+    height : 16px;
+    background: url(../images/read.png) 0px 0px no-repeat !important;
+}
+
+/** 未读 **/
+.rs-action-unread {
+    width : 20px;
+    height : 16px;
+    background: url(../images/unread.png) 0px 0px no-repeat !important;
+}
+
+/** 删除(逐条) **/
+.rs-action-delete {
+    width : 20px;
+    height : 16px;
+    background: url(../images/table-delete.png) 0px 0px no-repeat !important;
+}
+
+/** 删除(批量) **/
+.rs-action-batchdelete {
+    width : 20px;
+    height : 16px;
+    background: url(../images/table-batch-delete.png) 0px 0px no-repeat !important;
+}
+
+/** 审核 **/
+.rs-action-audit {
+    width : 20px;
+    height : 16px;
+    background: url(../images/table-audit.png) 0px 0px no-repeat !important;
+}
+
+/** 新建 **/
+.rs-action-create {
+    width : 20px;
+    height : 16px;
+    background: url(../images/page-create.png) 0px 0px no-repeat !important;
+}
+
+/** 返回 **/
+.rs-action-goback {
+    width : 20px;
+    height : 16px;
+    background: url(../images/go-back.png) 0px 0px no-repeat !important;
+}
+
+/** 生效 **/
+.rs-action-effect {
+    width : 20px;
+    height : 16px;
+    background: url(../images/effect.png) 0px 0px no-repeat !important;
+}
+
+/** 失效 **/
+.rs-action-loseeffect {
+    width : 20px;
+    height : 16px;
+    background: url(../images/lose-effect.png) 0px 0px no-repeat !important;
+}
+
+/** 收藏 **/
+.rs-action-favorite {
+    width : 20px;
+    height : 16px;
+    background: url(../images/favorite.png) 0px 0px no-repeat !important;
+}
+
+/** 取消收藏 **/
+.rs-action-favorite2 {
+    width : 20px;
+    height : 16px;
+    background: url(../images/favorite2.png) 0px 0px no-repeat !important;
+}
+
+/** 关闭 **/
+.rs-action-colse {
+    width : 20px;
+    height : 16px;
+    background: url(../images/close.png) 0px 0px no-repeat !important;
+}
+
+/** 终止 **/
+.rs-action-stop {
+    width : 20px;
+    height : 16px;
+    background: url(../images/table-stop.png) 0px 0px no-repeat !important;
+}
+
+/** 查阅情况 **/
+.rs-action-editfind {
+    width : 20px;
+    height : 16px;
+    background: url(../images/edit-find.png) 0px 0px no-repeat !important;
+}
+
+/** 驳回 **/
+.rs-action-reject {
+    width : 20px;
+    height : 16px;
+    background: url(../images/page-reverse.png) 0px 0px no-repeat !important;
+}
+
+/** 提交 **/
+.rs-action-submit {
+    width : 20px;
+    height : 16px;
+    background: url(../images/page-submit.png) 0px 0px no-repeat !important;
+}
+
+/** 结转 **/
+.rs-action-carryover {
+    width : 20px;
+    height : 16px;
+    background: url(../images/carry-over.png) 0px 0px no-repeat !important;
+}
+
+/** 传递(向右) **/
+.rs-action-goright {
+    width : 20px;
+    height : 16px;
+    background: url(../images/go-right.png) 0px 0px no-repeat !important;
+}
+
+/** 传递(向左) **/
+.rs-action-goleft {
+    width : 20px;
+    height : 16px;
+    background: url(../images/go-left.png) 0px 0px no-repeat !important;
+}
+
+/** 批量传递(向右) **/
+.rs-action-bacthgoright {
+    width : 20px;
+    height : 16px;
+    background: url(../images/go-double-right.png) 0px 0px no-repeat !important;
+}
+
+/** 批量传递(向左) **/
+.rs-action-bacthgoleft {
+    width : 20px;
+    height : 16px;
+    background: url(../images/go-double-left.png) 0px 0px no-repeat !important;
+}
+
+/** 存草稿 **/
+.rs-action-savedraft {
+    width : 20px;
+    height : 16px;
+    background: url(../images/table-save-draft.png) 0px 0px no-repeat !important;
+}
+
+/** 高级查询 **/
+.rs-action-seniorquery {
+    width : 20px;
+    height : 16px;
+    background: url(../images/advanced-query.png) 0px 0px no-repeat !important;
+}
+
+/** 确定 **/
+.rs-action-ok {
+    width : 20px;
+    height : 16px;
+    background: url(../images/ok.png) 0px 0px no-repeat !important;
+}
+
+/** 重置 **/
+.rs-action-reset {
+    width : 20px;
+    height : 16px;
+    background: url(../images/reset.png) 0px 0px no-repeat !important;
+}
+
+
+/******************************* 上传组件图标  *******************************/
+/** 添加文件 **/
+.rs-action-addfile {
+	width : 20px;
+    height : 16px;
+    background: url(../images/add.png) 0px 0px no-repeat !important;
+}
+
+/** 上传文件 **/
+.rs-action-uploadfile {
+	width : 20px;
+    height : 16px;
+    background: url(../images/upload_.png) 0px 0px no-repeat !important;
+}
+
+/** 停止上传 **/
+.rs-action-stopfile {
+	width : 20px;
+    height : 16px;
+    background: url(../images/delete.png) 0px 0px no-repeat !important;
+}
+
+/** 清空文件 **/
+.rs-action-cleanfile {
+    background: url(../images/bin_empty.png) 0px 0px no-repeat !important;
+}
+
+/** 文件夹 **/
+.rs-action-folder {
+	width : 20px;
+    height : 16px;
+    background: url(../images/folder.png) 0px 0px no-repeat !important;
+}
+
+/** 文件夹新建 **/
+.rs-action-folder-add {
+	width : 20px;
+    height : 16px;
+    background: url(../images/folder_add.png) 0px 0px no-repeat !important;
+}
+
+/** 文件夹修改 **/
+.rs-action-folder-edit {
+	width : 20px;
+    height : 16px;
+    background: url(../images/folder_edit.png) 0px 0px no-repeat !important;
+}
+
+/** 文件夹删除 **/
+.rs-action-folder-delete {
+	width : 20px;
+    height : 16px;
+    background: url(../images/folder_delete.png) 0px 0px no-repeat !important;
+}
+
+/** 文件夹转移 **/
+.rs-action-folder-move {
+	width : 20px;
+    height : 16px;
+    background: url(../images/folder_go.png) 0px 0px no-repeat !important;
+}
+
+/** 设置 **/
+.rs-action-setProperty {
+	width : 20px;
+    height : 16px;
+    background: url(../images/cog.png) 0px 0px no-repeat !important;
+}
+
+/** 文件转移 **/
+.rs-action-fileMove {
+	width : 20px;
+    height : 16px;
+    background: url(../images/page_go.png) 0px 0px no-repeat !important;
+}
+
+/** 文件共享 **/
+.rs-action-pageLink {
+	width : 20px;
+    height : 16px;
+    background: url(../images/page_link.png) 0px 0px no-repeat !important;
+}
+
+/** 取消共享 **/
+.rs-action-unpageLink {
+	width : 20px;
+    height : 16px;
+    background: url(../images/page_lightning.png) 0px 0px no-repeat !important;
+}
+
+/** doc文档 **/
+.rs-file-doc {
+	width : 20px;
+    height : 16px;
+    background: url(../images/filetype/doc.gif) no-repeat center !important;
+}
+
+/** xsl文档 **/
+.rs-file-xsl {
+	width : 20px;
+    height : 16px;
+    background: url(../images/filetype/xls.gif) no-repeat center !important;
+}
+
+/** html文档 **/
+.rs-file-html {
+	width : 20px;
+    height : 16px;
+    background: url(../images/filetype/htm.gif) no-repeat center !important;
+}
+
+/** 附件 **/
+.rs-file-addon {
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/filetype/addon.gif) no-repeat center !important;
+}
+
+.rs-column-edit{
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/page_edit.png) no-repeat center !important;
+}
+
+.rs-column-unedit{
+    cursor: pointer;
+    opacity: 0.4;
+    filter:alpha(opacity=40);
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/page_edit.png) no-repeat center !important;
+}
+
+.rs-column-delete{
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/page_delete.png) no-repeat center !important;
+}
+
+.rs-column-undelete{
+    cursor: pointer;
+    opacity: 0.4;
+    filter:alpha(opacity=40);
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/page_delete.png) no-repeat center !important;
+}
+
+.rs-column-share{
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/page_link.png) no-repeat center !important;
+}
+
+.rs-column-unshare{
+    cursor: pointer;
+    opacity: 0.4;
+    filter:alpha(opacity=40);
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/page_link.png) no-repeat center !important;
+}
+
+.rs-column-unpageLink{
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/page_lightning.png) no-repeat center !important;
+}
+
+.rs-column-log{
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/edit-find.png) no-repeat center !important;
+}
+
+/** 文件下载 **/
+.rs-column-down {
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/go-bottom.png) 0px 0px no-repeat !important;
+}
+.rs-column-undown {
+    cursor: pointer;
+    opacity: 0.4;
+    filter:alpha(opacity=40);
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/go-bottom.png) 0px 0px no-repeat !important;
+}
+
+/** 文件查看 **/
+.rs-column-view {
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/page.png) 0px 0px no-repeat !important;
+}
+
+/** 附件 **/
+.rs-file-attachment {
+    cursor: pointer;
+    width : 20px;
+    height : 16px;
+    border : none;
+    background: url(../images/filetype/attachment.png) 0px 0px no-repeat !important;
+}
+
+
+/******************************* 状态样式图标  *******************************/
+/**超链**/
+#link{
+   font:Arial, Helvetica, sans-serif;
+   font-size:12px;
+}
+#link a{
+   color:#000000;
+   text-decoration:underline ;
+}
+#link a:visited{
+   color:#999999;
+   text-decoration:underline;
+}
+
+/** 新增状态 **/
+.rs-status-new {
+	width : 20px;
+    height : 16px;
+    background: url(../images/query.png) 0px 0px no-repeat !important;
+}
+
+/** 已提交状态 **/
+.rs-status-commit {
+	width : 20px;
+    height : 16px;
+    background: url(../images/query.png) 0px 0px no-repeat !important;
+}
+
+/** 已审核状态 **/
+.rs-status-audit {
+	width : 20px;
+    height : 16px;
+    background: url(../images/query.png) 0px 0px no-repeat !important;
+}
+
+/** 已审批状态 **/
+.rs-status-approve {
+	width : 20px;
+    height : 16px;
+    background: url(../images/query.png) 0px 0px no-repeat !important;
+}
+
+/** 已驳回状态 **/
+.rs-status-reject {
+	width : 20px;
+    height : 16px;
+    background: url(../images/query.png) 0px 0px no-repeat !important;
+}
+
+/******************************* user *******************************/
+
+/** 新增人员 **/
+.rs-user-add {
+    width : 20px;
+    height : 16px;
+    background: url(../images/user_add.png) 0px 0px no-repeat !important;
+}
+
+/** 编辑人员 **/
+.rs-user-edit {
+    width : 20px;
+    height : 16px;
+    background: url(../images/user_edit.png) 0px 0px no-repeat !important;
+}
+
+
+/** 人员卡片 **/
+.rs-user-vcard {
+    width : 20px;
+    height : 16px;
+    background: url(../images/vcard.png) 0px 0px no-repeat !important;
+}
+
+/** 人员卡片编辑 **/
+.rs-user-vcard-edit {
+    width : 20px;
+    height : 16px;
+    background: url(../images/vcard_edit.png) 0px 0px no-repeat !important;
+}
+
+
+/** 男 **/
+.rs-user-man {
+	width : 20px;
+    height : 16px;
+    background: url(../images/user.gif) 0px 0px no-repeat !important;
+}
+
+/** 女 **/
+.rs-user-female {
+	width : 20px;
+    height : 16px;
+    background: url(../images/user_female.png) 0px 0px no-repeat !important;
+}
+
+/** 权限定义 **/
+.rs-action-power {
+	width : 20px;
+    height : 16px;
+    background: url(../images/power.png) 0px 0px no-repeat !important;
+}
+
+/** 属性定义 **/
+.rs-action-attribute {
+	width : 20px;
+    height : 16px;
+    background: url(../images/attribute.png) 0px 0px no-repeat !important;
+}
+
+
+/******************************* EventManager more *******************************/
+
+
+/******************************* APP *******************************/
+
+/* defualt app icon */
+.rs-app-default-icon8 {
+	width : 20px;
+    height : 16px;
+    background: url(../images/apps/app-default-icon8.png) 0px 0px no-repeat;
+}
+
+.rs-app-default-icon16 {
+    background: url(../images/apps/app-default-icon16.png) 0px 0px no-repeat;
+}
+
+.rs-app-default-icon32 {
+	width : 20px;
+    height : 16px;
+    background: url(../images/apps/app-default-icon32.png) 0px 0px no-repeat;
+}
+
+.rs-engine {
+    position :absolute;
+    z-index : 1;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+}
+
+.rs-engine .rs-engine-frame {
+	position : absolute;
+    z-index : 1;
+    width:100%;
+    height:100%;
+}
+
+.rs-app-region {
+    position:absolute;
+    z-index : 1;
+}
+
+.rs-app-region-cell {
+    position:absolute;
+    z-index : 2;
+}
+
+.rs-app-blank-region {
+    display:none;
+}
+
+.rs-app-header {
+	position:absolute;
+	z-index : 2;
+    padding:5px 3px 4px 5px;
+    line-height: 15px;
+}
+
+.rs-app-header-text {
+	padding : 0 0 0 20px;
+	cursor : pointer;
+}
+
+/* Tool */
+.rs-app-tool {
+    overflow:hidden;
+    width:15px;
+    height:15px;
+    float:right;
+    display:block;
+    cursor:pointer;
+    background:transparent no-repeat;
+    margin-left:2px;
+}
+
+.rs-app-tool-middle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 5px;
+    height: 35px;
+    cursor: pointer;
+    opacity: .5;
+    -moz-opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+.rs-app-tool-middle-north, .rs-app-tool-middle-south{
+    left: 48%;
+    height: 5px;
+    width: 35px;
+}
+
+.rs-app-tool-middle-east, .rs-app-tool-middle-west{
+    top:48%;
+}
+
+.rs-app-tool-middle-over{
+    opacity:1;
+    -moz-opacity:1;
+    filter:none;
+}
+
+/* expand / collapse tools */
+.rs-app-tool-toggle {
+    background-position:0 -60px;
+}
+
+.rs-app-tool-toggle-over {
+    background-position:-15px -60px;
+}
+
+.rs-app-tool-collapse-south {
+    background-position:0 -195px;
+}
+
+.rs-app-tool-collapse-south-over {
+    background-position:-15px -195px;
+}
+
+.rs-app-tool-collapse-north {
+    background-position:0 -210px;
+}
+
+.rs-app-tool-collapse-north-over {
+    background-position:-15px -210px;
+}
+
+.rs-app-tool-collapse-west {
+    background-position:0 -180px;
+}
+
+.rs-app-tool-collapse-west-over {
+    background-position:-15px -180px;
+}
+
+.rs-app-tool-collapse-east {
+    background-position:0 -165px;
+}
+
+.rs-app-tool-collapse-east-over {
+    background-position:-15px -165px;
+}
+
+.rs-app-tool-expand-south {
+    background-position:0 -210px;
+}
+
+.rs-app-tool-expand-south-over {
+    background-position:-15px -210px;
+}
+
+.rs-app-tool-expand-north {
+    background-position:0 -195px;
+}
+.rs-app-tool-expand-north-over {
+    background-position:-15px -195px;
+}
+
+.rs-app-tool-expand-west {
+    background-position:0 -165px;
+}
+
+.rs-app-tool-expand-west-over {
+    background-position:-15px -165px;
+}
+
+.rs-app-tool-expand-east {
+    background-position:0 -180px;
+}
+
+.rs-app-tool-expand-east-over {
+    background-position:-15px -180px;
+}
+
+.rs-app-tool-expand-north, .rs-app-tool-expand-south {
+    float:right;
+    margin:3px;
+}
+
+.rs-app-tool-expand-east, .rs-app-tool-expand-west {
+    float:none;
+    margin:3px 2px;
+}
+
+.rs-app-tool-close {
+    background-position:0 -0;
+}
+
+.rs-app-tool-close-over {
+    background-position:-15px 0;
+}
+
+.rs-app-tool-minimize {
+    background-position:0 -15px;
+}
+
+.rs-app-tool-minimize-over {
+    background-position:-15px -15px;
+}
+
+.rs-app-tool-maximize {
+    background-position:0 -30px;
+}
+
+.rs-app-tool-maximize-over {
+    background-position:-15px -30px;
+}
+
+.rs-app-tool-restore {
+    background-position:0 -45px;
+}
+
+.rs-app-tool-restore-over {
+    background-position:-15px -45px;
+}
+
+/* split */
+.rs-app-split {
+	position : absolute;
+    line-height : 1px;
+    z-index :3;
+}
+
+.rs-app-split-proxy {
+	position : absolute;
+	left: 0;
+    top: 0;
+	z-index : 200010;
+    background-color: #aaa;
+}
+
+.rs-app-split-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 200000;
+    background-color : #DCDCDC;
+}
+
+/* collapser */
+.rs-app-collapser {
+	position : absolute;
+	z-index : 1;
+	display : block;
+	cursor : pointer;
+}
+
+.rs-app-collapsed {
+    display : none;
+}
+
+/* window */
+
+.rs-app-window {
+	position : absolute;
+    zoom : 1;
+}
+
+.rs-app-window-plain {
+	/*
+	border: 1px solid;
+	*/
+}
+
+/* window title */
+
+.rs-app-window-header {
+    overflow:hidden;
+    zoom:1;
+}
+
+.rs-app-window-header-over {
+	font-style : italic !important;
+}
+
+.rs-app-window-tl .rs-app-window-header {
+    padding:5px 0 4px 0;
+}
+
+.rs-app-window-header-text {
+    padding : 0 0 0 20px;
+	cursor:pointer;
+}
+
+.rs-app-window-tl {
+	background: transparent no-repeat 0 0;
+	padding-left:6px;
+    zoom:1;
+    z-index:1;
+    position:relative;
+}
+
+.rs-app-window-tr {
+	background: transparent no-repeat right 0;
+	padding-right:6px;
+}
+
+.rs-app-window-tc {
+	background: transparent repeat-x 0 0;
+	overflow:hidden;
+    zoom:1;
+}
+
+/* window body */
+.rs-app-window-bwrap {
+    z-index:1;
+    position:relative;
+    zoom:1;
+    left:0;
+    top:0;
+}
+
+.rs-app-window-bc {
+    padding:0;
+    margin:0;
+}
+
+.rs-app-window-bl {
+	background: transparent repeat-y 0 0;
+	padding-left:6px;
+    zoom:1;
+}
+
+.rs-app-window-br {
+	background: transparent repeat-y right 0;
+	padding-right:6px;
+    zoom:1;
+}
+
+.rs-app-window-body {
+    overflow:hidden;
+}
+
+/* window footer */
+
+.rs-app-window-fwrap {
+	z-index:1;
+    position:relative;
+    zoom:1;
+    left:0; top:0;
+}
+
+.rs-app-window-fl {
+	background: transparent no-repeat 0 bottom;
+	padding-left:6px;
+    zoom:1;
+}
+
+.rs-app-window-fr {
+	background: transparent no-repeat right bottom;
+	padding-right:6px;
+    zoom:1;
+}
+
+.rs-app-window-fc {
+	background: transparent repeat-x 0 bottom;
+    zoom:1;
+}
+
+
+/* mask */
+/*
+body .ext-ie6 .rs-app-body-masked select {
+	visibility:hidden;
+}
+
+body .ext-ie6 .rs-app-body-masked .rs-app-window select {
+	visibility:visible;
+}
+*/
+
+.rs-app-window-mask {
+    z-index : 1;
+    position : absolute;
+    top : 0;
+    left : 0;
+    -moz-opacity : 0.5;
+    opacity : .50;
+    filter : alpha(opacity=50);
+    zoom : 1;
+    dispaly : none;
+    background-color : #DCDCDC;
+}
+
+/* proxy */
+
+.rs-app-window-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 20000;
+    background-color: transparent;
+}
+
+.rs-app-window-ghost {
+	position:absolute;
+	z-index: 20010;
+    overflow:hidden;
+    left:0;top:0;
+    border-color:#99bbe8;
+}
+
+.rs-app-window-ghost ul {
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    font-size:0;
+    line-height:0;
+    border-color:#99bbe8;
+    border-top:0 none;
+    display:block;
+}
+
+.rs-app-window-ghost * {
+    cursor:move !important;
+}
+
+.rs-app-window-hidden {
+	display : none;
+}
+
+.rs-app-window-focus {
+	-moz-outline:0 none;
+	outline:0 none;
+	width:0;
+	height:0;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+/** resizable **/
+.rs-app-window-resizable-proxy{
+    border: 1px #696969 dashed;
+    position:absolute;
+    overflow:hidden;
+    display:none;
+	left:0;
+    top:0;
+    z-index:50000;
+}
+
+.rs-app-window-resizable-overlay{
+    width:100%;
+	height:100%;
+	display:none;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:200000;
+}
+
+.rs-app-window-resizable-over {
+	
+}
+
+.rs-app-window-resizable-handle {
+    position:absolute;
+    z-index:100;
+    /* ie needs these */
+    font-size:1px;
+    line-height:6px;
+    overflow:hidden;
+	zoom:1;
+}
+
+.rs-app-window-resizable-handle-east{
+    width:6px;
+    cursor:e-resize;
+    right:0;
+    top:0;
+    height:100%;
+}
+
+.ext-ie .rs-app-window-resizable-handle-east {
+    margin-right:-1px; /*IE rounding error*/
+}
+
+.rs-app-window-resizable-handle-south{
+    width:100%;
+    cursor:s-resize;
+    left:0;
+    bottom:0;
+    height:6px;
+}
+
+.ext-ie .rs-app-window-resizable-handle-south {
+    margin-bottom:-1px; /*IE rounding error*/
+}
+
+.rs-app-window-resizable-handle-west{
+    width:6px;
+    cursor:w-resize;
+    left:0;
+    top:0;
+    height:100%;
+}
+
+.rs-app-window-resizable-handle-north{
+    width:100%;
+    cursor:n-resize;
+    left:0;
+    top:0;
+    height:6px;
+}
+
+.rs-app-window-resizable-handle-southeast{
+    width:6px;
+    cursor:se-resize;
+    right:0;
+    bottom:0;
+    height:6px;
+    z-index:101;
+}
+
+.rs-app-window-resizable-handle-northwest{
+    width:6px;
+    cursor:nw-resize;
+    left:0;
+    top:0;
+    height:6px;
+    z-index:101;
+}
+
+.rs-app-window-resizable-handle-northeast{
+    width:6px;
+    cursor:ne-resize;
+    right:0;
+    top:0;
+    height:6px;
+    z-index:101;
+}
+
+.rs-app-window-resizable-handle-southwest{
+    width:6px;
+    cursor:sw-resize;
+    left:0;
+    bottom:0;
+    height:6px;
+    z-index:101;
+}
+
+
+/** window shell **/
+
+/* background */
+.rs-window-shell-background {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	overflow: hidden;
+	width : 100%;
+	height: 100%;
+}
+
+.rs-window-shell-background-1 {
+    background: url(../images/wallpapers/desktop2.jpg) no-repeat left top !important;
+}
+
+/* taskbar */
+.rs-window-shell-taskbar {
+    position : absolute;
+    overflow: hidden;
+}
+
+.rs-window-shell-taskbar-south {
+    background-image: url(../images/taskbar/black/taskbar-start-panel-bg-horizontal.gif);
+}
+
+.rs-window-shell-taskbar-north {
+    background-image: url(../images/taskbar/black/taskbar-start-panel-bg-horizontal.gif);
+}
+
+.rs-window-shell-taskbar-west {
+    background-image: url(../images/taskbar/black/taskbar-start-panel-bg-vertical.gif);
+}
+
+.rs-window-shell-taskbar-east {
+    background-image: url(../images/taskbar/black/taskbar-start-panel-bg-vertical.gif);
+}
+
+
+/* start button */
+.rs-window-shell-start {
+	top:0px;
+    left:0px;
+    position: absolute;
+    z-index: 100000;
+}
+
+.rs-window-shell-start table {
+    border-spacing: 0px;
+    display: table-cell;
+    border-collapse : collapse; 
+}
+
+.rs-window-shell-start button {
+    background-color: transparent;
+    text-align: left;
+    color: white;
+    border-style:none;
+	background-image: url( ../images/taskbar/black/startbutton-icon.gif ) !important;
+}
+
+.rs-window-shell-start-text {
+    background-position: 0 4px;
+    background-repeat: no-repeat;
+    color: black !important;
+    font-weight: bold;
+    padding: 5px 0px 5px 28px;
+}
+
+.rs-window-shell-start-left-h{
+	width:10px;
+	height:30px;
+	background:url( ../images/taskbar/black/startbutton.gif ) no-repeat 0 0;
+}
+
+.rs-window-shell-start-left-v{
+	width:30px;
+	height:10px;
+	background: url(../images/taskbar/black/startbutton-v.gif) no-repeat -210px 0;
+}
+
+.rs-window-shell-start-right-h{
+	width:10px;
+	height:30px;
+	background:url( ../images/taskbar/black/startbutton.gif ) no-repeat 0 -30px;
+}
+
+
+.rs-window-shell-start-right-v{
+	width:30px;
+	height:10px;
+	background: url(../images/taskbar/black/startbutton-v.gif) no-repeat -180px 0;
+}
+
+.rs-window-shell-start-left-h i, .rs-window-shell-start-right-h i{
+	display:block;
+    width:10px;
+    overflow:hidden;
+    font-size:1px;
+    line-height:1px;
+}
+
+.rs-window-shell-start-left-v i, .rs-window-shell-start-right-v i{
+	display:block;
+    height:10px;
+    width:30px;
+    overflow:hidden;
+    font-size:1px;
+    line-height:1px;
+}
+
+.rs-window-shell-start-center-h{
+	background: url(../images/taskbar/black/startbutton.gif) repeat-x 0 -60px;
+	vertical-align: middle;
+	text-align:center;
+	padding:0px;
+	cursor:pointer;
+	white-space:nowrap;
+}
+
+.rs-window-shell-start-center-v{
+	background: url(../images/taskbar/black/startbutton-v.gif) repeat-y -240px 0;
+	vertical-align: middle;
+	text-align:center;
+	padding:0px;
+	cursor:pointer;
+	white-space:nowrap;
+}
+
+.rs-window-shell-start-split-h {
+    width: 8px;
+    height: 30px;
+    background: black url(../images/taskbar/black/taskbar-split-h.gif) no-repeat 0 0;
+}
+
+.rs-window-shell-start-split-v {
+    width: 30px;
+    height: 8px;
+    background: black url(../images/taskbar/black/taskbar-split-v.gif) no-repeat 0 0;
+}
+
+/* task buttons */
+.rs-window-shell-taskbuttons-strip {
+    position:absolute;
+    display:block;
+    top:0px;
+    left:101px;
+    zoom:1;
+    font: normal 12px  tahoma, arial, verdana, sans-serif;
+}
+
+.rs-window-shell-taskbuttons-strip-vertical {
+    position:absolute;
+    display:block;
+    top:75px;
+    left:0px;
+    zoom:1;
+    font: normal 12px  tahoma, arial, verdana, sans-serif;
+}
+
+.rs-window-shell-taskbuttons-strip-wrap {
+    overflow:hidden;
+    position:relative;
+    zoom:1;
+}
+
+.rs-window-shell-taskbuttons-strip-wrap ul{
+    position: absolute;
+    top: 0px;
+    list-style: none;
+    display:block;
+    width : 50000px;
+    height : 30px;
+    zoom:1;
+}
+
+.rs-window-shell-taskbuttons-strip-wrap-vertical ul{
+    list-style: none;
+    display:block;
+    width : 30px;
+    height : 50000px;
+    zoom:1;
+}
+
+.rs-window-shell-taskbuttons-strip-wrap li{
+    position:absolute;
+    zoom:1;
+    list-style: none;
+    display:block;
+    top :2px;
+}
+
+.rs-window-shell-taskbuttons-strip-wrap table{
+    border-spacing: 0px;
+    border-color: gray;
+    border-collapse : collapse;
+    display: table-cell;
+}
+
+
+.rs-window-shell-taskbuttons-strip-wrap-vertical li{
+    position:absolute;
+    zoom:1;
+    list-style: none;
+    display:block;
+}
+
+.rs-window-shell-taskbuttons-strip-wrap-vertical table{
+    border-spacing : 0px;
+    border-color : gray;
+    border-collapse : collapse;
+    display : table-cell;
+    width :28px;
+}
+
+.rs-window-shell-taskbutton-icon {
+    background-position : 0px 7px !important;
+}
+
+.rs-window-shell-taskbutton-icon-vertical {
+    background-position: 7px 0px !important;
+}
+
+.rs-window-shell-taskbutton-text {
+    background-repeat: no-repeat;
+    padding: 7px 0px 7px 20px;
+    color: white;
+    font: normal 12px  arial,tahoma,verdana,helvetica;
+    border: 0 none;
+    background-color: transparent;
+    outline: 0 none;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.rs-window-shell-taskbutton-text-vertical {
+    background-repeat: no-repeat;
+    padding: 20px 7px 4px 7px;
+    color: white;
+    font: normal 12px  arial,tahoma,verdana,helvetica;
+    border: 0 none;
+    background-color: transparent;
+    outline: 0 none;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.rs-window-shell-taskbutton-left {
+    width: 4px;
+    height: 28px;
+    background: url(../images/taskbar/black/taskbutton.gif) no-repeat 0 -252px;
+}
+
+.rs-window-shell-taskbutton-left-vertical {
+    width: 30px;
+    height: 4px;
+    background: url(../images/taskbar/black/taskbutton-v.gif) no-repeat -56px 0;
+}
+
+.rs-window-shell-taskbutton-center {
+    border:0 none;
+    padding : 1px 10px 1px 10px;
+    background: url(../images/taskbar/black/taskbutton.gif) repeat-x 0 -308px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.rs-window-shell-taskbutton-center-vertical {
+    border:0 none;
+    padding : 10px 1px 10px 1px;
+    background: url(../images/taskbar/black/taskbutton-v.gif) repeat-y 0 0;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.rs-window-shell-taskbutton-right {
+    background: url(../images/taskbar/black/taskbutton.gif) no-repeat 0 -280px;
+    width: 4px;
+    height: 30px;
+}
+
+.rs-window-shell-taskbutton-right-vertical {
+    background: url(../images/taskbar/black/taskbutton-v.gif) no-repeat -28px 0;
+    width: 28px;
+    height: 4px;
+}
+
+.rs-window-shell-taskbuttons-strip-wrap button{
+    border: 0 none;
+    background-color: transparent;
+    border-style:none;
+    margin: 0;
+    overflow: visible;
+    width: auto;
+    -moz-outline: 0 none;
+    outline: 0 none;
+}
+
+.rs-window-shell-taskbuttons-activate .rs-window-shell-taskbutton-left{
+    background-position:0 -84px;
+}
+
+.rs-window-shell-taskbuttons-activate .rs-window-shell-taskbutton-right{
+    background:url( ../images/taskbar/black/taskbutton.gif ) no-repeat 0 -112px;
+}
+
+.rs-window-shell-taskbuttons-activate .rs-window-shell-taskbutton-center{
+    background: url(../images/taskbar/black/taskbutton.gif) repeat-x 0 -224px;
+}
+
+.rs-window-shell-taskbuttons-activate .rs-window-shell-taskbutton-center button{
+    color:#fff;
+}
+
+.rs-window-shell-taskbuttons-activate .rs-window-shell-taskbutton-left-vertical{
+    background: url(../images/taskbar/black/taskbutton-v.gif) no-repeat -140px 0;
+}
+
+.rs-window-shell-taskbuttons-activate .rs-window-shell-taskbutton-right-vertical{
+    background: url(../images/taskbar/black/taskbutton-v.gif) no-repeat -196px 0;
+}
+
+.rs-window-shell-taskbuttons-activate .rs-window-shell-taskbutton-center-vertical{
+    background: url(../images/taskbar/black/taskbutton-v.gif) repeat-y -168px 0;
+}
+
+.rs-window-shell-start-south {
+   height:30px;
+   width:100px;
+}
+
+.rs-window-shell-start-north {
+    height:30px;
+    width:100px;   
+}
+
+.rs-window-shell-start-west {
+   width: 30px;
+   height:75px;
+}
+
+.rs-window-shell-start-east {
+   width: 30px;
+   height:75px;
+}
+
+.rs-window-shell-taskbuttons-scroller-left {
+    position: relative;
+    top : 0px;
+    left : 0px;
+    background: transparent url(../images/taskbar/black/scroll-left.gif) no-repeat -18px 0;
+    list-style : none;
+    display : block;
+    width: 18px;
+    height : 30px;
+    zoom:1;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.rs-window-shell-taskbuttons-scroller-left-vertical {
+    position: relative;
+    top : 1px;
+    left: 1px;
+    background: transparent url(../images/taskbar/black/scroll-left-v.gif) no-repeat 0 0;
+    list-style : none;
+    display : block;
+    width: 30px;
+    height : 18px;
+    zoom:1;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.rs-window-shell-taskbuttons-scroller-right {
+    position : absolute;
+    top: 0px;
+    right : 0px;
+    background: transparent url(../images/taskbar/black/scroll-right.gif) no-repeat 0 0;
+    list-style : none;
+    display : block;
+    width: 18px;
+    height : 30px;
+    zoom:1;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.rs-window-shell-taskbuttons-scroller-right-vertical {
+    position: absolute;
+    left: 1px;
+    bottom: 0px;
+    background: transparent url(../images/taskbar/black/scroll-right-v.gif) no-repeat 0 0;
+    list-style : none;
+    display : block;
+    width: 30px;
+    height : 18px;
+    zoom:1;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* start menu */
+.rs-window-shell-start-menu {
+    position : absolute;
+    z-index : 15000;
+    overflow : hidden;
+}
+
+.rs-window-shell-start-menu-hidden {
+    display : none;
+}
+
+/* start menu header */
+.rs-window-shell-start-menu-hl {
+    background: transparent url( ../images/taskbar/black/start-menu-left-corners.png ) no-repeat 0 0;
+    padding-left:6px;
+    zoom:1;
+    position:relative;
+}
+
+.rs-window-shell-start-menu-hr {
+    background: transparent url( ../images/taskbar/black/start-menu-right-corners.png ) no-repeat right 0;
+	padding-right:6px;
+}
+
+.rs-window-shell-start-menu-hc {
+    background: transparent url(../images/taskbar/black/start-menu-top-bottom.png) repeat-x 0 0;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.rs-window-shell-start-menu-header {
+    padding : 2px;
+}
+
+.user {
+    padding: 2px !important;
+    background-repeat: no-repeat;
+    background-image:url( ../images/taskbar/user.png ) !important;
+}
+
+.rs-window-shell-start-menu-user {
+    padding : 20px !important;
+    color: #F1F1F1;
+    font: bold 12px  tahoma,arial,verdana,sans-serif;    
+}
+
+/* start menu content */
+.rs-window-shell-start-menu-cb {
+    position: relative;
+    zoom: 1;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.rs-window-shell-start-menu-cl {
+    background: transparent url(../images/taskbar/black/start-menu-left-right.png) repeat-y 0 0;
+    padding-left: 6px;
+    zoom: 1;
+}
+
+.rs-window-shell-start-menu-cr {
+}
+
+.rs-window-shell-start-menu-content {
+    position: relative;
+    zoom: 1;
+    left: 0;
+    top: 0;
+}
+
+/* start menu apps */
+.rs-window-shell-start-menu-app {
+    position: absolute;
+    zoom : 1;
+    border: 1px solid #99BBE8;
+    overflow:auto;
+    padding: 2px 4px 2px 2px;
+    background: white none;
+}
+
+.rs-window-shell-start-menu-app ul{
+    padding: 2px;
+    background-color:transparent;
+    border:0 none;
+    overflow:hidden;
+    overflow-y: hidden;
+}
+
+.rs-window-shell-start-menu-app li{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    line-height: 100%;
+}
+
+.rs-window-shell-default-app-icon {
+    background: url(../images/apps/system-software-install.png) no-repeat 0 bottom;
+}
+
+.rs-window-shell-start-menu-item {
+    white-space: nowrap;
+    display: block;
+    padding: 4px;
+}
+
+.rs-window-shell-start-menu-app-opened {
+    color: #778899 !important; 
+}
+
+.rs-window-shell-start-menu-app-name {
+    padding-left: 20px;
+    vertical-align: top;
+    border: 0 none;
+    background-position:center;
+    padding: 4px 20px 4px 20px;
+    font: normal 12px  arial,tahoma,sans-serif;
+    color : #000000;
+}
+
+.rs-window-shell-start-menu-item-over {
+    border: 1px solid #99BBE8;
+    background-color: #DFE8F6;
+}
+
+/* start menu settings */
+.rs-window-shell-start-menu-setting {
+    position: relative;
+    border: 0px none;
+    padding: 2px 4px 2px 2px;
+    overflow: auto;
+    background: transparent url(../images/taskbar/black/start-menu-right.png) repeat-y scroll right 0pt;
+    zoom : 1;
+}
+
+.rs-window-shell-start-menu-setting ul{
+    padding: 2px;
+    background-color:transparent;
+    border:0 none;
+    overflow:hidden;
+    overflow-y: hidden;
+}
+
+.rs-window-shell-start-menu-setting li{
+    line-height: 100%;
+}
+
+/* start menu footer */
+.rs-window-shell-start-menu-fb {
+    position: relative;
+    zoom: 1;
+    left: 0;
+    top: 0;
+}
+
+.rs-window-shell-start-menu-fl {
+    background: transparent url( ../images/taskbar/black/start-menu-left-corners.png ) no-repeat 0 bottom;
+	padding-left:6px;
+    zoom:1;
+}
+
+.rs-window-shell-start-menu-fr {
+    background: transparent url( ../images/taskbar/black/start-menu-right-corners.png ) no-repeat right bottom;
+	padding-right:6px;
+    zoom:1;
+}
+
+.rs-window-shell-start-menu-footer {
+    background: transparent url(../images/taskbar/black/start-menu-top-bottom.png) repeat-x 0 bottom;
+    zoom: 1;
+    height:6px;
+}
+
+/** tab shell **/
+.rs-tab-shell-tabheader {
+    overflow: hidden;
+    /*background-color: #DEECFD;*/
+    zoom: 1;
+    border: 1px solid;
+}
+
+.rs-unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: ignore;
+}
+
+.rs-tab-shell-tabheader-top {
+    padding-bottom: 2px;
+}
+
+.rs-tab-shell-tabheader-left {
+    padding-right: 2px;
+}
+
+.rs-tab-scrolling {
+    position : relative;
+}
+
+.rs-tab-scroller-right {
+    background: transparent no-repeat 0 0;
+    border-bottom: 1px solid;
+    width: 18px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    cursor: pointer;
+    /*background-image: url(../images/default/tabs/scroll-right.gif);*/
+}
+
+.rs-tab-scroller-right-disabled {
+    background-position: 0 0;
+    opacity: .5;
+    -moz-opacity: .5;
+    cursor: default;
+    filter: alpha(opacity=50);
+}
+
+.rs-tab-scroller-right-over {
+    background-position : 18px 0;
+}
+
+.rs-tab-scroller-left {
+    background: transparent no-repeat 0 0;
+    border-bottom: 1px solid;
+    width: 18px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    cursor: pointer;
+    /*background-image: url(../images/default/tabs/scroll-left.gif);*/
+}
+
+.rs-tab-scroller-left-disabled {
+    background-position: 0 0;
+    opacity: .5;
+    -moz-opacity: .5;
+    filter: alpha(opacity=50);
+    cursor: default;
+}
+
+.rs-tab-scroller-left-over {
+    background-position : 0 0;
+}
+
+.rs-tab-strip-wrap-top {
+    overflow: hidden;
+    position: relative;
+    width : 100%;
+    zoom: 1;
+}
+
+.rs-clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+}
+
+ul.rs-tab-strip-top li.rs-tab-edge-top {
+    float: left;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 none !important;
+    font-size: 1px !important;
+    line-height: 1px !important;
+    overflow: hidden;
+    zoom: 1;
+    background: transparent !important;
+    width: 1px;
+}
+
+ul.rs-tab-strip-top {
+    display: block;
+    width: 5000px;
+    zoom: 1;
+    padding-top: 1px;
+    background: repeat-x bottom;
+    border-bottom: 1px solid;
+    /*background-color: #CEDFF5;
+    background-image: url(../images/default/tabs/tab-strip-bg.gif);*/
+    
+}
+
+ul.rs-tab-strip-top li {
+    float: left;
+    margin-left: 2px;
+}
+
+.rs-tab-strip-closable {
+    position: relative;
+}
+
+.rs-tab-strip-top .rs-tab-strip-close {
+    display: none;
+    cursor: default;
+}
+
+.rs-tab-strip-top a {
+    text-decoration: none !important;
+    -moz-outline: none;
+    outline: none;
+    /*cursor: pointer;*/
+}
+
+.rs-tab-strip-top a, .rs-tab-strip-top span, .rs-tab-strip-top em {
+    display: block;
+}
+
+.rs-tab-strip-top .rs-tab-strip-active a.rs-tab-strip-close {
+    opacity: .8;
+    -moz-opacity: .8;
+}
+
+.rs-tab-strip-top .rs-tab-strip-closable a.rs-tab-strip-close {
+    /*background-image: url(../images/default/tabs/tab-close.gif);*/
+    opacity: .6;
+    -moz-opacity: .6;
+    background-repeat: no-repeat;
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+.rs-tab-strip-top .rs-tab-strip-closable a.rs-tab-strip-close:hover{
+    opacity:1;
+    -moz-opacity:1;
+}
+
+.rs-tab-right {
+    cursor: default;
+}
+
+.rs-tab-strip-top .rs-tab-with-icon .rs-tab-right {
+    padding-left: 6px;
+}
+
+
+.rs-tab-strip-top .rs-tab-right {
+    background: transparent no-repeat 0 -51px;
+    padding-left: 10px;
+}
+
+.rs-tab-strip-top .rs-tab-strip-inner {
+    background: transparent repeat-x 0 -201px;
+}
+
+.rs-tab-strip-top .rs-tab-left {
+    background: transparent no-repeat right -351px;
+    padding-right: 10px;
+}
+
+/*.rs-tab-strip-top .rs-tab-right, .rs-tab-strip-top .rs-tab-left, .rs-tab-strip-top .rs-tab-strip-inner {
+    background-image: url(../images/default/tabs/tabs-sprite.gif);
+}*/
+
+
+.rs-tab-strip-closable .rs-tab-left {
+    padding-right: 19px;
+}
+
+.rs-tab-strip-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rs-tab-strip-top .rs-tab-with-icon span.rs-tab-strip-text {
+    padding-left: 20px;
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+}
+
+.rs-tab-strip-active, .rs-tab-strip-active a.rs-tab-right {
+    cursor: default;
+}
+
+.rs-tab-strip-top .rs-tab-strip-active .rs-tab-right {
+    background-position: 0 0;
+    margin-bottom: -1px;
+}
+
+.rs-tab-strip-top .rs-tab-strip-active .rs-tab-left {
+    background-position: right -301px;
+}
+
+.rs-tab-strip-top .rs-tab-strip-active .rs-tab-strip-inner {
+    background-position: 0 -151px;
+}
+
+.rs-tab-strip-top .rs-tab-strip-active .rs-tab-right span.rs-tab-strip-text {
+    padding-bottom: 5px;
+}
+
+.rs-tab-strip-active span.rs-tab-strip-text {
+    /*color: #15428B;*/
+    font-weight: bold;
+    cursor: default;
+}
+
+.rs-tab-strip-top span.rs-tab-strip-text {
+    font: normal 12px  tahoma,arial,helvetica;
+    text-overflow : ellipsis;
+    /*color: #416AA3;*/
+    white-space: nowrap;
+    /*cursor: pointer;*/
+    padding: 4px 0;
+}
+
+.rs-tab-shell-tabbody-wrap {
+    overflow: hidden;
+}
+
+.rs-tab-shell-tabbody-top {
+    border-top: 0 none;
+}
+
+.rs-tab-shell-tabbody {
+    border: 0px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.rs-tab-region {
+    overflow: hidden;
+    zoom: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.rs-tab-region-hide {
+    display: none !important;
+}
+
+.rs-tab-strip-mousemove {
+    cursor: auto !important;
+}
+
+.rs-tab-leave {
+    cursor: not-allowed !important;
+}
+
+.ext-el-mask{
+	-moz-opacity:0.0 !important;
+	opacity:0.0 !important;
+	filter:alpha(opacity=0) !important;
+}
+
+body {
+    font-family:  helvetica,tahoma,verdana,sans-serif;
+    font-size: 13px;
+}

@@ -1,0 +1,17 @@
+create table GENERALMODEL_HEAD
+(
+  model_code NVARCHAR2(30) not null,
+  model_name NVARCHAR2(50) not null,
+  table_name NVARCHAR2(90),
+  remark     NVARCHAR2(300)
+);
+comment on column GENERALMODEL_HEAD.model_code
+  is '数据模型编码';
+comment on column GENERALMODEL_HEAD.model_name
+  is '数据模型名称';  
+comment on column GENERALMODEL_HEAD.table_name
+  is '对应数据表名称';
+comment on column GENERALMODEL_HEAD.remark
+  is '备注';
+alter table GENERALMODEL_HEAD
+  add constraint PK_GENERALMODEL_HEAD primary key (MODEL_CODE);

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+<script src="../../../rs/rs-debug.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/state/Provider.js"></script>
+<script src="../../../rs/ext/state/StateManager.js"></script>
+<script src="../../../rs/ext/state/StatePlugin.js"></script>
+
+<script src="../../../rs/ext/query/QueryConditionModel.js"></script>
+<script src="../../../rs/ext/query/QueryPanel.js"></script>
+
+<title>Rs-ext query panel example</title>
+</head>
+<body>
+<br>带有用户偏好的查询面板示例
+<br>应用场景：查询条件在一定范围内可自由组合时
+<br/>
+<hr />
+<div id="div1"></div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+
+	    //记录用户查询
+		var plugin2 = new Rs.ext.state.StatePlugin( { 
+			scheme : 10
+		});
+
+		var conditions = [{
+			//查询条件键值
+			dataIndex : 'ITEM_CODE',
+		    //查询条件名称
+			header : '物料编码',
+			//是否隐藏
+			hidden : false,
+			//查询条件编辑器
+			editor : new Ext.form.TextField( {
+				allowBlank : false
+			}),
+			//可查询条件控件的值进行包装
+			wrapper : function(v) {
+				return 'item_code = ' + v;
+			}
+		}, {
+			dataIndex : 'ITEM_NAME',
+			header : '物料名称',
+			hidden : true,
+			editor : new Ext.form.TextField( {})
+		} ];
+		for( var i = 0; i < 10; i++) {
+			conditions.push( {
+				dataIndex : 'ITEM_NAME' + i,
+				header : '物料名称' + i,
+				hidden : true,
+				editor : new Ext.form.TextField( {})
+			});
+		}
+
+		var qp = new Rs.ext.query.QueryPanel( {
+			title : '查询面板',
+			width : 600,
+			height : 100,
+			renderTo : 'div1',
+			conditions : conditions,
+			plugins : plugin2,
+			stateId : '查询面板stateId',
+			stateEvents : [ 'query' ],
+	        bbar : new Ext.Toolbar({
+		        items : ["->", plugin2.button]
+		    })
+		});
+
+		qp.on("beforeselectcondition", function(m, c) {
+		    if(c.getDataIndex() == "ITEM_NAME9"){
+			    alert("不能添加：" + c.getDataIndex());
+			    return false;
+			}
+		}, this);
+
+	    qp.on('query', function(qp, params){
+		    alert(Ext.encode(params));
+		}, this);
+	}, this);
+</script>
+</html>

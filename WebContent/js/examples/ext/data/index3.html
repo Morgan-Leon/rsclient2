@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+
+<link rel="stylesheet" type="text/css" href="../../../rs/resources/css/rs-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../../rs/ext/resources/css/rs-ext-mini.css" />
+<link rel="stylesheet" type="text/css" href="../../examples.css" />
+
+<link rel="stylesheet" type="text/css" href="../../../rs/lib/ext-3.3.1/resources/css/ext-all.css" />
+
+<script src="../../../rs/lib/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/ext-all.js"></script>
+<script src="../../../rs/lib/ext-3.3.1/override.js"></script>
+
+
+<script src="../../../rs/rs-mini.js"></script>
+<script src="../../../rs/ext/rs-ext-debug.js"></script>
+
+<script src="../../../rs/ext/data/GeneralselStore.js"></script>
+
+<title>Rs.ext.state example</title>
+</head>
+<body style="margin:10px;">
+<br />
+<hr />
+<br> 望远镜store示例。
+<br> 应用场景：在RS10系统中有大量的查询页面，这些页面只是根据查询条件查询数据，不具有复杂的业务逻辑，这些程序可使用望远镜store来读取数据，可免去编写后台查询程序，直接根据望远镜编码取望远镜数据即可。
+<br/>
+<br/>
+<div style="float:left;">已成功发送 </div>
+<div id="out" style="float:left; color:red;">0</div>
+<div style="float:left;"> 次请求，并接收到响应</div>
+<input id="reload" type="button" value="reload">
+<hr />
+<div id="msg" style="color:blue"></div>
+<br />
+<div>
+    <div id="div1" style="margin-left:20px; float:left;"></div>
+    <div id="div2" style="margin-left:20px; float:left;"></div>
+    <div id="div3" style="margin-left:20px; float:left;"></div>
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+	Rs.onReady(function() {
+		var i = 0,
+		    msg = '<br/>';
+
+		var printer = function(store){
+			var buf = [];
+
+			store.each(function(r){
+				buf.push(Ext.encode(r.data));
+			}, this);
+			
+			msg += (++i) + ": <br/><b>编码</b>: " + store.getProgCode() 
+			    + " <br/><b>条件</b>: " + store.getProgCondition() 
+			    + " <br/><b>结果</b>: " + buf.join(",") + "<br/><hr>";
+			    
+			Rs.fly("out").update(i);
+			Rs.fly("msg").update(msg);
+			return i;
+		};
+
+		var store = new Rs.ext.data.GeneralselStore({
+	    	autoLoad : true,
+	        autoDestroy: true,
+	        progCode : 'invCustom',
+	        progCondition : ' company_code = \'00\''
+	    });
+	    
+		Ext.apply(store.baseParams.metaData, {
+            limit : 10
+        });
+        
+		store.on('load', function(s, rs, o){
+			var k = printer(s);
+		    if(k == 1){
+			    s.setProgCode("itemDetail", " company_code = '00' and on_hand_qty > 0 ");
+			}else if(k == 2){
+				s.setProgCode("invPacPick1", " company_code = '00' and pick_plan_qty > 0");
+			}else if(k == 3){
+				s.setProgCode("itemMaster", " rownum < 2")
+			}else if(k == 4){
+				s.setProgCode("invReqDept")
+			}
+			if(k < 5){
+				s.reload();
+			}
+		}, this);
+
+		Rs.fly("reload").on("click", function(){
+		    store.reload();
+		}, this);
+	}, this);
+</script>
+</html>

@@ -1,0 +1,74 @@
+
+.generalform-btn {
+    width : 60px;
+    height : 30px;
+    text-align : center;
+    margin-top:5px;
+    font-size : 14px;
+}
+
+.generalform-btn-active {
+    color : red;
+    font-weight : bold;
+}
+
+.generalform-btn-inactive {
+    color : black;
+    font-weight : normal;
+}
+
+
+.generalform-formheader-icon {
+    width : 20px;
+    height : 16px;
+    background: url(layout-header.png) 0px 0px no-repeat !important;
+}
+
+.generalform-formregion-icon {
+    width : 20px;
+    height : 16px;
+    background: url(application-view-tile.png) 0px 0px no-repeat !important;
+}
+
+.generalform-fileline-icon {
+    width : 20px;
+    height : 16px;
+    background: url(application-form.png) 0px 0px no-repeat !important;
+}
+
+.generalform-preview-icon {
+    width : 20px;
+    height : 16px;
+    background: url(application-form-magnify.png) 0px 0px no-repeat !important;
+}
+
+.generalform-addformline-icon {
+    width : 20px;
+    height : 16px;
+    background: url(list-add.png) 0px 0px no-repeat !important;
+}
+
+.generalform-delformline-icon {
+    width : 20px;
+    height : 16px;
+    background: url(process-stop-3.png) 0px 0px no-repeat !important;
+}
+
+.generalform-addfiled-icon {
+    width : 20px;
+    height : 16px;
+    background: url(application-new.png) 0px 0px no-repeat !important;
+}
+
+.generalform-delform-icon {
+	width : 20px;
+    height : 16px;
+    background: url(table-cell-delete.png) 0px 0px no-repeat !important;
+}
+
+.generalform-action-icon {
+    width : 20px;
+    height : 16px;
+    background: url(emblem-system.png) 0px 0px no-repeat !important;
+}
+

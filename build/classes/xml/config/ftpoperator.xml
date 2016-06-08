@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+<ftp>
+	<!-- (FTP:FTP  DISK:硬盘) -->
+    <operate-mode>DISK</operate-mode>
+	<!-- 硬盘方式存放的位置  FTP方式此配置失效 -->
+    <root-path>E:\RS10EIP</root-path>
+    <!-- 附件加不加密  true 加密 flase 不加密 -->
+	<encrypt-file>false</encrypt-file>
+</ftp>
